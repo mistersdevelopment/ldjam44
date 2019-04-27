@@ -8,7 +8,8 @@ public enum CardinalDirection
 	EAST,
 	NORTH,
 	WEST,
-	SOUTH
+	SOUTH,
+	COUNT
 }
 
 public static class DirectionUtils

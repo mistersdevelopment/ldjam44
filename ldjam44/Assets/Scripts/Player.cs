@@ -6,7 +6,7 @@ using System;
 public class Player : MonoBehaviour
 {
 	public GameObject coinPrefab;
-    public PlayerStats playerStats;
+	public PlayerStats playerStats;
 
 	Rigidbody2D body;
 	private float horizontalMovement = 0;
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
-        playerStats = GetComponent<PlayerStats>();
+		playerStats = GetComponent<PlayerStats>();
 	}
 
 	void FixedUpdate()
@@ -50,19 +50,46 @@ public class Player : MonoBehaviour
 		if (input != Vector2.zero)
 		{
 			CardinalDirection dir = DirectionUtils.CoordinatesToCardinalDirection(input);
-
 			if (dir != facing)
 			{
 				facing = dir;
 			}
 		}
 
-		if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow)) && !firing)
+		if (Input.GetMouseButton(0))
 		{
-            InvokeRepeating("Fire", 0.0f, playerStats.rateOfFire);
+			// Set facing to the mouse direction.
+			// Looks like it just takes the vector from the player -> mouse position and selects the cardianal direction with the dot product closest to 1
+			var mouseWorld = Input.mousePosition;
+			mouseWorld = Camera.main.ScreenToWorldPoint(mouseWorld);
+			mouseWorld.z = 0;
+
+			var pos = transform.position;
+			pos.z = 0;
+			var mouseDir = Vector3.Normalize(mouseWorld - pos);
+
+			var maxDot = float.MinValue;
+			var maxDotDir = CardinalDirection.COUNT;
+			for (int i = 0; i < (int)CardinalDirection.COUNT; i++)
+			{
+				var dotVal = Vector3.Dot(mouseDir, DirectionUtils.CardinalDirectionToVec((CardinalDirection)i));
+				if (dotVal > maxDot)
+				{
+					maxDot = dotVal;
+					maxDotDir = (CardinalDirection)i;
+				}
+			}
+			facing = maxDotDir;
+		}
+
+		if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
+			Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetMouseButtonDown(0)) && !firing)
+		{
+			InvokeRepeating("Fire", 0.0f, playerStats.rateOfFire);
 			firing = true;
 		}
-		if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && firing)
+		if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.DownArrow) &&
+			!Input.GetKey(KeyCode.LeftArrow) && !Input.GetMouseButton(0) && firing)
 		{
 			firing = false;
 			CancelInvoke("Fire");
@@ -83,16 +110,16 @@ public class Player : MonoBehaviour
         coinScript.SetLifetime(playerStats.shotLifetime);
 	}
 
-    void PowerUp(PlayerStats modifyPlayerstats)
-    {
-        playerStats.movementSpeed += modifyPlayerstats.movementSpeed;
-        playerStats.shotSpeed += modifyPlayerstats.shotSpeed;
-        playerStats.rateOfFire += modifyPlayerstats.rateOfFire;
-        playerStats.damage += modifyPlayerstats.damage;
-        playerStats.shotSize += modifyPlayerstats.shotSize;
-        for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
-        {
-            playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
-        }
-    }
+	void PowerUp(PlayerStats modifyPlayerstats)
+	{
+		playerStats.movementSpeed += modifyPlayerstats.movementSpeed;
+		playerStats.shotSpeed += modifyPlayerstats.shotSpeed;
+		playerStats.rateOfFire += modifyPlayerstats.rateOfFire;
+		playerStats.damage += modifyPlayerstats.damage;
+		playerStats.shotSize += modifyPlayerstats.shotSize;
+		for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
+		{
+			playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
+		}
+	}
 }
