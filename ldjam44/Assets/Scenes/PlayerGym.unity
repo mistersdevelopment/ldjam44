@@ -235,6 +235,48 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1001 &449145812
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &615498995
 GameObject:
   m_ObjectHideFlags: 0
@@ -511,8 +553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 50631853478882136, guid: f084de59d8ccf4d53bc28a46c9b98ea5,
     type: 2}
-  movementSpeed: 2
-  shotSpeed: 2.5
 --- !u!212 &1212430148
 SpriteRenderer:
   m_ObjectHideFlags: 0
