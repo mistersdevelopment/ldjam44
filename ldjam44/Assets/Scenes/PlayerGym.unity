@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 32848309}
   - component: {fileID: 32848306}
   m_Layer: 0
-  m_Name: LeftWall
+  m_Name: Wall_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ Transform:
   m_LocalScale: {x: 1077.0071, y: 156.10013, z: -1}
   m_Children: []
   m_Father: {fileID: 469347987}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &32848308
 BoxCollider2D:
@@ -410,9 +410,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1029448076}
+  - {fileID: 1810424711}
   - {fileID: 615498997}
   - {fileID: 32848307}
-  - {fileID: 1810424711}
   m_Father: {fileID: 2036631296}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 615498999}
   - component: {fileID: 615498996}
   m_Layer: 0
-  m_Name: BottomWall
+  m_Name: Wall_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -566,7 +566,7 @@ Transform:
   m_LocalScale: {x: 1844.4066, y: 121.65121, z: -1}
   m_Children: []
   m_Father: {fileID: 469347987}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &615498998
 BoxCollider2D:
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 1029448078}
   - component: {fileID: 1029448075}
   m_Layer: 0
-  m_Name: TopWall
+  m_Name: Wall_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -840,8 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e0deef4b1f048aa91f9f368ca669f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 50631853478882136, guid: f084de59d8ccf4d53bc28a46c9b98ea5,
-    type: 2}
+  coinPrefab: {fileID: 1695075482479038, guid: f084de59d8ccf4d53bc28a46c9b98ea5, type: 2}
 --- !u!212 &1212430148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1025,7 +1024,7 @@ GameObject:
   - component: {fileID: 1810424713}
   - component: {fileID: 1810424710}
   m_Layer: 0
-  m_Name: RightWall
+  m_Name: Wall_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1088,7 +1087,7 @@ Transform:
   m_LocalScale: {x: 1079.1307, y: 161.57785, z: -1}
   m_Children: []
   m_Father: {fileID: 469347987}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!61 &1810424712
 BoxCollider2D:

@@ -22,7 +22,7 @@ public class Coin : MonoBehaviour {
         Enemy enemyScript = other.GetComponent< Enemy >();
         if (enemyScript)
         {
-            enemyScript.ModifyHealth(-damage);
+            enemyScript.ModifyHealth(-(int)damage);
         }
         Destroy(this.gameObject);
     }
