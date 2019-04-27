@@ -698,6 +698,21 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 58601176995694042, guid: 8352762ce786c44419fcab95db8b70b3,
+        type: 2}
+      propertyPath: m_Radius
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 58601176995694042, guid: 8352762ce786c44419fcab95db8b70b3,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58601176995694042, guid: 8352762ce786c44419fcab95db8b70b3,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
   m_IsPrefabAsset: 0
@@ -986,6 +1001,7 @@ GameObject:
   - component: {fileID: 1212430150}
   - component: {fileID: 1212430151}
   - component: {fileID: 1212430152}
+  - component: {fileID: 1212430153}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -1117,7 +1133,20 @@ MonoBehaviour:
   damage: 1
   shotSize: 0.5
   shotLifetime: 1
+  baseEffect: {fileID: 1212430153}
   additionalEffects: []
+--- !u!114 &1212430153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1212430146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7110b5238abb40805537c346537e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &1544727568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1172596424849982, guid: 8352762ce786c44419fcab95db8b70b3,
