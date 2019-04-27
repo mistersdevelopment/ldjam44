@@ -6,7 +6,7 @@ using System;
 public class Player : MonoBehaviour
 {
 	public Rigidbody2D coinPrefab;
-	
+
 	float movementSpeed = 2.0f;
 	float shotSpeed = 100f;
 
@@ -27,11 +27,11 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		Movement();
-		Attack();
+		ProcessMovement();
+		ProcessAttacks();
 	}
 
-	void Movement()
+	void ProcessMovement()
 	{
 		horizontalMovement = Input.GetAxis("Horizontal");
 		verticalMovement = Input.GetAxis("Vertical");
@@ -52,15 +52,24 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void Attack()
+	void ProcessAttacks()
 	{
-		if (Input.GetButton("Fire1"))
+		if (Input.GetButtonDown("Fire1"))
 		{
-			Vector3 facingVec = DirectionUtils.CardinalDirectionToVec(facing);
-			Vector3 coinStart = transform.position + facingVec * 0.75f;
-			Rigidbody2D coin = Instantiate(coinPrefab, coinStart, Quaternion.identity) as Rigidbody2D;
-			coin.velocity = GetComponent<Rigidbody2D>().velocity;
-			coin.AddForce(facingVec * shotSpeed);
+			InvokeRepeating("Fire", 0.0f, 0.3f);
 		}
+		if (Input.GetButtonUp("Fire1"))
+		{
+			CancelInvoke("Fire");
+		}
+	}
+
+	void Fire()
+	{
+		Vector3 facingVec = DirectionUtils.CardinalDirectionToVec(facing);
+		Vector3 coinStart = transform.position + facingVec * 0.75f;
+		Rigidbody2D coin = Instantiate(coinPrefab, coinStart, Quaternion.identity) as Rigidbody2D;
+		coin.velocity = GetComponent<Rigidbody2D>().velocity;
+		coin.AddForce(facingVec * shotSpeed);
 	}
 }
