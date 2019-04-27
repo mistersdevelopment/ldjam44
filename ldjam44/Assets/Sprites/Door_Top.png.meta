@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 0c1b16a313f3f214d9b8fd2117cb853e
-=======
 guid: 7706a63c315ad4959817ce37655a306e
->>>>>>> Added art to room.
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -79,11 +75,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-<<<<<<< HEAD
-    spriteID: f898218a67b9f6c4b9788c73fe6a5387
-=======
     spriteID: 563313c82341d413e96e06eaa4cab6d1
->>>>>>> Added art to room.
     vertices: []
     indices: 
     edges: []
