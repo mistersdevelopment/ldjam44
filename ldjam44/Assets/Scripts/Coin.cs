@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour {
 
-    public int damage;
+    public float damage;
     Rigidbody2D body;
 	// Use this for initialization
 	void Start () {
         body = GetComponent<Rigidbody2D>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	public void SetDamage( float newDamage )
+    {
+        damage = newDamage;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

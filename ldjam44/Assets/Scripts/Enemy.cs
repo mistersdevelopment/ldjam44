@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour 
 {
-    public int maxHealth;
-    public int currentHealth;
+    public float maxHealth;
+    public float currentHealth;
 
 	// Use this for initialization
 	void Start () 
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
 		
 	}
 
-    public void ModifyHealth(int modification)
+    public void ModifyHealth(float modification)
     {
         currentHealth += modification;
         if (currentHealth <= 0)

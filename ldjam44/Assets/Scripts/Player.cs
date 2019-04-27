@@ -5,11 +5,12 @@ using System;
 
 public class Player : MonoBehaviour
 {
-	public Rigidbody2D coinPrefab;
+	public GameObject coinPrefab;
 
 	float movementSpeed = 2.0f;
 	float shotSpeed = 100f;
     float rateOfFire = 0.3f;
+    float damage = 1.0f;
 
 	Rigidbody2D body;
 	private float horizontalMovement = 0;
@@ -69,8 +70,11 @@ public class Player : MonoBehaviour
 	{
 		Vector3 facingVec = DirectionUtils.CardinalDirectionToVec(facing);
 		Vector3 coinStart = transform.position + facingVec * 0.75f;
-		Rigidbody2D coin = Instantiate(coinPrefab, coinStart, Quaternion.identity) as Rigidbody2D;
-		coin.velocity = GetComponent<Rigidbody2D>().velocity;
-		coin.AddForce(facingVec * shotSpeed);
+		GameObject coin = Instantiate(coinPrefab, coinStart, Quaternion.identity);
+        Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
+        Coin coinScript = coin.GetComponent<Coin>();
+        coinRigidbody.velocity = GetComponent<Rigidbody2D>().velocity;
+        coinRigidbody.AddForce(facingVec * shotSpeed);
+        coinScript.SetDamage(damage);
 	}
 }
