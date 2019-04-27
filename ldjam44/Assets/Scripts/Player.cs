@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
         coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
         coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
         coinRigidbody.AddForce(facingVec * playerStats.shotSpeed);
-        coinScript.SetDamage(playerStats.damage);
+        coinScript.SetBaseEffect(playerStats.baseEffect);
         coinScript.SetLifetime(playerStats.shotLifetime);
 	}
 

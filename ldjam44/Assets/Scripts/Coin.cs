@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour {
 
-    public float damage;
     public float lifetime;
+    public AdditionalCoinEffect baseEffect;
     public List<AdditionalCoinEffect> additionalEffects;
 	// Use this for initialization
 	void Start () 
@@ -21,10 +21,10 @@ public class Coin : MonoBehaviour {
         }
 
     }
-	
-	public void SetDamage( float newDamage )
+
+    public void SetBaseEffect(AdditionalCoinEffect newBaseEffect)
     {
-        damage = newDamage;
+        baseEffect = newBaseEffect;
     }
 
     public void SetLifetime(float newLifetime)
@@ -43,7 +43,7 @@ public class Coin : MonoBehaviour {
         Enemy enemyScript = other.GetComponent< Enemy >();
         if (enemyScript)
         {
-            enemyScript.ModifyHealth(-damage);
+            baseEffect.ApplyEffect(enemyScript);
             for (int i = 0; i < additionalEffects.Count; ++i)
             {
                 additionalEffects[i].ApplyEffect(enemyScript);

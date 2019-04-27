@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AdditionalCoinEffect : MonoBehaviour {
 
-    public void ApplyEffect( Enemy enemy )
+    public virtual void ApplyEffect( Enemy enemy )
     {
     }
 }
