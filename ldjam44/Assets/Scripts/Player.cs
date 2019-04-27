@@ -13,12 +13,28 @@ public class Player : MonoBehaviour
 	private float verticalMovement = 0;
 	private CardinalDirection facing = CardinalDirection.SOUTH;
 
+	private GameObject back;
+	private GameObject front;
+	private GameObject side;
+	private GameObject[] eyesClosed;
+	private Animator animator;
+
 	bool firing = false;
 
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
 		playerStats = GetComponent<PlayerStats>();
+
+		animator = GetComponent<Animator>();
+		back = GameObject.Find("Player/Player_Back");
+		front = GameObject.Find("Player/Player_Front");
+		side = GameObject.Find("Player/Player_Side");
+		eyesClosed = new GameObject[2];
+		eyesClosed[0] = GameObject.Find("Player/Player_Side/Player_Side_Eyes_Closed");
+		eyesClosed[1] = GameObject.Find("Player/Player_Front/Player_Front_Eyes_Closed");
+		UpdateSprits();
+		StartCoroutine(Blinking());
 	}
 
 	void FixedUpdate()
@@ -36,6 +52,7 @@ public class Player : MonoBehaviour
 	{
 		horizontalMovement = Input.GetAxis("HorizontalMove");
 		verticalMovement = Input.GetAxis("VerticalMove");
+		animator.SetBool("Walking", Math.Abs(horizontalMovement) > 0.01 || Math.Abs(verticalMovement) > 0.01);
 	}
 
 	void ProcessAttacks()
@@ -53,6 +70,7 @@ public class Player : MonoBehaviour
 			if (dir != facing)
 			{
 				facing = dir;
+				UpdateSprits();
 			}
 		}
 
@@ -120,6 +138,35 @@ public class Player : MonoBehaviour
 		for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
 		{
 			playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
+		}
+	}
+
+
+	void UpdateSprits()
+	{
+		back.SetActive(facing == CardinalDirection.NORTH);
+		front.SetActive(facing == CardinalDirection.SOUTH);
+		side.SetActive(facing == CardinalDirection.EAST || facing == CardinalDirection.WEST);
+		side.transform.localScale = new Vector3(facing == CardinalDirection.EAST ? -1 : 1, 1, 1);
+	}
+
+	void SetEyesOpen(bool open)
+	{
+		foreach (GameObject eye in eyesClosed)
+		{
+			eye.SetActive(!open);
+		}
+	}
+
+	IEnumerator Blinking()
+	{
+		SetEyesOpen(true);
+		while (true)
+		{
+			SetEyesOpen(false);
+			yield return new WaitForSeconds(0.1f);
+			SetEyesOpen(true);
+			yield return new WaitForSeconds(UnityEngine.Random.Range(2, 4));
 		}
 	}
 }

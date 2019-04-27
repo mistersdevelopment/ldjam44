@@ -3418,7 +3418,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player_Front/Player_Front_Lever
+    path: Player_Back/Player_Back_Lever
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3428,7 +3428,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player_Front/Player_Front_Lever
+    path: Player_Back/Player_Back_Lever
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3438,7 +3438,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player_Front/Player_Front_Lever
+    path: Player_Back/Player_Back_Lever
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3448,7 +3448,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: Player_Back/Player_Back_Lever
+    path: Player_Front/Player_Front_Lever
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3458,7 +3458,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: Player_Back/Player_Back_Lever
+    path: Player_Front/Player_Front_Lever
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3468,7 +3468,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: Player_Back/Player_Back_Lever
+    path: Player_Front/Player_Front_Lever
     classID: 4
     script: {fileID: 0}
   - curve:
