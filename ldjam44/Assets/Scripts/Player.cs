@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
         coinRigidbody.velocity = GetComponent<Rigidbody2D>().velocity;
         coinRigidbody.AddForce(facingVec * playerStats.shotSpeed);
         coinScript.SetDamage(playerStats.damage);
+        coinScript.SetLifetime(playerStats.shotLifetime);
 	}
 
     void PowerUp(PlayerStats modifyPlayerstats)

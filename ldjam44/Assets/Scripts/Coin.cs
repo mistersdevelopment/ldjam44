@@ -5,16 +5,31 @@ using UnityEngine;
 public class Coin : MonoBehaviour {
 
     public float damage;
+    public float lifetime;
     public List<AdditionalCoinEffect> additionalEffects;
-    Rigidbody2D body;
 	// Use this for initialization
-	void Start () {
-        body = GetComponent<Rigidbody2D>();
+	void Start () 
+    {
 	}
+
+    void Update()
+    {
+        lifetime -= Time.deltaTime;
+        if (lifetime <= 0f)
+        {
+            Destroy(this.gameObject);
+        }
+
+    }
 	
 	public void SetDamage( float newDamage )
     {
         damage = newDamage;
+    }
+
+    public void SetLifetime(float newLifetime)
+    {
+        lifetime = newLifetime;
     }
 
     public void SetEffects(List<AdditionalCoinEffect> newAdditionaleffects)

@@ -9,5 +9,6 @@ public class PlayerStats : MonoBehaviour {
     public float rateOfFire = 0.3f;
     public float damage = 1.0f;
     public float shotSize = 0.5f;
+    public float shotLifetime = 1.0f;
     public List<AdditionalCoinEffect> additionalEffects;
 }
