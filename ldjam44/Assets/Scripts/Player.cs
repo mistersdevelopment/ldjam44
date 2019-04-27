@@ -83,5 +83,9 @@ public class Player : MonoBehaviour
         playerStats.rateOfFire += modifyPlayerstats.rateOfFire;
         playerStats.damage += modifyPlayerstats.damage;
         playerStats.shotSize += modifyPlayerstats.shotSize;
+        for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
+        {
+            playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
+        }
     }
 }
