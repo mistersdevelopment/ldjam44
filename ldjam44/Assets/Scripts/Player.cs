@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 	private float verticalMovement = 0;
 	private CardinalDirection facing = CardinalDirection.SOUTH;
 
+	bool firing = false;
+
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
@@ -32,10 +34,15 @@ public class Player : MonoBehaviour
 
 	void ProcessMovement()
 	{
-		horizontalMovement = Input.GetAxis("Horizontal");
-		verticalMovement = Input.GetAxis("Vertical");
+		horizontalMovement = Input.GetAxis("HorizontalMove");
+		verticalMovement = Input.GetAxis("VerticalMove");
+	}
 
-		Vector2 input = new Vector2(horizontalMovement, verticalMovement);
+	void ProcessAttacks()
+	{
+		var horizontalLook = Input.GetAxis("HorizontalLook");
+		var verticalLook = Input.GetAxis("VerticalLook");
+		Vector2 input = new Vector2(horizontalLook, verticalLook);
 		input.x = (float)(Math.Sign(input.x) * Math.Ceiling(Math.Abs(input.x)));
 		input.y = (float)(Math.Sign(input.y) * Math.Ceiling(Math.Abs(input.y)));
 		input = input.normalized;
@@ -49,16 +56,15 @@ public class Player : MonoBehaviour
 				facing = dir;
 			}
 		}
-	}
 
-	void ProcessAttacks()
-	{
-		if (Input.GetButtonDown("Fire1"))
+		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
 		{
             InvokeRepeating("Fire", 0.0f, playerStats.rateOfFire);
+			firing = true;
 		}
-		if (Input.GetButtonUp("Fire1"))
+		if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.DownArrow) && !Input.GetKey(KeyCode.LeftArrow) && firing)
 		{
+			firing = false;
 			CancelInvoke("Fire");
 		}
 	}
