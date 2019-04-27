@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+		if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.LeftArrow)) && !firing)
 		{
             InvokeRepeating("Fire", 0.0f, playerStats.rateOfFire);
 			firing = true;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
         Coin coinScript = coin.GetComponent<Coin>();
         coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
-        coinRigidbody.velocity = GetComponent<Rigidbody2D>().velocity;
+        coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
         coinRigidbody.AddForce(facingVec * playerStats.shotSpeed);
         coinScript.SetDamage(playerStats.damage);
         coinScript.SetLifetime(playerStats.shotLifetime);

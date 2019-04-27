@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  shotSpeed: 100
+  shotSpeed: 200
   rateOfFire: 0.3
   damage: 1
   shotSize: 0.5
