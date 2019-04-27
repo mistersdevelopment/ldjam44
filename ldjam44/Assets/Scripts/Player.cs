@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
 	float movementSpeed = 2.0f;
 	float shotSpeed = 100f;
+    float rateOfFire = 0.3f;
 
 	Rigidbody2D body;
 	private float horizontalMovement = 0;
@@ -56,7 +57,7 @@ public class Player : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Fire1"))
 		{
-			InvokeRepeating("Fire", 0.0f, 0.3f);
+            InvokeRepeating("Fire", 0.0f, rateOfFire);
 		}
 		if (Input.GetButtonUp("Fire1"))
 		{
