@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
 	float shotSpeed = 100f;
     float rateOfFire = 0.3f;
     float damage = 1.0f;
+    float shotSize = 0.5f;
 
 	Rigidbody2D body;
 	private float horizontalMovement = 0;
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour
 		GameObject coin = Instantiate(coinPrefab, coinStart, Quaternion.identity);
         Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
         Coin coinScript = coin.GetComponent<Coin>();
+        coin.transform.localScale = new Vector3(shotSize, shotSize, 1.0f);
         coinRigidbody.velocity = GetComponent<Rigidbody2D>().velocity;
         coinRigidbody.AddForce(facingVec * shotSpeed);
         coinScript.SetDamage(damage);
