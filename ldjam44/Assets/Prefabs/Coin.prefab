@@ -70,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1470423503946820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4930724651017054}
   m_RootOrder: 1
@@ -95,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695075482479038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.502, y: -0.395, z: 0}
+  m_LocalPosition: {x: -0.608, y: -0.395, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4537135157784784}
@@ -201,7 +201,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.21620369
+        value: 0.10359383
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -271,8 +271,6 @@ MonoBehaviour:
   lifetime: 0
   baseEffect: {fileID: 0}
   additionalEffects: []
-  CorpsePrefab: {fileID: 1751702360620520, guid: 53038653961cf394f8b41443b6cd2695,
-    type: 2}
 --- !u!212 &212531279146048368
 SpriteRenderer:
   m_ObjectHideFlags: 1
