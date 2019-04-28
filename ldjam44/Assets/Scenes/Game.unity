@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 3
-  upgradeButton: {fileID: 0}
+  upgradeButton: {fileID: 659767522}
   upgradeMachinePrefab: {fileID: 1477548138544040, guid: 481c2abfb84083e4ebd47136f74f0661,
     type: 2}
   canvas: {fileID: 257185943}

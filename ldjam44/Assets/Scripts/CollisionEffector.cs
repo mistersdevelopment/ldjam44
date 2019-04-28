@@ -18,7 +18,7 @@ public class CollisionEffector : MonoBehaviour
 		additionalEffects = newAdditionaleffects;
 	}
 
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnCollisionStay2D(Collision2D collision)
 	{
 		GameObject other = collision.gameObject;
 		if (other.layer != gameObject.layer)
