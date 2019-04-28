@@ -93,4 +93,9 @@ public class Room : MonoBehaviour
 			Activate();
 		}
 	}
+
+	public void PlayerExitedTrigger(string name)
+	{
+		// Do nothing.
+	}
 }

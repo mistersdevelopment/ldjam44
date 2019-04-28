@@ -17,7 +17,6 @@ public class TargetCamera : MonoBehaviour
 			newPos = Vector3.SmoothDamp(transform.position, target.position, ref cameraVelocity, smoothTime);
 			if (target.GetComponent<Player>())
 			{
-				Debug.Log("On Player.");
 				newPos.x = 0;
 			}
 			newPos.z = transform.position.z;

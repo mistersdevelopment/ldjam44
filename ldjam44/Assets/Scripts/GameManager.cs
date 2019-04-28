@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
 
 	public void BeginGameplay()
 	{
-		Debug.Log("Loading room 0.");
 		LoadRoom(0, Vector3.zero);
 	}
 
@@ -68,9 +67,7 @@ public class GameManager : MonoBehaviour
 
 		nextRoomState = LoadState.LOADED;
 		Scene s = SceneManager.GetSceneByName(roomName);
-		Debug.Log(s.isLoaded);
 		GameObject[] gameObjects = s.GetRootGameObjects();
-		Debug.Log(gameObjects.Length);
 		var roomObj = gameObjects[0];
 		roomObj.transform.position = position;
 		var room = roomObj.GetComponent<Room>();
@@ -109,7 +106,6 @@ public class GameManager : MonoBehaviour
 		{
 			if (!nextRoom.isActive())
 			{
-
 				Camera.main.GetComponent<TargetCamera>().target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 			}
 			else

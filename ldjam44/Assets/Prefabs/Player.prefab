@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 114624830568405976}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -590,6 +590,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   maxHealth: 5
   currentHealth: 0
+  currentStatusEffects: []
 --- !u!114 &114223941154659522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -638,6 +639,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   maxHealth: 5
   currentHealth: 0
+  currentStatusEffects: []
 --- !u!114 &114504156879108070
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -672,19 +674,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1ba17457f901e4ac0a3e677ba9a3290c, type: 3}
   - {fileID: 8300000, guid: 0efcfd802bd9f4688bc2fb93617c99de, type: 3}
   - {fileID: 8300000, guid: 31d4c0f9141f14904a0bc100165957b7, type: 3}
+  footstepVolume: 1
   shoot:
   - {fileID: 8300000, guid: f3aeee0e163d6410595fd8cdc342e71b, type: 3}
   - {fileID: 8300000, guid: 6230f363272bb4154932811f9f7bc97d, type: 3}
   - {fileID: 8300000, guid: 201d2f05973fd44d6a2a1b5501de0111, type: 3}
   - {fileID: 8300000, guid: d3367f8cf503a4d149522908116c3513, type: 3}
   - {fileID: 8300000, guid: 078add347ad854823971a0d7fb834b8a, type: 3}
+  shootVolume: 1
   damage:
   - {fileID: 8300000, guid: 24ec950c767e94b69b0af50baab1150f, type: 3}
   - {fileID: 8300000, guid: 7bd5e615896794bd0a8cca7918764a9d, type: 3}
   - {fileID: 8300000, guid: 3819e58ba377b47eaa2a27191c4313e6, type: 3}
   - {fileID: 8300000, guid: 0865c494576e547e2b5db56d252ddd84, type: 3}
   - {fileID: 8300000, guid: 305e8e632e11d4091b77fe2fe82ce9d0, type: 3}
+  damageVolume: 1
   taunt: []
+  tauntVolume: 1
 --- !u!114 &114678808152656586
 MonoBehaviour:
   m_ObjectHideFlags: 1

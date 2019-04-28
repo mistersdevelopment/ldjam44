@@ -6,7 +6,6 @@ public class Pickup : MonoBehaviour
 {
 	void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("OnCollisionEnter2D");
 		GameObject other = collision.gameObject;
 		Character playerScript = other.GetComponent<Character>();
 		if (playerScript)
