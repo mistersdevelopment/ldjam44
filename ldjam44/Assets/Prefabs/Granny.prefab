@@ -58,6 +58,8 @@ GameObject:
   - component: {fileID: 114806173810393374}
   - component: {fileID: 114228513607917044}
   - component: {fileID: 114747243465031954}
+  - component: {fileID: 114832863841600900}
+  - component: {fileID: 114474659972780110}
   m_Layer: 10
   m_Name: Granny
   m_TagString: Untagged
@@ -303,9 +305,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 0}
+  drop: {fileID: 1936833819473028, guid: 508c221ecd361463e832ea68832131f7, type: 2}
+  dropChance: 0.5
   stats: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
+--- !u!114 &114474659972780110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a321b67667623418493d9fd17f102cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySelfOnCollison: 0
+  baseEffect: {fileID: 114832863841600900}
+  additionalEffects: []
 --- !u!114 &114733036033553860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,6 +369,18 @@ MonoBehaviour:
   shotLifetime: 1
   baseEffect: {fileID: 0}
   additionalEffects: []
+--- !u!114 &114832863841600900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7110b5238abb40805537c346537e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!212 &212348681620844022
 SpriteRenderer:
   m_ObjectHideFlags: 1
