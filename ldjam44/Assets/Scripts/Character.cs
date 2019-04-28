@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-	public GameObject projectile;
-	public Stats stats;
+    public GameObject projectile;
+    public GameObject drop;
+    public float dropChance; // 0 to 1
+    public Stats stats;
 
 	public float maxHealth;
 	public float currentHealth;
@@ -23,11 +25,15 @@ public class Character : MonoBehaviour
 		currentHealth += modification;
 		if (currentHealth <= 0)
 		{
-			Destroy(this.gameObject);
+            Die();
 		}
-	}
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+    }
 
-	public void Fire(CardinalDirection dir)
+    public void Fire(CardinalDirection dir)
 	{
 		if (projectile && Time.time > nextFire)
 		{
@@ -67,4 +73,13 @@ public class Character : MonoBehaviour
 			stats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
 		}
 	}
+
+    public void Die()
+    {
+        if (drop && Random.Range(0.0f, 1.0f) < dropChance)
+        {
+            Instantiate(drop, transform.position, transform.rotation);
+        }
+        Destroy(this.gameObject);
+    }
 }
