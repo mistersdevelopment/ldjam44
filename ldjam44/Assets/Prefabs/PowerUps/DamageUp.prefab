@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 212681585070980346}
   - component: {fileID: 114705726368514760}
   - component: {fileID: 114317155078120186}
+  - component: {fileID: 114740687165680244}
   m_Layer: 12
   m_Name: DamageUp
   m_TagString: Untagged
@@ -110,6 +111,18 @@ MonoBehaviour:
   shotLifetime: 0
   baseEffect: {fileID: 0}
   additionalEffects: []
+--- !u!114 &114740687165680244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1690288621637328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efe602de7ad24c0dacd16b26c7e0e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
 --- !u!212 &212681585070980346
 SpriteRenderer:
   m_ObjectHideFlags: 1

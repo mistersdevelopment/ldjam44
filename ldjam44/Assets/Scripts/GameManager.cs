@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
 	private int nextRoomNumber = -1;
 	private Room nextRoom;
 	private LoadState nextRoomState = LoadState.NONE;
-	private bool firstRoom = true;
 
 	public int numberOfRooms = 2;
 
@@ -88,11 +87,6 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
-			if (roomNum != 0)
-			{
-				firstRoom = false;
-			}
-
 			nextRoomNumber = roomNum;
 			nextRoom = room;
 			activeRoom.SetTopDoor(true);
@@ -105,6 +99,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		// Load a new room if the active one is complete.
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
 			int roomNum = -1;
@@ -118,7 +113,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		// Show and hide upgrade button
-		if (!firstRoom && activeRoom && activeRoom.isComplete() && upgradeMachine == null)
+		if (activeRoomNumber != 0 && activeRoom && activeRoom.isComplete() && upgradeMachine == null)
 		{
 			if (!upgradeButton.activeSelf)
 			{
@@ -133,9 +128,11 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		// Change the active room.
 		if (nextRoom && nextRoomState == LoadState.LOADED && nextRoom.isActive())
 		{
 			SceneManager.UnloadSceneAsync("Room_" + activeRoomNumber);
+			Debug.Log("Active Room " + activeRoomNumber);
 			activeRoom = nextRoom;
 			nextRoom = null;
 			nextRoomState = LoadState.NONE;
