@@ -11,6 +11,10 @@ public class Granny : MonoBehaviour
 	bool moved = false;
 	Vector2 movement = Vector2.zero;
 
+    bool tired = false;
+    float energy = 6;
+    float maxEnergy = 6;
+
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
@@ -18,33 +22,51 @@ public class Granny : MonoBehaviour
 		spritesAnimator = transform.Find("Sprites").GetComponent<Animator>();
 	}
 
-	void Update()
-	{
-		// TODO Make granny randomly stop. Because tired.
-		var player = GameObject.Find("Player");
-		if (player)
-		{
-			var playerPos = player.transform.position;
-			movement = Vector2.MoveTowards(transform.position, playerPos, Time.deltaTime * stats.movementSpeed);
-			var grannyPos = transform.position;
-			grannyPos.z = 0;
-			var playerDir = Vector3.Normalize(playerPos - grannyPos);
+    void Update()
+    {
+        // TODO Make granny randomly stop. Because tired.
+        var player = GameObject.Find("Player");
+        if (player && !tired)
+        {
+            var playerPos = player.transform.position;
+            movement = Vector2.MoveTowards(transform.position, playerPos, Time.deltaTime * stats.movementSpeed * (energy / maxEnergy));
+            var grannyPos = transform.position;
+            grannyPos.z = 0;
+            var playerDir = Vector3.Normalize(playerPos - grannyPos);
 
-			var eastVal = Vector3.Dot(playerDir, DirectionUtils.CardinalDirectionToVec(CardinalDirection.EAST));
-			var westVal = Vector3.Dot(playerDir, DirectionUtils.CardinalDirectionToVec(CardinalDirection.WEST));
-			if (eastVal > westVal)
-			{
-				transform.localScale = new Vector3(1, 1, 1);
-			}
-			else
-			{
-				transform.localScale = new Vector3(-1, 1, 1);
-			}
+            var eastVal = Vector3.Dot(playerDir, DirectionUtils.CardinalDirectionToVec(CardinalDirection.EAST));
+            var westVal = Vector3.Dot(playerDir, DirectionUtils.CardinalDirectionToVec(CardinalDirection.WEST));
+            if (eastVal > westVal)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
 
-			moved = true;
-			spritesAnimator.SetBool("IsWalking", moved);
-		}
-	}
+            moved = true;
+            spritesAnimator.SetBool("IsWalking", moved);
+
+            energy -= Time.deltaTime;
+
+            if (energy <= 0)
+            {
+                tired = true;
+            }
+        }
+        else
+        {
+            energy += Time.deltaTime * 2;
+            if (energy >= maxEnergy)
+            {
+                tired = false;
+                maxEnergy = energy;
+            }
+            movement = transform.position;
+            spritesAnimator.SetBool("IsWalking", false);
+        }
+    }
 
 	void FixedUpdate()
 	{
