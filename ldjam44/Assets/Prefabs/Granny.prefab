@@ -308,7 +308,7 @@ MonoBehaviour:
   drop: {fileID: 1936833819473028, guid: 508c221ecd361463e832ea68832131f7, type: 2}
   dropChance: 0.5
   stats: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 2
   currentHealth: 0
 --- !u!114 &114474659972780110
 MonoBehaviour:
