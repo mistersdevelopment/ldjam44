@@ -14,12 +14,14 @@ public class Granny : MonoBehaviour
     bool tired = false;
     float energy = 6;
     float maxEnergy = 6;
+    float weakness;
 
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
 		stats = GetComponent<Stats>();
 		spritesAnimator = transform.Find("Sprites").GetComponent<Animator>();
+        weakness = Random.Range(0, 5);
 	}
 
     void Update()
@@ -47,7 +49,7 @@ public class Granny : MonoBehaviour
             moved = true;
             spritesAnimator.SetBool("IsWalking", moved);
 
-            energy -= Time.deltaTime;
+            energy -= Time.deltaTime + weakness * Time.deltaTime;
 
             if (energy <= 0)
             {
