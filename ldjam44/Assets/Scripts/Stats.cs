@@ -10,6 +10,6 @@ public class Stats : MonoBehaviour {
     public float damage = 1.0f;
     public float shotSize = 0.5f;
     public float shotLifetime = 1.0f;
-    public BaseCoinEffect baseEffect;
+    public DamageEffect baseEffect;
     public List<Effect> additionalEffects;
 }

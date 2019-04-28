@@ -21,21 +21,24 @@ public class CollisionEffector : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		GameObject other = collision.gameObject;
-		Character character = other.GetComponent<Character>();
-		if (character)
+		if (other.layer != gameObject.layer)
 		{
-			if (baseEffect)
+			Character character = other.GetComponent<Character>();
+			if (character)
 			{
-				baseEffect.ApplyEffect(character);
+				if (baseEffect)
+				{
+					baseEffect.ApplyEffect(character);
+				}
+				for (int i = 0; i < additionalEffects.Count; ++i)
+				{
+					additionalEffects[i].ApplyEffect(character);
+				}
 			}
-			for (int i = 0; i < additionalEffects.Count; ++i)
+			if (destroySelfOnCollison)
 			{
-				additionalEffects[i].ApplyEffect(character);
+				Destroy(this.gameObject);
 			}
-		}
-		if (destroySelfOnCollison)
-		{
-			Destroy(this.gameObject);
 		}
 	}
 }

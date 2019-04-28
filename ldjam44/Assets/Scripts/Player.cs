@@ -24,14 +24,14 @@ public class Player : MonoBehaviour
 		character = GetComponent<Character>();
 		stats = GetComponent<Stats>();
 
-		var playa = gameObject.transform.Find("Player");
+		var playa = transform.Find("Player");
 		animator = playa.GetComponent<Animator>();
-		back = playa.gameObject.transform.Find("Player_Back").gameObject;
-		front = playa.gameObject.transform.Find("Player_Front").gameObject;
-		side = playa.gameObject.transform.Find("Player_Side").gameObject;
+		back = playa.transform.Find("Player_Back").gameObject;
+		front = playa.transform.Find("Player_Front").gameObject;
+		side = playa.transform.Find("Player_Side").gameObject;
 		eyesClosed = new GameObject[2];
-		eyesClosed[0] = side.gameObject.transform.Find("Player_Side_Eyes_Closed").gameObject;
-		eyesClosed[1] = front.gameObject.transform.Find("Player_Front_Eyes_Closed").gameObject;
+		eyesClosed[0] = side.transform.Find("Player_Side_Eyes_Closed").gameObject;
+		eyesClosed[1] = front.transform.Find("Player_Front_Eyes_Closed").gameObject;
 		UpdateSprites(CardinalDirection.SOUTH);
 		StartCoroutine(Blinking());
 	}
