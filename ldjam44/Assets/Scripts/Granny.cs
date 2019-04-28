@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Granny : MonoBehaviour
 {
-	public EnemyStats enemyStats;
+	public Stats stats;
 	Rigidbody2D body;
 
 	bool move = false;
@@ -13,7 +13,7 @@ public class Granny : MonoBehaviour
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
-		enemyStats = GetComponent<EnemyStats>();
+		stats = GetComponent<Stats>();
 	}
 
 	void Update()
@@ -23,7 +23,7 @@ public class Granny : MonoBehaviour
 		if (player)
 		{
 			move = true;
-			movement = Vector2.MoveTowards(gameObject.transform.position, player.gameObject.transform.position, Time.deltaTime * enemyStats.movementSpeed);
+			movement = Vector2.MoveTowards(gameObject.transform.position, player.gameObject.transform.position, Time.deltaTime * stats.movementSpeed);
 			// TODO If within range attack.
 			// ProcessAttacks();
 		}

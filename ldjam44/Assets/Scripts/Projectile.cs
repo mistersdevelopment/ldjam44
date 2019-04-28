@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Coin : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
 	public float lifetime;
 

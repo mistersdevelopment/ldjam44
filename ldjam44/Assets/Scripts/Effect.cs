@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour {
 
-    public virtual void ApplyEffect( Health enemy )
+    public virtual void ApplyEffect( Character enemy )
     {
     }
 }

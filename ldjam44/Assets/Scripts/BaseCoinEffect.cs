@@ -6,7 +6,7 @@ public class BaseCoinEffect : Effect
 {
     public float damage = 1.0f;
 
-    public override void ApplyEffect(Health enemy)
+    public override void ApplyEffect(Character enemy)
     {
         enemy.ModifyHealth(-damage);
     }

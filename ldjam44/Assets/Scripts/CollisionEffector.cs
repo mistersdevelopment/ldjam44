@@ -20,7 +20,7 @@ public class CollisionEffector : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		GameObject other = collision.gameObject;
-		Health enemyScript = other.GetComponent<Health>();
+		Character enemyScript = other.GetComponent<Character>();
 		if (enemyScript)
 		{
 			if (baseEffect)

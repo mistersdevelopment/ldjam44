@@ -5,10 +5,9 @@ using System;
 
 public class Player : MonoBehaviour
 {
-	public GameObject coinPrefab;
-	public PlayerStats playerStats;
-
-	Rigidbody2D body;
+	private Rigidbody2D body;
+	private Character character;
+	private Stats stats;
 	private float horizontalMovement = 0;
 	private float verticalMovement = 0;
 	private CardinalDirection facing = CardinalDirection.SOUTH;
@@ -19,12 +18,11 @@ public class Player : MonoBehaviour
 	private GameObject[] eyesClosed;
 	private Animator animator;
 
-	private float nextFire = float.MinValue;
-
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
-		playerStats = GetComponent<PlayerStats>();
+		character = GetComponent<Character>();
+		stats = GetComponent<Stats>();
 
 		var playa = gameObject.transform.Find("Player");
 		animator = playa.GetComponent<Animator>();
@@ -40,7 +38,7 @@ public class Player : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		body.velocity = new Vector2(horizontalMovement * playerStats.movementSpeed, verticalMovement * playerStats.movementSpeed);
+		body.velocity = new Vector2(horizontalMovement * stats.movementSpeed, verticalMovement * stats.movementSpeed);
 	}
 
 	void Update()
@@ -120,10 +118,9 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if (ShouldFire() && Time.time > nextFire)
+		if (ShouldFire())
 		{
-			nextFire = Time.time + playerStats.rateOfFire;
-			Fire(facing);
+			character.Fire(facing);
 		}
 	}
 
@@ -131,36 +128,6 @@ public class Player : MonoBehaviour
 	{
 		return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) ||
 			Input.GetKey(KeyCode.LeftArrow) || Input.GetMouseButton(0);
-	}
-
-	void Fire(CardinalDirection dir)
-	{
-		Vector3 fireVec = DirectionUtils.CardinalDirectionToVec(dir);
-		Vector3 coinStart = transform.position + fireVec * 0.75f;
-		GameObject coin = Instantiate(coinPrefab, coinStart, Quaternion.identity);
-		Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
-		coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
-		coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
-		coinRigidbody.AddForce(fireVec * playerStats.shotSpeed);
-		Coin coinScript = coin.GetComponent<Coin>();
-		coinScript.SetLifetime(playerStats.shotLifetime);
-		CollisionEffector collision = coin.GetComponent<CollisionEffector>();
-		playerStats.baseEffect.damage = playerStats.damage;
-		collision.SetBaseEffect(playerStats.baseEffect);
-	}
-
-	public void PowerUp(PlayerStats modifyPlayerstats)
-	{
-		playerStats.movementSpeed += modifyPlayerstats.movementSpeed;
-		playerStats.shotSpeed += modifyPlayerstats.shotSpeed;
-		playerStats.rateOfFire += modifyPlayerstats.rateOfFire;
-		playerStats.damage += modifyPlayerstats.damage;
-        playerStats.shotSize += modifyPlayerstats.shotSize;
-        playerStats.baseEffect.damage = playerStats.damage;
-		for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
-		{
-			playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
-		}
 	}
 
 	void UpdateSprites(CardinalDirection dir)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerUp : Pickup {
 
-    public PlayerStats powerup;
+    public Stats powerup;
 
     public override void ApplyPowerup(Player player)
     {
