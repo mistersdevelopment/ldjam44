@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CollisionEffector : MonoBehaviour
 {
+	public bool destroySelfOnCollison = false;
 	public Effect baseEffect;
 	public List<Effect> additionalEffects;
 
@@ -20,18 +21,21 @@ public class CollisionEffector : MonoBehaviour
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		GameObject other = collision.gameObject;
-		Character enemyScript = other.GetComponent<Character>();
-		if (enemyScript)
+		Character character = other.GetComponent<Character>();
+		if (character)
 		{
 			if (baseEffect)
 			{
-				baseEffect.ApplyEffect(enemyScript);
+				baseEffect.ApplyEffect(character);
 			}
 			for (int i = 0; i < additionalEffects.Count; ++i)
 			{
-				additionalEffects[i].ApplyEffect(enemyScript);
+				additionalEffects[i].ApplyEffect(character);
 			}
 		}
-		Destroy(this.gameObject);
+		if (destroySelfOnCollison)
+		{
+			Destroy(this.gameObject);
+		}
 	}
 }

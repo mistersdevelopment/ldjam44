@@ -252,6 +252,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!70 &68925890
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 68925888}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.125}
+  m_Size: {x: 0.25, y: 0.35}
+  m_Direction: 0
 --- !u!114 &68925894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1695075482479038, guid: f084de59d8ccf4d53bc28a46c9b98ea5, type: 2}
   stats: {fileID: 0}
-  maxHealth: 0
+  maxHealth: 5
   currentHealth: 0
 --- !u!1 &289883319
 GameObject:
@@ -851,6 +866,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &1544727568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1172596424849982, guid: 8352762ce786c44419fcab95db8b70b3,
+    type: 2}
+  m_PrefabInternal: {fileID: 937214257}
+--- !u!114 &1544727569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544727568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7110b5238abb40805537c346537e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!114 &1544727570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544727568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a321b67667623418493d9fd17f102cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySelfOnCollison: 0
+  baseEffect: {fileID: 1544727569}
+  additionalEffects: []
 --- !u!1 &1550180638
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,7 +1028,8 @@ Prefab:
       propertyPath: baseEffect
       value: 
       objectReference: {fileID: 68925889}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 58646252913553370, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1810424709

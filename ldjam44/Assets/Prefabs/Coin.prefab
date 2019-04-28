@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a321b67667623418493d9fd17f102cd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroySelfOnCollison: 1
   baseEffect: {fileID: 0}
   additionalEffects: []
 --- !u!212 &212531279146048368
