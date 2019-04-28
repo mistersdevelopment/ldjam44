@@ -20,8 +20,6 @@ public class Room : MonoBehaviour
 		topDoorClosed = transform.Find("Doors/Door_Top/Door_Closed").gameObject;
 		bottomDoorOpen = transform.Find("Doors/Door_Bottom/Door_Open").gameObject;
 		bottomDoorClosed = transform.Find("Doors/Door_Bottom/Door_Closed").gameObject;
-
-		SetBottomDoor(true);
 	}
 
 	public bool isComplete()
@@ -44,24 +42,23 @@ public class Room : MonoBehaviour
 		if (deadCount >= enemies.Length)
 		{
 			complete = true;
-			SetTopDoor(true);
 		}
 	}
 
-	void SetTopDoor(bool open)
+	public void SetTopDoor(bool open)
 	{
 		topDoorOpen.SetActive(open);
 		topDoorClosed.SetActive(!open);
 	}
 
-	void SetBottomDoor(bool open)
+	public void SetBottomDoor(bool open)
 	{
 		bottomDoorOpen.SetActive(open);
 		bottomDoorClosed.SetActive(!open);
 	}
 
 	// Floor trigger.
-	void OnTriggerEnter2D(Collider2D other)
+	void OnTriggerStay2D(Collider2D other)
 	{
 		if (other.gameObject.GetComponent<Player>())
 		{
