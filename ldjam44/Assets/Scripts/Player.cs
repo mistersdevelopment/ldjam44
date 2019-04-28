@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 		eyesClosed = new GameObject[2];
 		eyesClosed[0] = side.gameObject.transform.Find("Player_Side_Eyes_Closed").gameObject;
 		eyesClosed[1] = front.gameObject.transform.Find("Player_Front_Eyes_Closed").gameObject;
-		UpdateSprits();
+		UpdateSprites(CardinalDirection.SOUTH);
 		StartCoroutine(Blinking());
 	}
 
@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
+		// Always call before attacks. Attacks takes precedent on the direction we are facing.
 		ProcessMovement();
 		ProcessAttacks();
 	}
@@ -55,6 +56,21 @@ public class Player : MonoBehaviour
 		horizontalMovement = Input.GetAxis("HorizontalMove");
 		verticalMovement = Input.GetAxis("VerticalMove");
 		animator.SetBool("Walking", Math.Abs(horizontalMovement) > 0.01 || Math.Abs(verticalMovement) > 0.01);
+
+		Vector2 input = new Vector2(horizontalMovement, verticalMovement);
+		input.x = (float)(Math.Sign(input.x) * Math.Ceiling(Math.Abs(input.x)));
+		input.y = (float)(Math.Sign(input.y) * Math.Ceiling(Math.Abs(input.y)));
+		input = input.normalized;
+
+		if (input != Vector2.zero)
+		{
+			CardinalDirection dir = DirectionUtils.CoordinatesToCardinalDirection(input);
+			if (dir != facing)
+			{
+				facing = dir;
+				UpdateSprites(facing);
+			}
+		}
 	}
 
 	void ProcessAttacks()
@@ -72,14 +88,13 @@ public class Player : MonoBehaviour
 			if (dir != facing)
 			{
 				facing = dir;
-				UpdateSprits();
+				UpdateSprites(facing);
 			}
 		}
 
+		// Mouse overrides keys.
 		if (Input.GetMouseButton(0))
 		{
-			// Set facing to the mouse direction.
-			// Looks like it just takes the vector from the player -> mouse position and selects the cardianal direction with the dot product closest to 1
 			var mouseWorld = Input.mousePosition;
 			mouseWorld = Camera.main.ScreenToWorldPoint(mouseWorld);
 			mouseWorld.z = 0;
@@ -99,13 +114,17 @@ public class Player : MonoBehaviour
 					maxDotDir = (CardinalDirection)i;
 				}
 			}
-			facing = maxDotDir;
+			if (maxDotDir != facing)
+			{
+				facing = maxDotDir;
+				UpdateSprites(facing);
+			}
 		}
 
 		if (ShouldFire() && Time.time > nextFire)
 		{
 			nextFire = Time.time + playerStats.rateOfFire;
-			Fire();
+			Fire(facing);
 		}
 	}
 
@@ -115,16 +134,16 @@ public class Player : MonoBehaviour
 			Input.GetKey(KeyCode.LeftArrow) || Input.GetMouseButton(0);
 	}
 
-	void Fire()
+	void Fire(CardinalDirection dir)
 	{
-		Vector3 facingVec = DirectionUtils.CardinalDirectionToVec(facing);
-		Vector3 coinStart = transform.position + facingVec * 0.75f;
+		Vector3 fireVec = DirectionUtils.CardinalDirectionToVec(dir);
+		Vector3 coinStart = transform.position + fireVec * 0.75f;
 		GameObject coin = Instantiate(coinPrefab, coinStart, Quaternion.identity);
 		Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
 		Coin coinScript = coin.GetComponent<Coin>();
 		coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
 		coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
-		coinRigidbody.AddForce(facingVec * playerStats.shotSpeed);
+		coinRigidbody.AddForce(fireVec * playerStats.shotSpeed);
 		coinScript.SetBaseEffect(playerStats.baseEffect);
 		coinScript.SetLifetime(playerStats.shotLifetime);
 	}
@@ -142,12 +161,12 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	void UpdateSprits()
+	void UpdateSprites(CardinalDirection dir)
 	{
-		back.SetActive(facing == CardinalDirection.NORTH);
-		front.SetActive(facing == CardinalDirection.SOUTH);
-		side.SetActive(facing == CardinalDirection.EAST || facing == CardinalDirection.WEST);
-		side.transform.localScale = new Vector3(facing == CardinalDirection.EAST ? -1 : 1, 1, 1);
+		back.SetActive(dir == CardinalDirection.NORTH);
+		front.SetActive(dir == CardinalDirection.SOUTH);
+		side.SetActive(dir == CardinalDirection.EAST || dir == CardinalDirection.WEST);
+		side.transform.localScale = new Vector3(dir == CardinalDirection.EAST ? -1 : 1, 1, 1);
 	}
 
 	void SetEyesOpen(bool open)
