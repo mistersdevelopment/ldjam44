@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 	private Room activeRoom;
 	private Room nextRoom;
 	private bool nextRoomLoaded = false;
+    private UpgradeSlotMachine upgradeMachine;
 
-	private static GameManager _instance;
+    public int currentHP;
+    public GameObject upgradeMachinePrefab;
+    public Canvas canvas;
+
+    private static GameManager _instance;
 	public static GameManager Instance
 	{
 		get
@@ -18,10 +24,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    public int currentHP;
-    public UpgradeSlotMachine slotMachine;
-
-	private void Awake()
+    private void Awake()
 	{
 		_instance = this;
 	}
@@ -61,7 +64,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (activeRoom.isComplete() && !nextRoomLoaded)
+		if (activeRoom != null && activeRoom.isComplete() && !nextRoomLoaded)
 		{
 			// TODO Only do this once.
 			LoadRoom(1, activeRoom.transform.position + new Vector3(0, 20, 0));
@@ -69,11 +72,20 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    public void ToggleUpgradesSlots()
+    public void OpenUpgradeMachine()
     {
-        if (slotMachine)
+        if (upgradeMachine == null)
         {
-            slotMachine.EnterUpgradeScreen();
+            upgradeMachine = Instantiate(upgradeMachinePrefab, canvas.transform).GetComponent<UpgradeSlotMachine>();
+        }
+    }
+
+    public void CloseUpgradeMachine()
+    {
+        if (upgradeMachine != null)
+        {
+            Destroy(upgradeMachine.gameObject);
+            upgradeMachine = null;
         }
     }
 
