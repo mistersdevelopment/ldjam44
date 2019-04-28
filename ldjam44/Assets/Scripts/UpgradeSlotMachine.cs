@@ -116,7 +116,7 @@ public class UpgradeSlotMachine : MonoBehaviour
         animator.Play("SlotMachine_Winner");
         yield return new WaitForSeconds(3f);
         //GameManager.Instance.SpawnUpgradeReward(rewardItemIndex);
-        ExitUpgradeScreen();
+        GameManager.Instance.CloseUpgradeMachine();
     }
 
     float EaseOutQuad(float time, float startValue, float change, float duration)
@@ -126,6 +126,11 @@ public class UpgradeSlotMachine : MonoBehaviour
 
     public void ExitUpgradeScreen()
     {
+        if (spinning)
+        {
+            return;
+        }
+
         GameManager.Instance.CloseUpgradeMachine();
     }
 

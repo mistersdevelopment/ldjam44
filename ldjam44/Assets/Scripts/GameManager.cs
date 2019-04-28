@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
 	private LoadState nextRoomState = LoadState.NONE;
 
 	public int currentHP;
-	private UpgradeSlotMachine upgradeMachine;
+    public GameObject upgradeButton;
+    private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
 	public Canvas canvas;
 
@@ -102,7 +103,23 @@ public class GameManager : MonoBehaviour
 			// TODO Check for room enter then switch activeRoom var and clear nextRoom and set nextRoomState to NONE.
 		}
 
-		if (nextRoom && nextRoomState == LoadState.LOADED)
+        // Show and hide upgrade button
+        if (activeRoom && activeRoom.isComplete() && upgradeMachine == null)
+        {
+            if (!upgradeButton.activeSelf)
+            {
+                upgradeButton.SetActive(true);
+            }
+        }
+        else
+        {
+            if (upgradeButton.activeSelf)
+            {
+                upgradeButton.SetActive(false);
+            }
+        }
+
+        if (nextRoom && nextRoomState == LoadState.LOADED)
 		{
 			if (!nextRoom.isActive())
 			{
