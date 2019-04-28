@@ -210,9 +210,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4659251394018668}
   - component: {fileID: 114179478201690806}
-  - component: {fileID: 58646252913553370}
   - component: {fileID: 50174978887784930}
   - component: {fileID: 114223941154659522}
+  - component: {fileID: 70983452348194652}
+  - component: {fileID: 114504156879108070}
+  - component: {fileID: 114357729018445970}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -511,8 +513,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58646252913553370
-CircleCollider2D:
+--- !u!70 &70983452348194652
+CapsuleCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -521,11 +523,11 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
+  m_Offset: {x: 0, y: 0.125}
+  m_Size: {x: 0.25, y: 0.35}
+  m_Direction: 0
 --- !u!95 &95943982121187378
 Animator:
   serializedVersion: 3
@@ -555,8 +557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e0deef4b1f048aa91f9f368ca669f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinPrefab: {fileID: 1695075482479038, guid: f084de59d8ccf4d53bc28a46c9b98ea5, type: 2}
-  playerStats: {fileID: 114223941154659522}
 --- !u!114 &114223941154659522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -574,7 +574,7 @@ MonoBehaviour:
   damage: 1
   shotSize: 1
   shotLifetime: 1
-  baseEffect: {fileID: 0}
+  baseEffect: {fileID: 114504156879108070}
   additionalEffects: []
 --- !u!114 &114318341543337124
 MonoBehaviour:
@@ -588,6 +588,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: 0.9
+--- !u!114 &114357729018445970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563193456967790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e4952ccae45244aadad2ba3706c208, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 1695075482479038, guid: f084de59d8ccf4d53bc28a46c9b98ea5, type: 2}
+  stats: {fileID: 0}
+  maxHealth: 5
+  currentHealth: 0
+--- !u!114 &114504156879108070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1563193456967790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7110b5238abb40805537c346537e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!212 &212134319051463326
 SpriteRenderer:
   m_ObjectHideFlags: 1

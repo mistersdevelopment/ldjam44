@@ -56,6 +56,8 @@ GameObject:
   - component: {fileID: 70891719037383958}
   - component: {fileID: 114733036033553860}
   - component: {fileID: 114806173810393374}
+  - component: {fileID: 114228513607917044}
+  - component: {fileID: 114747243465031954}
   m_Layer: 10
   m_Name: Granny
   m_TagString: Untagged
@@ -177,7 +179,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1172596424849982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.15, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4081863720837354}
@@ -277,6 +279,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114228513607917044
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7110b5238abb40805537c346537e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!114 &114339803661418788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,6 +318,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 0}
+--- !u!114 &114747243465031954
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a321b67667623418493d9fd17f102cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySelfOnCollison: 0
+  baseEffect: {fileID: 114228513607917044}
+  additionalEffects: []
 --- !u!114 &114806173810393374
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,7 +343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96446510b6d6dac46a9a51a318b301c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3.5
+  movementSpeed: 2
   shotSpeed: 100
   rateOfFire: 0.3
   damage: 1
