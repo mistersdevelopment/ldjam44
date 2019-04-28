@@ -139,7 +139,9 @@ public class Character : MonoBehaviour
     {
         if (drop && Random.Range(0.0f, 1.0f) < dropChance)
         {
-            Instantiate(drop, transform.position, transform.rotation);
+            var room = GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<GameManager>().GetActiveRoom();
+            var go = Instantiate(drop, transform.position, transform.rotation);
+            go.transform.parent = room.transform;
         }
         Player playerComponent = GetComponent<Player>();
         if (playerComponent)

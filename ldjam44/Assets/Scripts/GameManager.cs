@@ -168,4 +168,9 @@ public class GameManager : MonoBehaviour
 			Instantiate(prefab, activeRoom.transform);
 		}
 	}
+
+	public Room GetActiveRoom()
+	{
+		return activeRoom;
+	}
 }
