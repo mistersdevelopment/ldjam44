@@ -55,7 +55,7 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	void PowerUp(Stats modifyPlayerstats)
+	public void PowerUp(Stats modifyPlayerstats)
 	{
 		stats.movementSpeed += modifyPlayerstats.movementSpeed;
 		stats.shotSpeed += modifyPlayerstats.shotSpeed;

@@ -6,7 +6,7 @@ public class PowerUp : Pickup {
 
     public Stats powerup;
 
-    public override void ApplyPowerup(Player player)
+    public override void ApplyPowerup(Character player)
     {
         player.PowerUp(powerup);
     }

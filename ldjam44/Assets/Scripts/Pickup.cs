@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject other = collision.gameObject;
-        Player playerScript = other.GetComponent<Player>();
-        if (playerScript)
-        {
-            ApplyPowerup(playerScript);
-        }
-        Destroy(this.gameObject);
-    }
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		GameObject other = collision.gameObject;
+		Character playerScript = other.GetComponent<Character>();
+		if (playerScript)
+		{
+			ApplyPowerup(playerScript);
+		}
+		Destroy(this.gameObject);
+	}
 
-    public virtual void ApplyPowerup(Player player)
-    {
-    }
+	public virtual void ApplyPowerup(Character player)
+	{
+	}
 }
