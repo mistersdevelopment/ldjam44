@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
 	private GameObject[] eyesClosed;
 	private Animator animator;
 
-	private bool firing = false;
 	private float nextFire = float.MinValue;
 
 	void Start()
@@ -140,12 +139,14 @@ public class Player : MonoBehaviour
 		Vector3 coinStart = transform.position + fireVec * 0.75f;
 		GameObject coin = Instantiate(coinPrefab, coinStart, Quaternion.identity);
 		Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
-		Coin coinScript = coin.GetComponent<Coin>();
 		coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
 		coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
 		coinRigidbody.AddForce(fireVec * playerStats.shotSpeed);
-		coinScript.SetBaseEffect(playerStats.baseEffect);
+		Coin coinScript = coin.GetComponent<Coin>();
 		coinScript.SetLifetime(playerStats.shotLifetime);
+		CollisionEffector collision = coin.GetComponent<CollisionEffector>();
+		playerStats.baseEffect.damage = playerStats.damage;
+		collision.SetBaseEffect(playerStats.baseEffect);
 	}
 
 	void PowerUp(PlayerStats modifyPlayerstats)

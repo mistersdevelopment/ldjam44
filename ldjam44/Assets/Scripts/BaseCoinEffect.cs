@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseCoinEffect : AdditionalCoinEffect
+public class BaseCoinEffect : Effect
 {
     public float damage = 1.0f;
 
-    public override void ApplyEffect(Enemy enemy)
+    public override void ApplyEffect(Health enemy)
     {
         enemy.ModifyHealth(-damage);
     }

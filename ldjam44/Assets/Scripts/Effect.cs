@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AdditionalCoinEffect : MonoBehaviour {
+public class Effect : MonoBehaviour {
 
-    public virtual void ApplyEffect( Enemy enemy )
+    public virtual void ApplyEffect( Health enemy )
     {
     }
 }

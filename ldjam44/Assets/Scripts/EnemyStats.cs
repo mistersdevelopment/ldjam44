@@ -10,4 +10,7 @@ public class EnemyStats : MonoBehaviour {
     public float shotLifetime = 1.0f;
     public float rateOfFire = 0.3f;
     public float damage = 1.0f;
+
+	    public BaseCoinEffect baseEffect;
+    public List<Effect> additionalEffects;
 }
