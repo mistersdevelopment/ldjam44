@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4359412715293988}
   - component: {fileID: 95312682401824378}
   - component: {fileID: 212531279146048368}
+  - component: {fileID: 114386816931294278}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
@@ -97,7 +98,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1695075482479038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.608, y: -0.395, z: 0}
+  m_LocalPosition: {x: -5.5573454, y: 1.3186547, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4537135157784784}
@@ -271,6 +272,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0
+--- !u!114 &114386816931294278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470423503946820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6efe602de7ad24c0dacd16b26c7e0e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
 --- !u!114 &114820983942994408
 MonoBehaviour:
   m_ObjectHideFlags: 1
