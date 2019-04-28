@@ -26,13 +26,15 @@ public class Player : MonoBehaviour
 		body = GetComponent<Rigidbody2D>();
 		playerStats = GetComponent<PlayerStats>();
 
-		animator = GetComponent<Animator>();
-		back = GameObject.Find("Player/Player_Back");
-		front = GameObject.Find("Player/Player_Front");
-		side = GameObject.Find("Player/Player_Side");
+		var playa = gameObject.transform.Find("Player");
+		animator = playa.GetComponent<Animator>();
+		Debug.Log(playa);
+		back = playa.gameObject.transform.Find("Player_Back").gameObject;
+		front = playa.gameObject.transform.Find("Player_Front").gameObject;
+		side = playa.gameObject.transform.Find("Player_Side").gameObject;
 		eyesClosed = new GameObject[2];
-		eyesClosed[0] = GameObject.Find("Player/Player_Side/Player_Side_Eyes_Closed");
-		eyesClosed[1] = GameObject.Find("Player/Player_Front/Player_Front_Eyes_Closed");
+		eyesClosed[0] = side.gameObject.transform.Find("Player_Side_Eyes_Closed").gameObject;
+		eyesClosed[1] = front.gameObject.transform.Find("Player_Front_Eyes_Closed").gameObject;
 		UpdateSprits();
 		StartCoroutine(Blinking());
 	}
@@ -119,13 +121,13 @@ public class Player : MonoBehaviour
 		Vector3 facingVec = DirectionUtils.CardinalDirectionToVec(facing);
 		Vector3 coinStart = transform.position + facingVec * 0.75f;
 		GameObject coin = Instantiate(coinPrefab, coinStart, Quaternion.identity);
-        Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
-        Coin coinScript = coin.GetComponent<Coin>();
-        coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
-        coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
-        coinRigidbody.AddForce(facingVec * playerStats.shotSpeed);
-        coinScript.SetBaseEffect(playerStats.baseEffect);
-        coinScript.SetLifetime(playerStats.shotLifetime);
+		Rigidbody2D coinRigidbody = coin.GetComponent<Rigidbody2D>();
+		Coin coinScript = coin.GetComponent<Coin>();
+		coin.transform.localScale = new Vector3(playerStats.shotSize, playerStats.shotSize, 1.0f);
+		coinRigidbody.angularVelocity = GetComponent<Rigidbody2D>().angularVelocity;
+		coinRigidbody.AddForce(facingVec * playerStats.shotSpeed);
+		coinScript.SetBaseEffect(playerStats.baseEffect);
+		coinScript.SetLifetime(playerStats.shotLifetime);
 	}
 
 	void PowerUp(PlayerStats modifyPlayerstats)
