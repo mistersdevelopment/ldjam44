@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
+    public int currentHP;
+    public UpgradeSlotMachine slotMachine;
+
 	private void Awake()
 	{
 		_instance = this;
@@ -65,4 +68,17 @@ public class GameManager : MonoBehaviour
 			// TODO Check for room enter then switch activeRoom var and clear nextRoom and setNextRoom loaded to false.
 		}
 	}
+
+    public void ToggleUpgradesSlots()
+    {
+        if (slotMachine)
+        {
+            slotMachine.EnterUpgradeScreen();
+        }
+    }
+
+    public void spendCoin()
+    {
+        currentHP--;
+    }
 }
