@@ -5,7 +5,7 @@ using UnityEngine;
 public class BurningShotEffect : Effect
 {
 
-    public virtual void ApplyEffect(Health enemy)
+    public virtual void ApplyEffect(Character enemy)
     {
 
     }
