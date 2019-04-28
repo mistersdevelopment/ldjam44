@@ -297,7 +297,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162636911794636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.030828, y: 0.05941212, z: -1.1022667}
+  m_LocalPosition: {x: 3.0991683, y: -1.6505816, z: -1.1022667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4908941961988394}
@@ -382,8 +382,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: 0.7}
+  m_Size: {x: 1, y: 1.5}
   m_Direction: 0
 --- !u!95 &95670797888125180
 Animator:
@@ -414,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96446510b6d6dac46a9a51a318b301c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 0
+  movementSpeed: 0.5
   shotSpeed: 100
   rateOfFire: 0.3
   damage: 1
@@ -483,6 +483,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   maxHealth: 10
   currentHealth: 0
+  currentStatusEffects: []
 --- !u!114 &114357758352790214
 MonoBehaviour:
   m_ObjectHideFlags: 1
