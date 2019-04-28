@@ -19,7 +19,8 @@ public class Player : MonoBehaviour
 	private GameObject[] eyesClosed;
 	private Animator animator;
 
-	bool firing = false;
+	private bool firing = false;
+	private float nextFire = float.MinValue;
 
 	void Start()
 	{
@@ -101,18 +102,17 @@ public class Player : MonoBehaviour
 			facing = maxDotDir;
 		}
 
-		if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-			Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetMouseButtonDown(0)) && !firing)
+		if (ShouldFire() && Time.time > nextFire)
 		{
-			InvokeRepeating("Fire", 0.0f, playerStats.rateOfFire);
-			firing = true;
+			nextFire = Time.time + playerStats.rateOfFire;
+			Fire();
 		}
-		if (!Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.DownArrow) &&
-			!Input.GetKey(KeyCode.LeftArrow) && !Input.GetMouseButton(0) && firing)
-		{
-			firing = false;
-			CancelInvoke("Fire");
-		}
+	}
+
+	bool ShouldFire()
+	{
+		return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) ||
+			Input.GetKey(KeyCode.LeftArrow) || Input.GetMouseButton(0);
 	}
 
 	void Fire()
@@ -141,7 +141,6 @@ public class Player : MonoBehaviour
 			playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
 		}
 	}
-
 
 	void UpdateSprits()
 	{

@@ -1137,6 +1137,11 @@ Prefab:
       propertyPath: shotSpeed
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 114223941154659522, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: shotSize
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_IsPrefabAsset: 0
