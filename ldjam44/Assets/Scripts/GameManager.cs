@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
     private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
 	public Canvas canvas;
+    public bool cheatMode = false;
 
-	private static GameManager _instance;
+    private static GameManager _instance;
 	public static GameManager Instance
 	{
 		get
@@ -149,4 +150,13 @@ public class GameManager : MonoBehaviour
 	{
 		currentHP--;
 	}
+
+    public void SpawnPowerUpReward(PowerUp prefab)
+    {
+        if (activeRoom)
+        {
+            Instantiate(prefab, activeRoom.transform);
+            prefab.transform.position = activeRoom.transform.position;
+        }
+    }
 }

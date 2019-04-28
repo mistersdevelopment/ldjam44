@@ -18,7 +18,6 @@ public class UpgradeSlotMachine : MonoBehaviour
     private bool spinning = false;
     private bool spinEnding = false;
     public int rewardItemIndex;
-    public int itemCount = 4;
 
     public GameObject infoText;
     public GameObject winnerText;
@@ -27,10 +26,13 @@ public class UpgradeSlotMachine : MonoBehaviour
     private float kPixelHeightPerItem = 192f;
     private int kExtraRotations = 6;
     private float kSpinSecsDuration = 5f;
+    private int kItemCount;
 
     // Use this for initialization
     void Start()
     {
+        kItemCount = PowerUpManager.Instance.lootTable.Length;
+
         animator = GetComponent<Animator>();
         int coins = GameManager.Instance.currentHP;
         if (this.coinText != null)
@@ -40,6 +42,7 @@ public class UpgradeSlotMachine : MonoBehaviour
         animator.Play("SlotMachine_In");
         RandomizeSlotStart();
         UpdateLeverState();
+
     }
 
     void Show()
@@ -86,7 +89,7 @@ public class UpgradeSlotMachine : MonoBehaviour
                     float perReelDuration = Mathf.Max(kSpinSecsDuration - 0.5f * (reels.Length - i), 0f);
                     float time = Mathf.Min(curSpinTime / perReelDuration, 1f);
                     Rect uvs = reel.uvRect;
-                    uvs.y = EaseOutQuad(time, 0f, reelYChange[i], 1f) / (kPixelHeightPerItem * (float)itemCount);
+                    uvs.y = EaseOutQuad(time, 0f, reelYChange[i], 1f) / (kPixelHeightPerItem * (float)kItemCount);
                     reel.uvRect = uvs;
                 }
             }
@@ -100,9 +103,9 @@ public class UpgradeSlotMachine : MonoBehaviour
             RawImage reel = reels[i];
             if (reel)
             {
-                reelIndex[i] = Random.Range(0, itemCount - 1);
+                reelIndex[i] = Random.Range(0, kItemCount - 1);
                 Rect uvs = reel.uvRect;
-                uvs.y = YCoordForSelection(reelIndex[i], 0) / (kPixelHeightPerItem * (float)itemCount);
+                uvs.y = YCoordForSelection(reelIndex[i], 0) / (kPixelHeightPerItem * (float)kItemCount);
                 reel.uvRect = uvs;
             }
         }
@@ -110,12 +113,15 @@ public class UpgradeSlotMachine : MonoBehaviour
 
     IEnumerator ShowReward()
     {
+        PowerUpDef pup = PowerUpManager.Instance.lootTable[rewardItemIndex];
         coinText.transform.parent.gameObject.SetActive(false);
         infoText.SetActive(false);
         winnerText.SetActive(true);
+        winnerText.GetComponent<Text>().text = pup.name + " Upgrade Won!";
+        rewardImage.sprite = pup.icon;
         animator.Play("SlotMachine_Winner");
         yield return new WaitForSeconds(3f);
-        //GameManager.Instance.SpawnUpgradeReward(rewardItemIndex);
+        GameManager.Instance.SpawnPowerUpReward(pup.prefab);
         GameManager.Instance.CloseUpgradeMachine();
     }
 
@@ -165,12 +171,12 @@ public class UpgradeSlotMachine : MonoBehaviour
             RawImage reel = reels[i];
             if (reel)
             {
-                reelIndex[i] = Random.Range(0, itemCount - 1);
+                reelIndex[i] = Random.Range(0, kItemCount - 1);
                 reelYChange[i] = YCoordForSelection(reelIndex[i], kExtraRotations + i*2);
             }
         }
 
-        if (reelIndex[0] == reelIndex[1] && reelIndex[0] == reelIndex[2])
+        if (GameManager.Instance.cheatMode || (reelIndex[0] == reelIndex[1] && reelIndex[0] == reelIndex[2]))
         {
             rewardItemIndex = reelIndex[0];
         }
@@ -183,6 +189,6 @@ public class UpgradeSlotMachine : MonoBehaviour
 
     float YCoordForSelection(int itemIndex, int rotations)
     {
-        return itemIndex * kPixelHeightPerItem + kPixelHeightPerItem * itemCount * rotations;
+        return itemIndex * kPixelHeightPerItem + kPixelHeightPerItem * kItemCount * rotations;
     }
 }

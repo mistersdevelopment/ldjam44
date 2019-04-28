@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1179735563076058
 GameObject:
   m_ObjectHideFlags: 1
@@ -823,7 +823,6 @@ MonoBehaviour:
   - {fileID: 114368956524031712}
   - {fileID: 114642157547934648}
   rewardItemIndex: 0
-  itemCount: 4
   infoText: {fileID: 1836985698628792}
   winnerText: {fileID: 1432765151140486}
   rewardImage: {fileID: 114133091912486394}
@@ -1323,8 +1322,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -4, y: -1568}
-  m_SizeDelta: {x: 890.3, y: 317.4}
+  m_AnchoredPosition: {x: -20.1, y: -1478}
+  m_SizeDelta: {x: 1791.4, y: 302.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224584660155233768
 RectTransform:

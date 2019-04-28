@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
+    protected bool allowPickup = true;
+
 	void OnCollisionEnter2D(Collision2D collision)
     {
-		GameObject other = collision.gameObject;
-		Character playerScript = other.GetComponent<Character>();
-		if (playerScript)
-		{
-			ApplyPowerup(playerScript);
-		}
-		Destroy(this.gameObject);
+        if (allowPickup)
+        {
+            GameObject other = collision.gameObject;
+            Character playerScript = other.GetComponent<Character>();
+            if (playerScript)
+            {
+                ApplyPowerup(playerScript);
+                Destroy(this.gameObject);
+            }
+        }
 	}
 
 	public virtual void ApplyPowerup(Character player)
