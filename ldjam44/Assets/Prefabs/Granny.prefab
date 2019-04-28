@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 114733036033553860}
   - component: {fileID: 114806173810393374}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: Granny
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
