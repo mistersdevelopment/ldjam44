@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
 		string roomName = "Room_" + roomNum;
 		SceneManager.LoadScene(roomName, LoadSceneMode.Additive);
 		Scene s = SceneManager.GetSceneByName(roomName);
+        Debug.Log(s.isLoaded);
 		GameObject[] gameObjects = s.GetRootGameObjects();
+		Debug.Log(gameObjects.Length);
 		var roomObj = gameObjects[0];
 		roomObj.transform.position = position;
 		var room = roomObj.GetComponent<Room>();
@@ -64,7 +66,7 @@ public class GameManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (activeRoom != null && activeRoom.isComplete() && !nextRoomLoaded)
+		if (activeRoom && activeRoom.isComplete() && !nextRoomLoaded)
 		{
 			// TODO Only do this once.
 			LoadRoom(1, activeRoom.transform.position + new Vector3(0, 20, 0));
