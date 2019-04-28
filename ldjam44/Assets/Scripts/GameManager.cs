@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
 	private string nextRoomName = "";
 	private Room nextRoom;
 	private LoadState nextRoomState = LoadState.NONE;
+    private bool firstRoom = true;
 
-	public int currentHP;
+    public int currentHP;
     public GameObject upgradeButton;
     private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
@@ -84,6 +85,10 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+            if (activeRoomName != "Room_0")
+            {
+                firstRoom = false;
+            }
 
 			nextRoomName = roomName;
 			nextRoom = room;
@@ -91,7 +96,7 @@ public class GameManager : MonoBehaviour
 			activeRoom.SetBottomDoor(false);
 			nextRoom.SetBottomDoor(true);
 			nextRoom.SetTopDoor(false);
-		}
+        }
 	}
 
 	// Update is called once per frame
@@ -103,7 +108,7 @@ public class GameManager : MonoBehaviour
 		}
 
         // Show and hide upgrade button
-        if (activeRoom && activeRoom.isComplete() && upgradeMachine == null)
+        if (!firstRoom && activeRoom && activeRoom.isComplete() && upgradeMachine == null)
         {
             if (!upgradeButton.activeSelf)
             {
