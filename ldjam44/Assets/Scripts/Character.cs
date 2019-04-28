@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
 	public float maxHealth;
 	public float currentHealth;
 	private float nextFire = float.MinValue;
+    public List<Effect> currentStatusEffects;
 
     private CharacterSounds sounds;
 
@@ -23,6 +24,14 @@ public class Character : MonoBehaviour
         if (!sounds)
         {
             sounds = gameObject.AddComponent<CharacterSounds>();
+        }
+    }
+
+    void Update()
+    {
+        for (int i = 0; i < currentStatusEffects.Count; ++i)
+        {
+            currentStatusEffects[i].ProcessEffect(this);
         }
     }
 
@@ -69,6 +78,7 @@ public class Character : MonoBehaviour
 			CollisionEffector collision = proj.GetComponent<CollisionEffector>();
 			stats.baseEffect.damage = stats.damage;
 			collision.SetBaseEffect(stats.baseEffect);
+            collision.SetEffects(stats.additionalEffects);
 		}
 	}
 
@@ -81,9 +91,30 @@ public class Character : MonoBehaviour
 		stats.shotSize += modifyPlayerstats.shotSize;
 		for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
 		{
+            Debug.Log("Adding Burn Effect to playershot");
 			stats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
 		}
 	}
+
+    class EffectTime
+    {
+        public Effect effect;
+        public float time;
+    }
+
+    public void RemoveEffectAfterTime(Effect effectToRemove, float time)
+    {
+        EffectTime newEffectTime = new EffectTime();
+        newEffectTime.effect = effectToRemove;
+        newEffectTime.time = time;
+        StartCoroutine("RemoveEffect", newEffectTime);
+    }
+
+    private IEnumerator RemoveEffect(EffectTime effectTime)
+    {
+        yield return new WaitForSeconds(effectTime.time);
+        currentStatusEffects.Remove(effectTime.effect);
+    }
 
     public void Die()
     {
