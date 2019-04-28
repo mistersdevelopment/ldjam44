@@ -26,4 +26,12 @@ public class AnimationEvents : MonoBehaviour {
             sounds.Footstep();
         }
     }
+
+    public void Shoot()
+    {
+        if (sounds)
+        {
+            sounds.Shoot();
+        }
+    }
 }

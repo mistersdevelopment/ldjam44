@@ -32,7 +32,7 @@ public class CharacterSounds : MonoBehaviour
         damageSource = gameObject.AddComponent<AudioSource>();
         damageSource.volume = damageVolume * 0.6f;
         tauntSource = gameObject.AddComponent<AudioSource>();
-        tauntSource.volume = tauntVolume * 0.4f;
+        tauntSource.volume = tauntVolume * 0.7f;
         AudioHighPassFilter filter = gameObject.AddComponent<AudioHighPassFilter>();
         filter.cutoffFrequency = 100;
         filter.highpassResonanceQ = 1;

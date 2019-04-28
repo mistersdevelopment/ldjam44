@@ -256,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778148283328100}
   m_LocalRotation: {x: -0, y: 0, z: -0.007679378, w: 0.99997056}
-  m_LocalPosition: {x: -8.869792, y: 1.3721399, z: -1.1288306}
+  m_LocalPosition: {x: 5.130116, y: 0.6815052, z: -1.1288306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4033206953222416}
@@ -422,7 +422,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -534,6 +534,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   maxHealth: 3
   currentHealth: 0
+  invincibilityTime: 0
   currentStatusEffects: []
 --- !u!114 &114399454908125730
 MonoBehaviour:
@@ -558,8 +559,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 54f4b3696ac2848508049057bb427e05, type: 3}
   - {fileID: 8300000, guid: 0c883d3ad1f464b92adaa3795e99122e, type: 3}
   footstepVolume: 1
-  shoot: []
-  shootVolume: 1
+  shoot:
+  - {fileID: 8300000, guid: f3aeee0e163d6410595fd8cdc342e71b, type: 3}
+  - {fileID: 8300000, guid: 6230f363272bb4154932811f9f7bc97d, type: 3}
+  - {fileID: 8300000, guid: 201d2f05973fd44d6a2a1b5501de0111, type: 3}
+  - {fileID: 8300000, guid: d3367f8cf503a4d149522908116c3513, type: 3}
+  - {fileID: 8300000, guid: 078add347ad854823971a0d7fb834b8a, type: 3}
+  shootVolume: 0.2
   damage:
   - {fileID: 8300000, guid: 7e667a8c06e99494fa8085a3d8df5cfc, type: 3}
   - {fileID: 8300000, guid: 685e3a138b7f1457aa259ab09b6f8dc4, type: 3}
