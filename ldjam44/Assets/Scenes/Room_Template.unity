@@ -274,7 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 146752463}
   m_Layer: 11
-  m_Name: DoorRight
+  m_Name: Door_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 333535156}
   - component: {fileID: 333535155}
   m_Layer: 11
-  m_Name: Door_Closed_Top
+  m_Name: Door_Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 368009800}
   - component: {fileID: 368009799}
   m_Layer: 11
-  m_Name: Door_Closed_Right
+  m_Name: Door_Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 412243154}
   - component: {fileID: 412243155}
   m_Layer: 11
-  m_Name: Door_Open_Bottom
+  m_Name: Door_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -751,7 +751,7 @@ GameObject:
   - component: {fileID: 491757237}
   - component: {fileID: 491757238}
   m_Layer: 11
-  m_Name: Door_Open_Top
+  m_Name: Door_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -948,7 +948,7 @@ GameObject:
   - component: {fileID: 983358848}
   - component: {fileID: 983358849}
   m_Layer: 11
-  m_Name: Door_Open_Right
+  m_Name: Door_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1513,7 +1513,7 @@ GameObject:
   - component: {fileID: 1748944879}
   - component: {fileID: 1748944878}
   m_Layer: 11
-  m_Name: Door_Closed_Bottom
+  m_Name: Door_Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1877,7 +1877,7 @@ GameObject:
   - component: {fileID: 1999594872}
   - component: {fileID: 1999594873}
   m_Layer: 11
-  m_Name: Door_Open_Left
+  m_Name: Door_Open
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1954,7 +1954,7 @@ GameObject:
   - component: {fileID: 2014196089}
   - component: {fileID: 2014196088}
   m_Layer: 11
-  m_Name: Door_Closed_Left
+  m_Name: Door_Closed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2073,7 +2073,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2036631296}
   - component: {fileID: 2036631295}
-  m_Layer: 0
+  - component: {fileID: 2036631297}
+  - component: {fileID: 2036631299}
+  - component: {fileID: 2036631298}
+  m_Layer: 11
   m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2141,6 +2144,63 @@ Transform:
   m_Father: {fileID: 385994046}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2036631297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2036631294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60335195401fb42048242c7bbd5b015c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: []
+--- !u!50 &2036631298
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2036631294}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &2036631299
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2036631294}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
+    newSize: {x: 19.2, y: 10.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 15.9, y: 8}
+  m_EdgeRadius: 0
 --- !u!1 &2128646476
 GameObject:
   m_ObjectHideFlags: 0
