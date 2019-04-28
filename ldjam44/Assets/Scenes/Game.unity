@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c01900f56c0a924c80d9ae74afc420f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfRooms: 2
+  numberOfRooms: 3
   currentHP: 3
   upgradeButton: {fileID: 659767522}
   upgradeMachinePrefab: {fileID: 1477548138544040, guid: 481c2abfb84083e4ebd47136f74f0661,
@@ -1186,11 +1186,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4659251394018668, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.021065354
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4659251394018668, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.1993705
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4659251394018668, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
       propertyPath: m_LocalPosition.z

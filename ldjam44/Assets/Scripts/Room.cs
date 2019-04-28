@@ -96,7 +96,7 @@ public class Room : MonoBehaviour
 		active = true;
 		var player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 		// Move the player to the start pos.
-		player.position = startPos.position;
+		player.GetComponent<Rigidbody2D>().position = startPos.position;
 		// Awaken all the enemies.
 		Invoke("ActivateEnemies", 2);
 		SetBottomDoor(false);

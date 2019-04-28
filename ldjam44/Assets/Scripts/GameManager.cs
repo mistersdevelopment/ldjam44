@@ -105,9 +105,7 @@ public class GameManager : MonoBehaviour
 			int roomNum = -1;
 			do
 			{
-				roomNum = Random.Range(0, numberOfRooms);
-				Debug.Log("roomNum: " + roomNum);
-				Debug.Log("activeRoomNumer: " + activeRoomNumber);
+				roomNum = Random.Range(1, numberOfRooms);
 			} while (roomNum == activeRoomNumber);
 			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
 		}
@@ -132,11 +130,11 @@ public class GameManager : MonoBehaviour
 		if (nextRoom && nextRoomState == LoadState.LOADED && nextRoom.isActive())
 		{
 			SceneManager.UnloadSceneAsync("Room_" + activeRoomNumber);
-			Debug.Log("Active Room " + activeRoomNumber);
 			activeRoom = nextRoom;
 			nextRoom = null;
 			nextRoomState = LoadState.NONE;
 			activeRoomNumber = nextRoomNumber;
+			Debug.Log("Active Room " + activeRoomNumber);
 			nextRoomNumber = -1;
 		}
 	}
@@ -168,7 +166,6 @@ public class GameManager : MonoBehaviour
 		if (activeRoom)
 		{
 			Instantiate(prefab, activeRoom.transform);
-			prefab.transform.position = activeRoom.transform.position;
 		}
 	}
 }
