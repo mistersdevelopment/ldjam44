@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 4033206953222416}
   - component: {fileID: 95022549138509100}
   - component: {fileID: 114858680684168014}
+  - component: {fileID: 114559148376723150}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -255,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778148283328100}
   m_LocalRotation: {x: -0, y: 0, z: -0.007679378, w: 0.99997056}
-  m_LocalPosition: {x: -6.2107954, y: 0.24941137, z: -1.1288306}
+  m_LocalPosition: {x: -6.7450294, y: 1.8933077, z: -1.1288306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4033206953222416}
@@ -557,15 +558,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1f06338d0fc40ada7a62499dea0559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footstep: []
+  footstep:
+  - {fileID: 8300000, guid: 3e52daa9b8f0c49069dd92db27c49ee8, type: 3}
+  - {fileID: 8300000, guid: 1ec3ea975557f43b6976a67841c2675c, type: 3}
+  - {fileID: 8300000, guid: 3ead26f049379476e8cebd22a8c95567, type: 3}
+  - {fileID: 8300000, guid: df6b997a30c51425e9758c35c17cd438, type: 3}
+  - {fileID: 8300000, guid: 88ba326d216564792974e16ff220ab43, type: 3}
+  - {fileID: 8300000, guid: c5ab7303377894185897589ae93a937c, type: 3}
+  - {fileID: 8300000, guid: bcd3f4efe2bb14c9daac44d60fc62351, type: 3}
+  - {fileID: 8300000, guid: 25db1518f499040dc8b4b4d6bd75c3d0, type: 3}
+  - {fileID: 8300000, guid: 54f4b3696ac2848508049057bb427e05, type: 3}
+  - {fileID: 8300000, guid: 0c883d3ad1f464b92adaa3795e99122e, type: 3}
+  footstepVolume: 1
   shoot: []
+  shootVolume: 1
   damage:
   - {fileID: 8300000, guid: 7e667a8c06e99494fa8085a3d8df5cfc, type: 3}
   - {fileID: 8300000, guid: 685e3a138b7f1457aa259ab09b6f8dc4, type: 3}
+  damageVolume: 1
   taunt:
   - {fileID: 8300000, guid: 14e4bd4894bfe4eb29c3d284222e7dcb, type: 3}
   - {fileID: 8300000, guid: b1560bf202a304a08945444eca23a769, type: 3}
   - {fileID: 8300000, guid: 3f5195a4736ae43aab4680c8b6106bc3, type: 3}
+  tauntVolume: 1
+--- !u!114 &114559148376723150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1714218102087600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b686a67e8fe24f319e049351d5a2cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114573286238919222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -589,7 +615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96446510b6d6dac46a9a51a318b301c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 4
+  movementSpeed: 3
   shotSpeed: 100
   rateOfFire: 0.3
   damage: 1

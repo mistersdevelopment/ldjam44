@@ -7,28 +7,32 @@ public class CharacterSounds : MonoBehaviour
     private static AudioSource globalTaunt = null;
 
     public AudioClip[] footstep = new AudioClip[0];
+    public float footstepVolume = 1;
     private AudioSource footstepSource;
 
     public AudioClip[] shoot = new AudioClip[0];
+    public float shootVolume = 1;
     private AudioSource shootSource;
 
     public AudioClip[] damage = new AudioClip[0];
+    public float damageVolume = 1;
     private AudioSource damageSource;
 
     public AudioClip[] taunt = new AudioClip[0];
+    public float tauntVolume = 1;
     private AudioSource tauntSource;
 
 
     // Use this for initialization
     void Start() {
         footstepSource = gameObject.AddComponent<AudioSource>();
-        footstepSource.volume = 0.7f;
+        footstepSource.volume = footstepVolume * 0.7f;
         shootSource = gameObject.AddComponent<AudioSource>();
-        shootSource.volume = 0.8f;
+        shootSource.volume = shootVolume * 0.5f;
         damageSource = gameObject.AddComponent<AudioSource>();
-        damageSource.volume = 0.6f;
+        damageSource.volume = damageVolume * 0.6f;
         tauntSource = gameObject.AddComponent<AudioSource>();
-        tauntSource.volume = 0.4f;
+        tauntSource.volume = tauntVolume * 0.4f;
         AudioHighPassFilter filter = gameObject.AddComponent<AudioHighPassFilter>();
         filter.cutoffFrequency = 100;
         filter.highpassResonanceQ = 1;
@@ -36,7 +40,7 @@ public class CharacterSounds : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if (Random.Range(0, 1000) == 0)
+        if (Random.Range(0, 4000) == 0)
         {
             Taunt();
         }
