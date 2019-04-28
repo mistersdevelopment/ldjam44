@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
 		var playa = gameObject.transform.Find("Player");
 		animator = playa.GetComponent<Animator>();
-		Debug.Log(playa);
 		back = playa.gameObject.transform.Find("Player_Back").gameObject;
 		front = playa.gameObject.transform.Find("Player_Front").gameObject;
 		side = playa.gameObject.transform.Find("Player_Side").gameObject;
