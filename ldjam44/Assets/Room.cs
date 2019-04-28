@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-
 	public GameObject[] enemies;
+
+	bool complete = false;
 
 	GameObject topDoorOpen;
 	GameObject topDoorClosed;
 	GameObject bottomDoorOpen;
 	GameObject bottomDoorClosed;
-	GameObject leftDoorOpen;
-	GameObject leftDoorClosed;
-	GameObject rightDoorOpen;
-	GameObject rightDoorClosed;
 
 	// Use this for initialization
 	void Start()
@@ -23,10 +20,13 @@ public class Room : MonoBehaviour
 		topDoorClosed = transform.Find("Doors/Door_Top/Door_Closed").gameObject;
 		bottomDoorOpen = transform.Find("Doors/Door_Bottom/Door_Open").gameObject;
 		bottomDoorClosed = transform.Find("Doors/Door_Bottom/Door_Closed").gameObject;
-		leftDoorOpen = transform.Find("Doors/Door_Left/Door_Open").gameObject;
-		leftDoorClosed = transform.Find("Doors/Door_Left/Door_Closed").gameObject;
-		rightDoorOpen = transform.Find("Doors/Door_Right/Door_Open").gameObject;
-		rightDoorClosed = transform.Find("Doors/Door_Right/Door_Closed").gameObject;
+
+		SetBottomDoor(true);
+	}
+
+	public bool isComplete()
+	{
+		return complete;
 	}
 
 	// Update is called once per frame
@@ -43,6 +43,7 @@ public class Room : MonoBehaviour
 
 		if (deadCount >= enemies.Length)
 		{
+			complete = true;
 			SetTopDoor(true);
 		}
 	}
