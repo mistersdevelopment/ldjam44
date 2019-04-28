@@ -11,25 +11,35 @@ public class Character : MonoBehaviour
 
 	public float maxHealth;
 	public float currentHealth;
-
 	private float nextFire = float.MinValue;
+
+    private CharacterSounds sounds;
 
 	void Start()
 	{
 		stats = GetComponent<Stats>();
 		currentHealth = maxHealth;
-	}
+        sounds = GetComponent<CharacterSounds>();
+        if (!sounds)
+        {
+            sounds = gameObject.AddComponent<CharacterSounds>();
+        }
+    }
 
-	public void ModifyHealth(float modification)
-	{
-		currentHealth += modification;
-		if (currentHealth <= 0)
-		{
+    public void ModifyHealth(float modification)
+    {
+        currentHealth += modification;
+        if (currentHealth <= 0)
+        {
             Die();
-		}
-        if (currentHealth > maxHealth)
+        }
+        else if (currentHealth > maxHealth)
         {
             currentHealth = maxHealth;
+        }
+        else if (modification < 0)
+        {
+            sounds.Damage();
         }
     }
 
@@ -37,6 +47,7 @@ public class Character : MonoBehaviour
 	{
 		if (projectile && Time.time > nextFire)
 		{
+            sounds.Shoot();
 			nextFire = Time.time + stats.rateOfFire;
 			FireOne(dir);
 		}

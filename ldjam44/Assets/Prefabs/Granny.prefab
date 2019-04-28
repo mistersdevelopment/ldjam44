@@ -60,6 +60,9 @@ GameObject:
   - component: {fileID: 114747243465031954}
   - component: {fileID: 114832863841600900}
   - component: {fileID: 114474659972780110}
+  - component: {fileID: 114703031533738676}
+  - component: {fileID: 114335166545092062}
+  - component: {fileID: 114560309613488718}
   m_Layer: 10
   m_Name: Granny
   m_TagString: Untagged
@@ -293,6 +296,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+--- !u!114 &114335166545092062
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a321b67667623418493d9fd17f102cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroySelfOnCollison: 0
+  baseEffect: {fileID: 114703031533738676}
+  additionalEffects: []
 --- !u!114 &114339803661418788
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -308,7 +325,7 @@ MonoBehaviour:
   drop: {fileID: 1936833819473028, guid: 508c221ecd361463e832ea68832131f7, type: 2}
   dropChance: 0.5
   stats: {fileID: 0}
-  maxHealth: 2
+  maxHealth: 10
   currentHealth: 0
 --- !u!114 &114474659972780110
 MonoBehaviour:
@@ -324,6 +341,38 @@ MonoBehaviour:
   destroySelfOnCollison: 0
   baseEffect: {fileID: 114832863841600900}
   additionalEffects: []
+--- !u!114 &114560309613488718
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1f06338d0fc40ada7a62499dea0559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstep: []
+  shoot: []
+  damage:
+  - {fileID: 8300000, guid: 291633657fb8c4ac0bd18cb0ea1745e0, type: 3}
+  - {fileID: 8300000, guid: 390db7e9de19849dd99ccdc3be60585c, type: 3}
+  - {fileID: 8300000, guid: 9d3e2ff2c65564d449ad39ec6bf61a9b, type: 3}
+  taunt:
+  - {fileID: 8300000, guid: 32a217fe3e6a0494fa14a01052484825, type: 3}
+  - {fileID: 8300000, guid: 2625e3c510c09400483bd7787de7a114, type: 3}
+--- !u!114 &114703031533738676
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1172596424849982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b7110b5238abb40805537c346537e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!114 &114733036033553860
 MonoBehaviour:
   m_ObjectHideFlags: 1
