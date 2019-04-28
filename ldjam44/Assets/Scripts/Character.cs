@@ -16,6 +16,8 @@ public class Character : MonoBehaviour
 	private float nextFire = float.MinValue;
     public List<Effect> currentStatusEffects;
 
+    public Vector3 fireOffset;
+
     private CharacterSounds sounds;
 
 	void Start()
@@ -81,12 +83,12 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	void FireOne(CardinalDirection dir)
+    void FireOne(CardinalDirection dir)
 	{
 		if (projectile)
 		{
 			Vector3 fireVec = DirectionUtils.CardinalDirectionToVec(dir);
-			Vector3 startPos = transform.position + fireVec * 0.75f;
+			Vector3 startPos = transform.position + fireOffset + (fireVec * 0.75f);
 			GameObject proj = Instantiate(projectile, startPos, Quaternion.identity);
 			Rigidbody2D projRigidbody = proj.GetComponent<Rigidbody2D>();
 			proj.transform.localScale = new Vector3(stats.shotSize, stats.shotSize, 1.0f);
@@ -101,7 +103,8 @@ public class Character : MonoBehaviour
 		}
 	}
 
-	public void PowerUp(Stats modifyPlayerstats)
+
+    public void PowerUp(Stats modifyPlayerstats)
 	{
 		stats.movementSpeed += modifyPlayerstats.movementSpeed;
 		stats.shotSpeed += modifyPlayerstats.shotSpeed;

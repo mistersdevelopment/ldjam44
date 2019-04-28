@@ -33,5 +33,10 @@ public class AnimationEvents : MonoBehaviour {
         {
             sounds.Shoot();
         }
+        Elvis elvis = GetComponentInParent<Elvis>();
+        if (elvis)
+        {
+            elvis.Shoot();
+        }
     }
 }

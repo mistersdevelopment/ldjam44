@@ -256,7 +256,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778148283328100}
   m_LocalRotation: {x: -0, y: 0, z: -0.007679378, w: 0.99997056}
-  m_LocalPosition: {x: 5.130116, y: 0.6815052, z: -1.1288306}
+  m_LocalPosition: {x: 3.6953104, y: -0.5915707, z: -1.1288306}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4033206953222416}
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e4952ccae45244aadad2ba3706c208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 1963628016143002, guid: 61f0bdf1f828d4544a0a4a605efa39db, type: 2}
   drop: {fileID: 1936833819473028, guid: 508c221ecd361463e832ea68832131f7, type: 2}
   dropChance: 0.5
   stats: {fileID: 0}
@@ -536,6 +536,7 @@ MonoBehaviour:
   currentHealth: 0
   invincibilityTime: 0
   currentStatusEffects: []
+  fireOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &114399454908125730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -565,7 +566,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 201d2f05973fd44d6a2a1b5501de0111, type: 3}
   - {fileID: 8300000, guid: d3367f8cf503a4d149522908116c3513, type: 3}
   - {fileID: 8300000, guid: 078add347ad854823971a0d7fb834b8a, type: 3}
-  shootVolume: 0.2
+  shootVolume: 0.5
   damage:
   - {fileID: 8300000, guid: 7e667a8c06e99494fa8085a3d8df5cfc, type: 3}
   - {fileID: 8300000, guid: 685e3a138b7f1457aa259ab09b6f8dc4, type: 3}
@@ -609,13 +610,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96446510b6d6dac46a9a51a318b301c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
-  shotSpeed: 100
+  movementSpeed: 1
+  shotSpeed: 400
   rateOfFire: 0.3
   damage: 1
-  shotSize: 0.5
+  shotSize: 1.5
   shotLifetime: 1
-  baseEffect: {fileID: 0}
+  baseEffect: {fileID: 114165180951011444}
   additionalEffects: []
 --- !u!114 &114700437842920368
 MonoBehaviour:
