@@ -38,6 +38,7 @@ public class UpgradeSlotMachine : MonoBehaviour
             coinText.text = coins.ToString();
         }
         animator.Play("SlotMachine_In");
+        RandomizeSlotStart();
         UpdateLeverState();
     }
 
@@ -88,6 +89,21 @@ public class UpgradeSlotMachine : MonoBehaviour
                     uvs.y = EaseOutQuad(time, 0f, reelYChange[i], 1f) / (kPixelHeightPerItem * (float)itemCount);
                     reel.uvRect = uvs;
                 }
+            }
+        }
+    }
+
+    void RandomizeSlotStart()
+    {
+        for (int i = 0; i < reels.Length; i++)
+        {
+            RawImage reel = reels[i];
+            if (reel)
+            {
+                reelIndex[i] = Random.Range(0, itemCount - 1);
+                Rect uvs = reel.uvRect;
+                uvs.y = YCoordForSelection(reelIndex[i], 0) / (kPixelHeightPerItem * (float)itemCount);
+                reel.uvRect = uvs;
             }
         }
     }
