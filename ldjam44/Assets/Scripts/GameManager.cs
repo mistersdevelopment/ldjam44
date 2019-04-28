@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 	public Canvas canvas;
 	public bool cheatMode = false;
 
-
 	private static GameManager _instance;
 	public static GameManager Instance
 	{

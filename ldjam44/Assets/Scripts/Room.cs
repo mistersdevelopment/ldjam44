@@ -22,9 +22,6 @@ public class Room : MonoBehaviour
 		topDoorClosed = transform.Find("Doors/Door_Top/Door_Closed").gameObject;
 		bottomDoorOpen = transform.Find("Doors/Door_Bottom/Door_Open").gameObject;
 		bottomDoorClosed = transform.Find("Doors/Door_Bottom/Door_Closed").gameObject;
-
-		// Sleep all the enemies.
-		DeactivateEnemies();
 	}
 
 	public bool isActive()
@@ -35,30 +32,6 @@ public class Room : MonoBehaviour
 	public bool isComplete()
 	{
 		return complete;
-	}
-
-	private void ActivateEnemies()
-	{
-		for (int i = 0; i < enemies.Length; i++)
-		{
-			// Sleep all the enemies.
-			if (enemies[i])
-			{
-				enemies[i].SetActive(true);
-			}
-		}
-	}
-
-	private void DeactivateEnemies()
-	{
-		for (int i = 0; i < enemies.Length; i++)
-		{
-			// Sleep all the enemies.
-			if (enemies[i])
-			{
-				enemies[i].SetActive(false);
-			}
-		}
 	}
 
 	// Update is called once per frame
@@ -97,8 +70,7 @@ public class Room : MonoBehaviour
 		var player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
 		// Move the player to the start pos.
 		player.GetComponent<Rigidbody2D>().position = startPos.position;
-		// Awaken all the enemies.
-		Invoke("ActivateEnemies", 2);
+		BroadcastMessage("OnRoomActivate");
 		SetBottomDoor(false);
 		// Move the camera to the center of the room.
 		Camera.main.GetComponent<TargetCamera>().target = transform;
