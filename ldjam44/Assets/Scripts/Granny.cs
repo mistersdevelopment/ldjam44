@@ -21,7 +21,7 @@ public class Granny : MonoBehaviour
 		body = GetComponent<Rigidbody2D>();
 		stats = GetComponent<Stats>();
 		spritesAnimator = transform.Find("Sprites").GetComponent<Animator>();
-        weakness = Random.Range(0, 5);
+        weakness = Random.Range(0, 2);
 	}
 
     void Update()
