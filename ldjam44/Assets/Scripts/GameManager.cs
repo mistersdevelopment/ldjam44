@@ -12,21 +12,24 @@ public class GameManager : MonoBehaviour
 		LOADING,
 		LOADED
 	}
-	private string activeRoomName = "";
+	private int activeRoomNumber = -1;
 	private Room activeRoom;
-	private string nextRoomName = "";
+	private int nextRoomNumber = -1;
 	private Room nextRoom;
 	private LoadState nextRoomState = LoadState.NONE;
-    private bool firstRoom = true;
+	private bool firstRoom = true;
 
-    public int currentHP;
-    public GameObject upgradeButton;
-    private UpgradeSlotMachine upgradeMachine;
+	public int numberOfRooms = 2;
+
+	public int currentHP;
+	public GameObject upgradeButton;
+	private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
 	public Canvas canvas;
-    public bool cheatMode = false;
+	public bool cheatMode = false;
 
-    private static GameManager _instance;
+
+	private static GameManager _instance;
 	public static GameManager Instance
 	{
 		get
@@ -78,25 +81,25 @@ public class GameManager : MonoBehaviour
 		// Check if we are the first room ever.
 		if (!activeRoom)
 		{
-			activeRoomName = roomName;
+			activeRoomNumber = roomNum;
 			activeRoom = room;
 			activeRoom.Activate();
 			nextRoomState = LoadState.NONE;
 		}
 		else
 		{
-            if (activeRoomName != "Room_0")
-            {
-                firstRoom = false;
-            }
+			if (roomNum != 0)
+			{
+				firstRoom = false;
+			}
 
-			nextRoomName = roomName;
+			nextRoomNumber = activeRoomNumber;
 			nextRoom = room;
 			activeRoom.SetTopDoor(true);
 			activeRoom.SetBottomDoor(false);
 			nextRoom.SetBottomDoor(true);
 			nextRoom.SetTopDoor(false);
-        }
+		}
 	}
 
 	// Update is called once per frame
@@ -104,33 +107,40 @@ public class GameManager : MonoBehaviour
 	{
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
-			LoadRoom(1, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
+			int roomNum = -1;
+			do
+			{
+				roomNum = Random.Range(0, numberOfRooms);
+				Debug.Log("roomNum: " + roomNum);
+				Debug.Log("activeRoomNumer: " + activeRoomNumber);
+			} while (roomNum == activeRoomNumber);
+			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
 		}
 
-        // Show and hide upgrade button
-        if (!firstRoom && activeRoom && activeRoom.isComplete() && upgradeMachine == null)
-        {
-            if (!upgradeButton.activeSelf)
-            {
-                upgradeButton.SetActive(true);
-            }
-        }
-        else
-        {
-            if (upgradeButton.activeSelf)
-            {
-                upgradeButton.SetActive(false);
-            }
-        }
+		// Show and hide upgrade button
+		if (!firstRoom && activeRoom && activeRoom.isComplete() && upgradeMachine == null)
+		{
+			if (!upgradeButton.activeSelf)
+			{
+				upgradeButton.SetActive(true);
+			}
+		}
+		else
+		{
+			if (upgradeButton.activeSelf)
+			{
+				upgradeButton.SetActive(false);
+			}
+		}
 
 		if (nextRoom && nextRoomState == LoadState.LOADED && nextRoom.isActive())
 		{
-			SceneManager.UnloadSceneAsync(activeRoomName);
+			SceneManager.UnloadSceneAsync("Room_" + activeRoomNumber);
 			activeRoom = nextRoom;
 			nextRoom = null;
 			nextRoomState = LoadState.NONE;
-			activeRoomName = nextRoomName;
-			nextRoomName = "";
+			activeRoomNumber = nextRoomNumber;
+			nextRoomNumber = -1;
 		}
 	}
 
@@ -156,12 +166,12 @@ public class GameManager : MonoBehaviour
 		currentHP--;
 	}
 
-    public void SpawnPowerUpReward(PowerUp prefab)
-    {
-        if (activeRoom)
-        {
-            Instantiate(prefab, activeRoom.transform);
-            prefab.transform.position = activeRoom.transform.position;
-        }
-    }
+	public void SpawnPowerUpReward(PowerUp prefab)
+	{
+		if (activeRoom)
+		{
+			Instantiate(prefab, activeRoom.transform);
+			prefab.transform.position = activeRoom.transform.position;
+		}
+	}
 }

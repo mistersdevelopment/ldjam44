@@ -495,6 +495,7 @@ MonoBehaviour:
     type: 2}
   canvas: {fileID: 257185943}
   cheatMode: 1
+  numRooms: 1
 --- !u!4 &947321017
 Transform:
   m_ObjectHideFlags: 0
