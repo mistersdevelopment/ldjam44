@@ -27,7 +27,7 @@ public class PowerUp : Pickup {
 
     IEnumerator BecomeActiveAfterDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         allowPickup = true;
     }
 }
