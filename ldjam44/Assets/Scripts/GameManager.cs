@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 				firstRoom = false;
 			}
 
-			nextRoomNumber = activeRoomNumber;
+			nextRoomNumber = roomNum;
 			nextRoom = room;
 			activeRoom.SetTopDoor(true);
 			activeRoom.SetBottomDoor(false);
