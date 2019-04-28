@@ -24,7 +24,6 @@ public class Granny : MonoBehaviour
 
     void Update()
     {
-        // TODO Make granny randomly stop. Because tired.
         var player = GameObject.Find("Player");
         if (player && !tired)
         {
