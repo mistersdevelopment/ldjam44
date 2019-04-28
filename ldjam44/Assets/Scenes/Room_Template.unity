@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 112031801}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146752463}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 289883320}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   - component: {fileID: 333535154}
   - component: {fileID: 333535156}
   - component: {fileID: 333535155}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Closed_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 368009798}
   - component: {fileID: 368009800}
   - component: {fileID: 368009799}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Closed_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 412243154}
   - component: {fileID: 412243155}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Open_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -683,7 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 443373586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 469347987}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -750,7 +750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 491757237}
   - component: {fileID: 491757238}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Open_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -947,7 +947,7 @@ GameObject:
   m_Component:
   - component: {fileID: 983358848}
   - component: {fileID: 983358849}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Open_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1512,7 +1512,7 @@ GameObject:
   - component: {fileID: 1748944877}
   - component: {fileID: 1748944879}
   - component: {fileID: 1748944878}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Closed_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1999594872}
   - component: {fileID: 1999594873}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Open_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1953,7 +1953,7 @@ GameObject:
   - component: {fileID: 2014196087}
   - component: {fileID: 2014196089}
   - component: {fileID: 2014196088}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Closed_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2149,7 +2149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128646477}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Door_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
