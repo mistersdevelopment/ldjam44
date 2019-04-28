@@ -43,6 +43,7 @@ public class Character : MonoBehaviour
         if (canTakeDamage)
         {
             canTakeDamage = false;
+            StartCoroutine("InvincibilityPeriod");
             currentHealth += modification;
             if (currentHealth <= 0)
             {
@@ -134,6 +135,11 @@ public class Character : MonoBehaviour
         if (drop && Random.Range(0.0f, 1.0f) < dropChance)
         {
             Instantiate(drop, transform.position, transform.rotation);
+        }
+        Player playerComponent = GetComponent<Player>();
+        if (playerComponent)
+        {
+            playerComponent.Die();
         }
         Destroy(this.gameObject);
     }

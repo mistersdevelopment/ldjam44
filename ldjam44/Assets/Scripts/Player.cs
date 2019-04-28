@@ -162,4 +162,9 @@ public class Player : MonoBehaviour
 			yield return new WaitForSeconds(UnityEngine.Random.Range(2, 4));
 		}
 	}
+
+    public void Die()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
 }
