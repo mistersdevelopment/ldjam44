@@ -78,7 +78,6 @@ public class GameManager : MonoBehaviour
 		{
 			activeRoomName = roomName;
 			activeRoom = room;
-			Camera.main.GetComponent<TargetCamera>().target = activeRoom.transform;
 			activeRoom.Activate();
 			nextRoomState = LoadState.NONE;
 		}
@@ -100,7 +99,6 @@ public class GameManager : MonoBehaviour
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
 			LoadRoom(1, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
-			// TODO Check for room enter then switch activeRoom var and clear nextRoom and set nextRoomState to NONE.
 		}
 
         // Show and hide upgrade button
@@ -119,26 +117,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (nextRoom && nextRoomState == LoadState.LOADED)
+		if (nextRoom && nextRoomState == LoadState.LOADED && nextRoom.isActive())
 		{
-			if (!nextRoom.isActive())
-			{
-				Camera.main.GetComponent<TargetCamera>().target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
-			}
-			else
-			{
-				SceneManager.UnloadSceneAsync(activeRoomName);
-				activeRoom = nextRoom;
-
-				Camera.main.GetComponent<TargetCamera>().enabled = true;
-				Camera.main.GetComponent<TargetCamera>().target = activeRoom.transform;
-
-				nextRoom = null;
-				nextRoomState = LoadState.NONE;
-				activeRoomName = nextRoomName;
-				nextRoomName = "";
-			}
-
+			SceneManager.UnloadSceneAsync(activeRoomName);
+			activeRoom = nextRoom;
+			nextRoom = null;
+			nextRoomState = LoadState.NONE;
+			activeRoomName = nextRoomName;
+			nextRoomName = "";
 		}
 	}
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
 	public GameObject[] enemies;
+	public Transform startPos;
 
 	bool complete = false;
 	bool active = false;
@@ -23,7 +24,7 @@ public class Room : MonoBehaviour
 		bottomDoorClosed = transform.Find("Doors/Door_Bottom/Door_Closed").gameObject;
 
 		// Sleep all the enemies.
-		SetEnemyActivity(false);
+		DeactivateEnemies();
 	}
 
 	public bool isActive()
@@ -36,14 +37,26 @@ public class Room : MonoBehaviour
 		return complete;
 	}
 
-	private void SetEnemyActivity(bool active)
+	private void ActivateEnemies()
 	{
 		for (int i = 0; i < enemies.Length; i++)
 		{
 			// Sleep all the enemies.
 			if (enemies[i])
 			{
-				enemies[i].SetActive(active);
+				enemies[i].SetActive(true);
+			}
+		}
+	}
+
+	private void DeactivateEnemies()
+	{
+		for (int i = 0; i < enemies.Length; i++)
+		{
+			// Sleep all the enemies.
+			if (enemies[i])
+			{
+				enemies[i].SetActive(false);
 			}
 		}
 	}
@@ -81,9 +94,14 @@ public class Room : MonoBehaviour
 	public void Activate()
 	{
 		active = true;
+		var player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+		// Move the player to the start pos.
+		player.position = startPos.position;
 		// Awaken all the enemies.
-		SetEnemyActivity(true);
+		Invoke("ActivateEnemies", 2);
 		SetBottomDoor(false);
+		// Move the camera to the center of the room.
+		Camera.main.GetComponent<TargetCamera>().target = transform;
 	}
 
 	public void PlayerEnteredTrigger(string name)
