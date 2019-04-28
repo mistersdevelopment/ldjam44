@@ -7,8 +7,6 @@ public class TargetCamera : MonoBehaviour
 	public Transform target = null;
 	float speed = 50f;
 
-	Vector3 cameraVelocity = Vector3.zero;
-
 	void LateUpdate()
 	{
 		if (target)
