@@ -298,7 +298,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1162636911794636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.30404, y: -2.837296, z: -1.1022667}
+  m_LocalPosition: {x: 5.373433, y: -1.3145261, z: -1.1022667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4908941961988394}
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96446510b6d6dac46a9a51a318b301c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
+  movementSpeed: 7
   shotSpeed: 100
   rateOfFire: 0.3
   damage: 1
@@ -496,7 +496,7 @@ MonoBehaviour:
   drop: {fileID: 1936833819473028, guid: 508c221ecd361463e832ea68832131f7, type: 2}
   dropChance: 0.5
   stats: {fileID: 0}
-  maxHealth: 10
+  maxHealth: 5
   currentHealth: 0
   currentStatusEffects: []
 --- !u!114 &114357758352790214
@@ -562,6 +562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6049cb660124f76a4557299d62579f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 1
+  waitTimeVariance: 2
+  chargeUpTime: 1
+  chargeTime: 2
+  chargeClip: {fileID: 8300000, guid: 3e52daa9b8f0c49069dd92db27c49ee8, type: 3}
   stats: {fileID: 0}
 --- !u!114 &114798692581209890
 MonoBehaviour:
