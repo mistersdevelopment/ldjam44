@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
 	private GameObject side;
 	private GameObject[] eyesClosed;
 	private Animator animator;
+    public GameObject[] healthUI;
 
 	void Start()
 	{
@@ -162,6 +163,14 @@ public class Player : MonoBehaviour
 			yield return new WaitForSeconds(UnityEngine.Random.Range(2, 4));
 		}
 	}
+
+    public void SetHealth( float health )
+    {
+        for (int i = (int)health; i < 5; ++i)
+        {
+            healthUI[i].SetActive(false);
+        }
+    }
 
     public void Die()
     {

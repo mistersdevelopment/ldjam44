@@ -56,6 +56,11 @@ public class Character : MonoBehaviour
             else if (modification < 0)
             {
                 sounds.Damage();
+            } 
+            Player playerComponent = GetComponent<Player>();
+            if (playerComponent)
+            {
+                playerComponent.SetHealth( currentHealth );
             }
         }
     }
