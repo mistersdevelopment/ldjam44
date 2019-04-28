@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
 
 	public float maxHealth;
 	public float currentHealth;
+    public float invincibilityTime;
+    private bool canTakeDamage;
 	private float nextFire = float.MinValue;
     public List<Effect> currentStatusEffects;
 
@@ -21,6 +23,7 @@ public class Character : MonoBehaviour
 		stats = GetComponent<Stats>();
 		currentHealth = maxHealth;
         sounds = GetComponent<CharacterSounds>();
+        canTakeDamage = true;
         if (!sounds)
         {
             sounds = gameObject.AddComponent<CharacterSounds>();
@@ -37,19 +40,29 @@ public class Character : MonoBehaviour
 
     public void ModifyHealth(float modification)
     {
-        currentHealth += modification;
-        if (currentHealth <= 0)
+        if (canTakeDamage)
         {
-            Die();
+            canTakeDamage = false;
+            currentHealth += modification;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+            else if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+            else if (modification < 0)
+            {
+                sounds.Damage();
+            }
         }
-        else if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-        else if (modification < 0)
-        {
-            sounds.Damage();
-        }
+    }
+
+    private IEnumerator InvincibilityPeriod()
+    {
+        yield return new WaitForSeconds(invincibilityTime);
+        canTakeDamage = true;
     }
 
     public void Fire(CardinalDirection dir)

@@ -17,10 +17,4 @@ public class BurnEffect : Effect {
     {
         enemy.ModifyHealth(-damage * Time.deltaTime );
     }
-
-    public IEnumerator RemoveEffect(Character enemy)
-    {
-        yield return new WaitForSeconds(time);
-        enemy.currentStatusEffects.Remove(EffectsManager.Instance.burnEffect);
-    }
 }
