@@ -713,6 +713,10 @@ Prefab:
       propertyPath: m_Offset.y
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 1172596424849982, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_Name
+      value: Granny
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
   m_IsPrefabAsset: 0
@@ -1011,6 +1015,35 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1544727570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544727568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c3582560761548ae9b54ebdb75ce631, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 2
+  shotSpeed: 100
+  shotSize: 0.5
+  shotLifetime: 1
+  rateOfFire: 0.3
+  damage: 1
+--- !u!114 &1544727571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1544727568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756ac1290d65741d082de2add75a14eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats: {fileID: 1544727570}
 --- !u!4 &1544727574 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4318261329637166, guid: 8352762ce786c44419fcab95db8b70b3,
