@@ -146,6 +146,11 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public Stats GetStats()
+	{
+		return stats;
+	}
+
 	IEnumerator Blinking()
 	{
 		SetEyesOpen(true);

@@ -80,11 +80,13 @@ public class GameManager : MonoBehaviour
 		{
 			activeRoomName = roomName;
 			activeRoom = room;
-			activeRoom.SetBottomDoor(false);
+			Camera.main.GetComponent<TargetCamera>().target = activeRoom.transform;
+			activeRoom.Activate();
 			nextRoomState = LoadState.NONE;
 		}
 		else
 		{
+
 			nextRoomName = roomName;
 			nextRoom = room;
 			activeRoom.SetTopDoor(true);
@@ -103,17 +105,28 @@ public class GameManager : MonoBehaviour
 			// TODO Check for room enter then switch activeRoom var and clear nextRoom and set nextRoomState to NONE.
 		}
 
-		// if (nextRoom && nextRoomState == LoadState.LOADED)
-		// {
-		// 	// TODO Check if we have entered the next room.
-		// 	// TODO Activate the enemies in the room.
-		// 	SceneManager.UnloadSceneAsync(activeRoomName);
-		// 	activeRoom = nextRoom;
-		// 	nextRoom = null;
-		// 	nextRoomState = LoadState.NONE;
-		// 	activeRoomName = nextRoomName;
-		// 	nextRoomName = "";
-		// }
+		if (nextRoom && nextRoomState == LoadState.LOADED)
+		{
+			if (!nextRoom.isActive())
+			{
+
+				Camera.main.GetComponent<TargetCamera>().target = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+			}
+			else
+			{
+				SceneManager.UnloadSceneAsync(activeRoomName);
+				activeRoom = nextRoom;
+
+				Camera.main.GetComponent<TargetCamera>().enabled = true;
+				Camera.main.GetComponent<TargetCamera>().target = activeRoom.transform;
+
+				nextRoom = null;
+				nextRoomState = LoadState.NONE;
+				activeRoomName = nextRoomName;
+				nextRoomName = "";
+			}
+
+		}
 	}
 
 	public void OpenUpgradeMachine()

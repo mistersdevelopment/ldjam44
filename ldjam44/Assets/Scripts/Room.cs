@@ -7,6 +7,7 @@ public class Room : MonoBehaviour
 	public GameObject[] enemies;
 
 	bool complete = false;
+	bool active = false;
 
 	GameObject topDoorOpen;
 	GameObject topDoorClosed;
@@ -20,11 +21,31 @@ public class Room : MonoBehaviour
 		topDoorClosed = transform.Find("Doors/Door_Top/Door_Closed").gameObject;
 		bottomDoorOpen = transform.Find("Doors/Door_Bottom/Door_Open").gameObject;
 		bottomDoorClosed = transform.Find("Doors/Door_Bottom/Door_Closed").gameObject;
+
+		// Sleep all the enemies.
+		SetEnemyActivity(false);
+	}
+
+	public bool isActive()
+	{
+		return active;
 	}
 
 	public bool isComplete()
 	{
 		return complete;
+	}
+
+	private void SetEnemyActivity(bool active)
+	{
+		for (int i = 0; i < enemies.Length; i++)
+		{
+			// Sleep all the enemies.
+			if (enemies[i])
+			{
+				enemies[i].SetActive(active);
+			}
+		}
 	}
 
 	// Update is called once per frame
@@ -57,13 +78,19 @@ public class Room : MonoBehaviour
 		bottomDoorClosed.SetActive(!open);
 	}
 
-	// Floor trigger.
-	void OnTriggerStay2D(Collider2D other)
+	public void Activate()
 	{
-		if (other.gameObject.GetComponent<Player>())
-		{
-			SetBottomDoor(false);
-		}
+		active = true;
+		// Awaken all the enemies.
+		SetEnemyActivity(true);
+		SetBottomDoor(false);
 	}
 
+	public void PlayerEnteredTrigger(string name)
+	{
+		if (name == "EntryPad")
+		{
+			Activate();
+		}
+	}
 }
