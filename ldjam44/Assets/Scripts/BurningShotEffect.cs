@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BurningShotEffect : AdditionalCoinEffect
+public class BurningShotEffect : Effect
 {
 
-    public virtual void ApplyEffect(Enemy enemy)
+    public virtual void ApplyEffect(Health enemy)
     {
 
     }
