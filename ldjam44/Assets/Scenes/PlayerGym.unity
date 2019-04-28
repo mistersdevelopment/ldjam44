@@ -666,6 +666,10 @@ Prefab:
       propertyPath: movementSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4081863720837354, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8352762ce786c44419fcab95db8b70b3, type: 2}
   m_IsPrefabAsset: 0

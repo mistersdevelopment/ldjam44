@@ -15,7 +15,7 @@ public class Granny : MonoBehaviour
 	{
 		body = GetComponent<Rigidbody2D>();
 		stats = GetComponent<Stats>();
-		spritesAnimator = gameObject.transform.Find("Sprites").GetComponent<Animator>();
+		spritesAnimator = transform.Find("Sprites").GetComponent<Animator>();
 	}
 
 	void Update()
@@ -24,11 +24,25 @@ public class Granny : MonoBehaviour
 		var player = GameObject.Find("Player");
 		if (player)
 		{
+			var playerPos = player.transform.position;
+			movement = Vector2.MoveTowards(transform.position, playerPos, Time.deltaTime * stats.movementSpeed);
+			var grannyPos = transform.position;
+			grannyPos.z = 0;
+			var playerDir = Vector3.Normalize(playerPos - grannyPos);
+
+			var eastVal = Vector3.Dot(playerDir, DirectionUtils.CardinalDirectionToVec(CardinalDirection.EAST));
+			var westVal = Vector3.Dot(playerDir, DirectionUtils.CardinalDirectionToVec(CardinalDirection.WEST));
+			if (eastVal > westVal)
+			{
+				transform.localScale = new Vector3(1, 1, 1);
+			}
+			else
+			{
+				transform.localScale = new Vector3(-1, 1, 1);
+			}
+
 			moved = true;
-			movement = Vector2.MoveTowards(gameObject.transform.position, player.gameObject.transform.position, Time.deltaTime * stats.movementSpeed);
 			spritesAnimator.SetBool("IsWalking", moved);
-			// TODO If within range attack.
-			// ProcessAttacks();
 		}
 	}
 
