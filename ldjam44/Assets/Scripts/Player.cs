@@ -149,13 +149,14 @@ public class Player : MonoBehaviour
 		collision.SetBaseEffect(playerStats.baseEffect);
 	}
 
-	void PowerUp(PlayerStats modifyPlayerstats)
+	public void PowerUp(PlayerStats modifyPlayerstats)
 	{
 		playerStats.movementSpeed += modifyPlayerstats.movementSpeed;
 		playerStats.shotSpeed += modifyPlayerstats.shotSpeed;
 		playerStats.rateOfFire += modifyPlayerstats.rateOfFire;
 		playerStats.damage += modifyPlayerstats.damage;
-		playerStats.shotSize += modifyPlayerstats.shotSize;
+        playerStats.shotSize += modifyPlayerstats.shotSize;
+        playerStats.baseEffect.damage = playerStats.damage;
 		for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
 		{
 			playerStats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
