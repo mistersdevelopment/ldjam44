@@ -166,6 +166,10 @@ public class Player : MonoBehaviour
 
     public void SetHealth( float health )
     {
+        for (int i = 0; i < health; ++i)
+        {
+            healthUI[i].SetActive(true);
+        }
         for (int i = (int)health; i < 5; ++i)
         {
             healthUI[i].SetActive(false);

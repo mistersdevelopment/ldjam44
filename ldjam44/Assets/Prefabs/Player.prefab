@@ -572,6 +572,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e0deef4b1f048aa91f9f368ca669f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114223941154659522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -618,9 +624,9 @@ MonoBehaviour:
   drop: {fileID: 0}
   dropChance: 0
   stats: {fileID: 0}
-  maxHealth: 5
-  currentHealth: 0
-  invincibilityTime: 1
+  maxHealth: 3
+  currentHealth: 3
+  invincibilityTime: 0.5
   currentStatusEffects: []
 --- !u!114 &114504156879108070
 MonoBehaviour:

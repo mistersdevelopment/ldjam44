@@ -357,7 +357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &313631206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -550,7 +550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &922194455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1179,11 +1179,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
-        type: 2}
-      propertyPath: healthUI.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4659251394018668, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1216,15 +1211,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 1563193456967790, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 114357729018445970, guid: fe104e06368304f22b2ecf7a554ed179,
-        type: 2}
-      propertyPath: invincibilityTime
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
       propertyPath: healthUI.Array.data[0]
@@ -1250,8 +1236,7 @@ Prefab:
       propertyPath: healthUI.Array.data[4]
       value: 
       objectReference: {fileID: 922194454}
-    m_RemovedComponents:
-    - {fileID: 114216816037513212, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1598200074
