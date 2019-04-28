@@ -145,7 +145,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 7dc1d7bf17c7b6241a8ec110223b838f, type: 3}
     prefab: {fileID: 114282721772797496, guid: e5fe1a7a01006034695bc1a48a413063, type: 2}
   - name: Shot Speed
-    icon: {fileID: 21300000, guid: 7dc1d7bf17c7b6241a8ec110223b838f, type: 3}
+    icon: {fileID: 21300000, guid: 1753e9157b8abf3419699c03377bd8ad, type: 3}
     prefab: {fileID: 114788365366890544, guid: 4dc69aa0ffff45744a773b81ee0b663e, type: 2}
   - name: All Stats
     icon: {fileID: 21300000, guid: 7dc1d7bf17c7b6241a8ec110223b838f, type: 3}
