@@ -436,6 +436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 3
+  upgradeButton: {fileID: 0}
   upgradeMachinePrefab: {fileID: 1477548138544040, guid: 481c2abfb84083e4ebd47136f74f0661,
     type: 2}
   canvas: {fileID: 257185943}
@@ -838,6 +839,12 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 114357729018445970, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: invincibilityTime
+      value: 0.01
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114216816037513212, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_IsPrefabAsset: 0
