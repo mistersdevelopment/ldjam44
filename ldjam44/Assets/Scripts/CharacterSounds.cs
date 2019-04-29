@@ -110,7 +110,7 @@ public class CharacterSounds : MonoBehaviour
 		{
 			var go = new GameObject();
 			var oneShot = go.AddComponent<OneShotAudio>();
-			oneShot.Play(clip);
+			oneShot.Play(clip, deathVolume);
 		}
 	}
 
