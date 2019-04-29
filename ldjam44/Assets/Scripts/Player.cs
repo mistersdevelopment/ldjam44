@@ -182,6 +182,7 @@ public class Player : MonoBehaviour
 
 	public void SetHealth(float health)
 	{
+        health = Mathf.Max((int)health, 0);
 		for (int i = 0; i < health; ++i)
 		{
             healthUI[i].sprite = coinEnabledSprite;
