@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 	private Room activeRoom;
 	private int nextRoomNumber = -1;
 	private Room nextRoom;
-    private bool playerDead = false;
+	private bool playerDead = false;
 	private LoadState nextRoomState = LoadState.NONE;
 
 	public int numberOfRooms = 2;
@@ -25,9 +25,11 @@ public class GameManager : MonoBehaviour
 	private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
 	public Canvas canvas;
-    public GameObject deathText;
-    public Text floorText;
+	public GameObject deathText;
+	public Text floorText;
 	public bool cheatMode = false;
+
+	public AudioClip roomCompletedClip;
 
 	private AudioSource[] sources;
 	private List<float> startingVolumes;
@@ -41,10 +43,10 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    public int GetNextRoomNumber()
-    {
-        return nextRoomNumber;
-    }
+	public int GetNextRoomNumber()
+	{
+		return nextRoomNumber;
+	}
 
 	private void Awake()
 	{
@@ -122,6 +124,12 @@ public class GameManager : MonoBehaviour
 		// Load a new room if the active one is complete.
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
+			if (activeRoomNumber != 0 && roomCompletedClip)
+			{
+				var go = new GameObject();
+				var oneShot = go.AddComponent<OneShotAudio>();
+				oneShot.Play(roomCompletedClip);
+			}
 			int roomNum = activeRoomNumber + 1;
 			//if (roomNum == 1) roomNum = 7;
 			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
@@ -219,27 +227,27 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    public void ShowDeathScreen()
-    {
-        playerDead = true;
-        StartCoroutine(DeathSequence());
-    }
+	public void ShowDeathScreen()
+	{
+		playerDead = true;
+		StartCoroutine(DeathSequence());
+	}
 
-    IEnumerator DeathSequence()
-    {
-        deathText.gameObject.SetActive(true);
-        deathText.transform.Find("GameOverFloorNum").GetComponent<Text>().text = "Ace reached room " + activeRoomNumber.ToString();
-        yield return new WaitForSeconds(2f); // to prevent accidental skips
-        yield return WaitForAnyKeyDown();
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-    }
+	IEnumerator DeathSequence()
+	{
+		deathText.gameObject.SetActive(true);
+		deathText.transform.Find("GameOverFloorNum").GetComponent<Text>().text = "Ace reached room " + activeRoomNumber.ToString();
+		yield return new WaitForSeconds(2f); // to prevent accidental skips
+		yield return WaitForAnyKeyDown();
+		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+	}
 
 
-    IEnumerator WaitForAnyKeyDown()
-    {
-        do
-        {
-            yield return null; // Once per frame
-        } while (!Input.anyKeyDown);
-    }
+	IEnumerator WaitForAnyKeyDown()
+	{
+		do
+		{
+			yield return null; // Once per frame
+		} while (!Input.anyKeyDown);
+	}
 }
