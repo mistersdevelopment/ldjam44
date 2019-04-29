@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     private Animator animator;
 	public Image[] healthUI;
     public Text[] powerupCountUI;
+    public Animator[] powerupImageUI;
     public Sprite coinEnabledSprite;
     public Sprite coinDisabledSprite;
 
@@ -201,13 +202,17 @@ public class Player : MonoBehaviour
 
     public void AddPowerUp(PowerUpType pupType)
     {
+        int index = 0;
         switch (pupType)
         {
-            case PowerUpType.Speed: powerupsCount[0]++; break;
-            case PowerUpType.RateOfFire: powerupsCount[1]++; break;
-            case PowerUpType.ShotSize: powerupsCount[2]++; break;
-            case PowerUpType.Damage: powerupsCount[3]++; break;
+            case PowerUpType.Speed: index = 0; break;
+            case PowerUpType.RateOfFire: index = 1; break;
+            case PowerUpType.ShotSize: index = 2; break;
+            case PowerUpType.Damage: index = 3; break;
         }
+
+        powerupsCount[index]++;
+        powerupImageUI[index].Play("UIChipIcon_Jiggle");
 
         for (int i = 0; i < powerupCountUI.Length; i++)
         {
