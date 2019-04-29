@@ -2204,7 +2204,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9ebfa4fd28f7d42478963f7d71ccd776, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa6f7b06d74485f458c2a45d09b7f80e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2242,7 +2242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60335195401fb42048242c7bbd5b015c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
   startPos: {fileID: 804941680}
 --- !u!1 &2128646476
 GameObject:
