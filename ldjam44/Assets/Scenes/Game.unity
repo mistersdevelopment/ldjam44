@@ -189,8 +189,8 @@ MonoBehaviour:
   - name: Damage
     icon: {fileID: 21300000, guid: 19ec62f279ece7d4ea465a2982ac4d02, type: 3}
     prefab: {fileID: 114317155078120186, guid: 251fc7d51812d874ba3d0d47fbb809d0, type: 2}
-  pityTimer: 4
-  spinsSinceUpgrade: 4
+  pityTimer: 3
+  spinsSinceUpgrade: 3
 --- !u!4 &125350454
 Transform:
   m_ObjectHideFlags: 0
@@ -2266,6 +2266,11 @@ Prefab:
       propertyPath: powerupCountUI.Array.data[3]
       value: 
       objectReference: {fileID: 1523326799}
+    - target: {fileID: 114357729018445970, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: invincibilityTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_IsPrefabAsset: 0
