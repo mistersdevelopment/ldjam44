@@ -193,7 +193,7 @@ MonoBehaviour:
     type: 2}
   pityTimer: 3
   spinsSinceUpgrade: 3
-  guranteedJackpot: 0
+  jackpotGiven: 0
 --- !u!4 &125350454
 Transform:
   m_ObjectHideFlags: 0
@@ -993,6 +993,7 @@ GameObject:
   - component: {fileID: 659767526}
   - component: {fileID: 659767525}
   - component: {fileID: 659767524}
+  - component: {fileID: 659767527}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1117,6 +1118,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 659767522}
   m_CullTransparentMesh: 0
+--- !u!95 &659767527
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 659767522}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b956946e5af43da4c9da561bd9125546, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &704251761
 GameObject:
   m_ObjectHideFlags: 0
