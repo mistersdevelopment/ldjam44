@@ -102,18 +102,27 @@ public class Room : MonoBehaviour
 		// Do nothing.
 	}
 
-    public void StartJackpot(int spawnCount, GameObject jackpotMusic)
+    public void StartJackpot(GameObject jackpotMusic)
     {
-        StartCoroutine(Jackpot(spawnCount, jackpotMusic));
+        StartCoroutine(Jackpot(jackpotMusic));
     }
 
-    IEnumerator Jackpot(int spawnCount, GameObject jackpotMusic)
+    IEnumerator Jackpot( GameObject jackpotMusic)
     {
+        int spawnCount = 12;
+
         jackpotMusic.transform.parent = this.transform;
         while (spawnCount-- > 0)
         {
-            PowerUpDef pup = PowerUpManager.Instance.RandomPowerUp();
-            Instantiate(pup.prefab, transform);
+            if (spawnCount % 3 == 0)
+            {
+                PowerUpDef pup = PowerUpManager.Instance.lootTable[(spawnCount / 3) % PowerUpManager.Instance.lootTable.Length];
+                Instantiate(pup.prefab, transform);
+            }
+            else
+            {
+                Instantiate(PowerUpManager.Instance.coinDropPrefab, transform);
+            }
             yield return new WaitForSeconds(.19f);
         }
         Destroy(jackpotMusic);

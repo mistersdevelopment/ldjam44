@@ -22,8 +22,6 @@ public class UpgradeSlotMachine : MonoBehaviour
 	private bool spinning = false;
 	private bool spinEnding = false;
 	public int rewardItemIndex;
-    public float jackpotChance = .5f;
-    public int jackpotRewards = 15;
 
     public GameObject infoText;
 	public GameObject winnerText;
@@ -160,7 +158,7 @@ public class UpgradeSlotMachine : MonoBehaviour
         animator.Play("SlotMachine_Jackpot");
         yield return new WaitForSeconds(3f);
         Input.ResetInputAxes();
-        GameManager.Instance.SpawnJackpot(jackpotRewards, jackpotMusic);
+        GameManager.Instance.SpawnJackpot(jackpotMusic);
         GameManager.Instance.CloseUpgradeMachine();
     }
 
@@ -249,10 +247,11 @@ public class UpgradeSlotMachine : MonoBehaviour
 		proxyButton.gameObject.SetActive(true);
 
 		int forcedValue = -1;
-        if (Random.value < jackpotChance)
+        if (GameManager.Instance.GetActiveRoomNumber() == 20 && !PowerUpManager.Instance.jackpotGiven)
         {
             forcedValue = kItemCount - 1; // jackpot
             PowerUpManager.Instance.spinsSinceUpgrade = 0;
+            PowerUpManager.Instance.jackpotGiven = true;
         }
 		else if (PowerUpManager.Instance.spinsSinceUpgrade >= PowerUpManager.Instance.pityTimer - 1)
 		{

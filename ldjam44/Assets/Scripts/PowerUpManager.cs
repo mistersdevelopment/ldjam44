@@ -13,9 +13,11 @@ public class PowerUpDef
 public class PowerUpManager : MonoBehaviour
 {
     public PowerUpDef[] lootTable;
+    public GameObject coinDropPrefab;
 
     public int pityTimer = 4; // Every pityTimer'th is guaranteed
     public int spinsSinceUpgrade = 0;
+    public bool jackpotGiven = false;
 
     private static PowerUpManager _instance;
     public static PowerUpManager Instance

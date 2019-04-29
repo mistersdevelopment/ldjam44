@@ -45,7 +45,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public int GetNextRoomNumber()
+    public int GetActiveRoomNumber()
+    {
+        return activeRoomNumber;
+    }
+
+    public int GetNextRoomNumber()
 	{
 		return nextRoomNumber;
 	}
@@ -195,11 +200,11 @@ public class GameManager : MonoBehaviour
 	}
 
 
-    public void SpawnJackpot(int jackpotRewards, GameObject jackpotMusic)
+    public void SpawnJackpot(GameObject jackpotMusic)
     {
         if (activeRoom)
         {
-            activeRoom.StartJackpot(jackpotRewards, jackpotMusic);
+            activeRoom.StartJackpot(jackpotMusic);
         }
     }
 
