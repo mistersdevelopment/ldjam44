@@ -144,14 +144,14 @@ MonoBehaviour:
   - name: Speed
     icon: {fileID: 21300000, guid: 7dc1d7bf17c7b6241a8ec110223b838f, type: 3}
     prefab: {fileID: 114282721772797496, guid: e5fe1a7a01006034695bc1a48a413063, type: 2}
-  - name: Shot Speed
+  - name: Rate of Fire
     icon: {fileID: 21300000, guid: 1753e9157b8abf3419699c03377bd8ad, type: 3}
     prefab: {fileID: 114788365366890544, guid: 4dc69aa0ffff45744a773b81ee0b663e, type: 2}
-  - name: All Stats
-    icon: {fileID: 21300000, guid: 7dc1d7bf17c7b6241a8ec110223b838f, type: 3}
-    prefab: {fileID: 114001539812974718, guid: 7df05d02fc02ad04795b7bc50255240b, type: 2}
+  - name: Bullet Size
+    icon: {fileID: 21300000, guid: 872729cf23a516d489a934ff52bbcbc2, type: 3}
+    prefab: {fileID: 114001539812974718, guid: ea1e57bf277da444cac701ef74d31927, type: 2}
   - name: Damage
-    icon: {fileID: 21300000, guid: 7dc1d7bf17c7b6241a8ec110223b838f, type: 3}
+    icon: {fileID: 21300000, guid: 19ec62f279ece7d4ea465a2982ac4d02, type: 3}
     prefab: {fileID: 114317155078120186, guid: 251fc7d51812d874ba3d0d47fbb809d0, type: 2}
 --- !u!4 &125350454
 Transform:
