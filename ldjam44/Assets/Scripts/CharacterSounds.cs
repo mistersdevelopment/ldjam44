@@ -22,6 +22,8 @@ public class CharacterSounds : MonoBehaviour
     public float tauntVolume = 1;
     private AudioSource tauntSource;
 
+    private bool canTaunt = false;
+
 
     // Use this for initialization
     void Start() {
@@ -84,9 +86,15 @@ public class CharacterSounds : MonoBehaviour
     }
     public void Taunt()
     {
+        if (!canTaunt) return;
         if (globalTaunt && globalTaunt.isPlaying) return;
         if (IsTalking()) return;
         PlayRandomSound(tauntSource, taunt);
         globalTaunt = tauntSource;
+    }
+
+    public void EnableTaunt()
+    {
+        canTaunt = true;
     }
 }

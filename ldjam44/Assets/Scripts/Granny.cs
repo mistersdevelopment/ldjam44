@@ -82,5 +82,7 @@ public class Granny : MonoBehaviour
     void OnRoomActivate()
     {
         active = true;
+        var sounds = GetComponent<CharacterSounds>();
+        if (sounds) sounds.EnableTaunt();
     }
 }

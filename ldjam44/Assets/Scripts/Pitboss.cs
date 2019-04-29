@@ -93,13 +93,14 @@ public class Pitboss : MonoBehaviour
 
                 //spritesAnimator.SetBool("IsWalking", moved);
             }
+            moved = true;
+
         }
         else
         {
             spritesAnimator.SetBool("IsCharging", false);
             spritesAnimator.SetBool("IsChargingUp", false);
         }
-        moved = true;
     }
 
     void FixedUpdate()
@@ -113,5 +114,7 @@ public class Pitboss : MonoBehaviour
     void OnRoomActivate()
     {
         active = true;
+        var sounds = GetComponent<CharacterSounds>();
+        if (sounds) sounds.EnableTaunt();
     }
 }

@@ -144,6 +144,8 @@ public class Elvis : MonoBehaviour
     void OnRoomActivate()
     {
         active = true;
+        var sounds = GetComponent<CharacterSounds>();
+        if (sounds) sounds.EnableTaunt();
     }
 
 }
