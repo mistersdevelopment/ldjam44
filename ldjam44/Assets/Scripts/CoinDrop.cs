@@ -5,6 +5,7 @@ using UnityEngine;
 public class CoinDrop : Pickup
 {
 	private Rigidbody2D rb;
+    public AudioClip pickupSfx;
 
 	// Use this for initialization
 	void Start()
@@ -26,6 +27,7 @@ public class CoinDrop : Pickup
 		if (character.currentHealth < character.maxHealth)
 		{
 			player.GetComponent<Character>().ModifyHealth(1);
+            player.GetComponent<AudioSource>().PlayOneShot(pickupSfx);
 			return true;
 		}
 		return false;
