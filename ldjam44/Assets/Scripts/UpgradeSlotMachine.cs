@@ -23,6 +23,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 	private bool spinEnding = false;
 	public int rewardItemIndex;
     public float jackpotChance = .5f;
+    public int jackpotRewards = 15;
 
     public GameObject infoText;
 	public GameObject winnerText;
@@ -159,7 +160,7 @@ public class UpgradeSlotMachine : MonoBehaviour
         animator.Play("SlotMachine_Jackpot");
         yield return new WaitForSeconds(3f);
         Input.ResetInputAxes();
-        GameManager.Instance.SpawnJackpot(jackpotMusic);
+        GameManager.Instance.SpawnJackpot(jackpotRewards, jackpotMusic);
         GameManager.Instance.CloseUpgradeMachine();
     }
 

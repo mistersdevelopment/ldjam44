@@ -195,11 +195,11 @@ public class GameManager : MonoBehaviour
 	}
 
 
-    public void SpawnJackpot(GameObject jackpotMusic)
+    public void SpawnJackpot(int jackpotRewards, GameObject jackpotMusic)
     {
         if (activeRoom)
         {
-            activeRoom.StartJackpot(15, jackpotMusic);
+            activeRoom.StartJackpot(jackpotRewards, jackpotMusic);
         }
     }
 
