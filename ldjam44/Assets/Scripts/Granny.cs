@@ -16,6 +16,8 @@ public class Granny : MonoBehaviour
     float maxEnergy = 6;
     float weakness;
 
+    bool active = false;
+
 	void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
@@ -27,7 +29,7 @@ public class Granny : MonoBehaviour
     void Update()
     {
         var player = GameObject.Find("Player");
-        if (player && !tired)
+        if (player && !tired && active)
         {
             var playerPos = player.transform.position;
             movement = Vector2.MoveTowards(transform.position, playerPos, Time.deltaTime * stats.movementSpeed * (energy / maxEnergy));
@@ -76,4 +78,9 @@ public class Granny : MonoBehaviour
 			body.MovePosition(movement);
 		}
 	}
+
+    void OnRoomActivate()
+    {
+        active = true;
+    }
 }

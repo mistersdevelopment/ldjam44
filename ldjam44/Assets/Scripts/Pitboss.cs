@@ -24,6 +24,8 @@ public class Pitboss : MonoBehaviour
 
     AudioSource chargeupAudioSource;
 
+    bool active = false;
+
     void Start()
     {
         waitTimer = waitTime + Random.Range(0, waitTimeVariance);
@@ -41,7 +43,7 @@ public class Pitboss : MonoBehaviour
     {
         var player = GameObject.Find("Player");
         movement = transform.position;
-        if (player)
+        if (player && active)
         {
             if (waitTimer > 0)
             {
@@ -106,5 +108,10 @@ public class Pitboss : MonoBehaviour
         {
             body.MovePosition(movement);
         }
+    }
+
+    void OnRoomActivate()
+    {
+        active = true;
     }
 }

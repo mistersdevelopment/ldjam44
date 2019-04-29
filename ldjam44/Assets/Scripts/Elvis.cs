@@ -17,6 +17,8 @@ public class Elvis : MonoBehaviour
 
     float attackRange;
 
+    bool active = false;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -30,7 +32,7 @@ public class Elvis : MonoBehaviour
     {
         var player = GameObject.Find("Player");
         moved = false;
-        if (player)
+        if (player && active)
         {
             var playerPos = player.transform.position;
 
@@ -44,7 +46,7 @@ public class Elvis : MonoBehaviour
                 if (cd == CardinalDirection.EAST || cd == CardinalDirection.WEST)
                 {
                     axis = new Vector3(0, 1, 0);
-                    offset = new Vector3(0, 0.5f, 0);
+                    offset = new Vector3(0, 0.3f, 0);
                 }
                 Vector3 tangent = new Vector3(-axis.y, axis.x, 0);
                 float moveDir = Vector3.Dot(playerPos - (transform.position + offset), axis);
@@ -137,6 +139,11 @@ public class Elvis : MonoBehaviour
             return cd;
         }
         return CardinalDirection.NORTH;
+    }
+
+    void OnRoomActivate()
+    {
+        active = true;
     }
 
 }

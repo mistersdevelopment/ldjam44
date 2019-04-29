@@ -245,7 +245,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -329,7 +329,9 @@ MonoBehaviour:
   stats: {fileID: 0}
   maxHealth: 2
   currentHealth: 0
+  invincibilityTime: 0
   currentStatusEffects: []
+  fireOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114361327442620720
 MonoBehaviour:
   m_ObjectHideFlags: 1
