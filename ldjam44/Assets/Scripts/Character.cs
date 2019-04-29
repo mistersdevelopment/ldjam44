@@ -42,7 +42,8 @@ public class Character : MonoBehaviour
 			sounds = gameObject.AddComponent<CharacterSounds>();
 		}
 		renderers = transform.Find("Sprites").gameObject.GetComponentsInChildren<SpriteRenderer>();
-	}
+        SetPlayerCanHitEnemy(true);
+    }
 
 	void Update()
 	{
@@ -56,8 +57,8 @@ public class Character : MonoBehaviour
 	{
 		if (canTakeDamage || modification > 0)
 		{
-			currentHealth += modification;
-			if (currentHealth <= 0)
+            currentHealth += modification;
+            if (currentHealth <= 0)
 			{
 				Die();
 				sounds.Die();
@@ -82,14 +83,15 @@ public class Character : MonoBehaviour
 
 	void StartInvincibility()
 	{
-		StartCoroutine(DoBlinks(5));
+        SetPlayerCanHitEnemy(false);
+        StartCoroutine(DoBlinks(5));
 		StartCoroutine(DoInvincibility());
-	}
+    }
 
 	IEnumerator DoBlinks(int numBlinks)
 	{
 		bool isPlayer = gameObject.GetComponent<Player>();
-		Color blinkColor = Color.red;
+        Color blinkColor = Color.red;
 		float blinkTime = isPlayer ? invincibilityTime : 0.5f;
 		for (int i = 0; i < numBlinks * 2; i++)
 		{
@@ -118,9 +120,11 @@ public class Character : MonoBehaviour
 
 	private IEnumerator DoInvincibility()
 	{
-		yield return new WaitForSeconds(invincibilityTime);
+        yield return new WaitForSeconds(invincibilityTime);
 		canTakeDamage = true;
-	}
+        bool isPlayer = gameObject.GetComponent<Player>();
+        SetPlayerCanHitEnemy(true);
+    }
 
 	public void Fire(CardinalDirection dir)
 	{
@@ -202,4 +206,14 @@ public class Character : MonoBehaviour
 		}
 		Destroy(this.gameObject);
 	}
+
+    void SetPlayerCanHitEnemy(bool canHit)
+    {
+        // no-op for non-player
+        bool isPlayer = gameObject.GetComponent<Player>();
+        if (isPlayer)
+        {
+            Physics2D.IgnoreLayerCollision(9, 10, !canHit);
+        }
+    }
 }
