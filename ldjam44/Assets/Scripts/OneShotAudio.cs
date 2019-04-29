@@ -17,13 +17,7 @@ public class OneShotAudio : MonoBehaviour
 			source.pitch = pitch;
 			source.clip = clip;
 			source.Play();
-			StartCoroutine(DestroyAfterDelay(clip.length));
+			Destroy(gameObject, clip.length);
 		}
-	}
-
-	IEnumerator DestroyAfterDelay(float delay)
-	{
-		yield return new WaitForSeconds(delay);
-		Destroy(this);
 	}
 }
