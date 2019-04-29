@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
 	public AudioClip roomCompletedClip;
 
-	private AudioSource[] sources;
+    private AudioSource[] sources;
 	private List<float> startingVolumes;
 
 	public AudioClip[] musicClips;
@@ -194,7 +194,17 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void SpawnPowerUpReward(PowerUp prefab)
+
+    public void SpawnJackpot(GameObject jackpotMusic)
+    {
+        if (activeRoom)
+        {
+            activeRoom.StartJackpot(15, jackpotMusic);
+        }
+    }
+
+
+    public void SpawnPowerUpReward(PowerUp prefab)
 	{
 		if (activeRoom)
 		{

@@ -30,10 +30,9 @@ public class PowerUpManager : MonoBehaviour
     {
         _instance = this;
     }
-
-    // Use this for initialization
-    void Start()
+   
+    public PowerUpDef RandomPowerUp()
     {
-
+        return lootTable[Random.Range(0, lootTable.Length)];
     }
 }

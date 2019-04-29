@@ -12,8 +12,9 @@ public class UpgradeSlotMachine : MonoBehaviour
     public Sprite coinEnabledSprite;
     public Sprite coinDisabledSprite;
     public RawImage[] reels = new RawImage[3];
+    public GameObject jackpotMusicPrefab;
 
-	float curSpinTime = 0f;
+    float curSpinTime = 0f;
 	int[] reelIndex = new int[3];
 	float[] reelYChange = new float[3];
 
@@ -21,10 +22,12 @@ public class UpgradeSlotMachine : MonoBehaviour
 	private bool spinning = false;
 	private bool spinEnding = false;
 	public int rewardItemIndex;
+    public float jackpotChance = .5f;
 
-	public GameObject infoText;
+    public GameObject infoText;
 	public GameObject winnerText;
-	public Image rewardImage;
+    public GameObject jackpotText;
+    public Image rewardImage;
 
 	private float kPixelHeightPerItem = 192f;
 	private int kExtraRotations = 6;
@@ -41,7 +44,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 	void Start()
 	{
 		playa = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
-		kItemCount = PowerUpManager.Instance.lootTable.Length;
+		kItemCount = PowerUpManager.Instance.lootTable.Length + 1;
 
 		animator = GetComponent<Animator>();
         UpdateCoinsUI();
@@ -71,8 +74,14 @@ public class UpgradeSlotMachine : MonoBehaviour
 					if (rewardItemIndex != -1)
 					{
 						spinEnding = true;
-						winSource.Play();
-						StartCoroutine(ShowReward());
+                        if (rewardItemIndex == (kItemCount-1))
+                        {
+                            StartCoroutine(Jackpot());
+                        }
+                        else
+                        {
+                           StartCoroutine(ShowReward());
+                        }
 					}
 					else
                     {
@@ -141,9 +150,23 @@ public class UpgradeSlotMachine : MonoBehaviour
         } while (!Input.anyKeyDown);
     }
 
+    IEnumerator Jackpot()
+    {
+        GameObject jackpotMusic = Instantiate(jackpotMusicPrefab);
+        coinsUI[0].transform.parent.gameObject.SetActive(false);
+        infoText.SetActive(false);
+        jackpotText.SetActive(true);
+        animator.Play("SlotMachine_Jackpot");
+        yield return new WaitForSeconds(3f);
+        Input.ResetInputAxes();
+        GameManager.Instance.SpawnJackpot(jackpotMusic);
+        GameManager.Instance.CloseUpgradeMachine();
+    }
+
     IEnumerator ShowReward()
-	{
-		PowerUpDef pup = PowerUpManager.Instance.lootTable[rewardItemIndex];
+    {
+        winSource.Play();
+        PowerUpDef pup = PowerUpManager.Instance.lootTable[rewardItemIndex];
         coinsUI[0].transform.parent.gameObject.SetActive(false);
 		infoText.SetActive(false);
 		winnerText.SetActive(true);
@@ -224,11 +247,16 @@ public class UpgradeSlotMachine : MonoBehaviour
 		spendButton.gameObject.SetActive(false);
 		proxyButton.gameObject.SetActive(true);
 
-		int pityReward = -1;
-		if (PowerUpManager.Instance.spinsSinceUpgrade >= PowerUpManager.Instance.pityTimer - 1)
+		int forcedValue = -1;
+        if (Random.value < jackpotChance)
+        {
+            forcedValue = kItemCount - 1; // jackpot
+            PowerUpManager.Instance.spinsSinceUpgrade = 0;
+        }
+		else if (PowerUpManager.Instance.spinsSinceUpgrade >= PowerUpManager.Instance.pityTimer - 1)
 		{
-			pityReward = Random.Range(0, kItemCount);
-			PowerUpManager.Instance.spinsSinceUpgrade = 0;
+            forcedValue = Random.Range(0, PowerUpManager.Instance.lootTable.Length); // Pity reward cannot be jackpot
+            PowerUpManager.Instance.spinsSinceUpgrade = 0;
 		}
 		else
 		{
@@ -240,13 +268,13 @@ public class UpgradeSlotMachine : MonoBehaviour
 			RawImage reel = reels[i];
 			if (reel)
 			{
-				if (pityReward != -1)
+				if (forcedValue != -1)
 				{
-					reelIndex[i] = pityReward;
+					reelIndex[i] = forcedValue;
 				}
 				else
 				{
-					reelIndex[i] = Random.Range(0, kItemCount);
+                    reelIndex[i] = Random.Range(0, PowerUpManager.Instance.lootTable.Length);
 				}
 				reelYChange[i] = YCoordForSelection(reelIndex[i], kExtraRotations + i * 2);
 			}

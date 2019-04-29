@@ -101,4 +101,21 @@ public class Room : MonoBehaviour
 	{
 		// Do nothing.
 	}
+
+    public void StartJackpot(int spawnCount, GameObject jackpotMusic)
+    {
+        StartCoroutine(Jackpot(spawnCount, jackpotMusic));
+    }
+
+    IEnumerator Jackpot(int spawnCount, GameObject jackpotMusic)
+    {
+        jackpotMusic.transform.parent = this.transform;
+        while (spawnCount-- > 0)
+        {
+            PowerUpDef pup = PowerUpManager.Instance.RandomPowerUp();
+            Instantiate(pup.prefab, transform);
+            yield return new WaitForSeconds(.19f);
+        }
+        Destroy(jackpotMusic);
+    }
 }
