@@ -242,7 +242,6 @@ public class GameManager : MonoBehaviour
 		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
 	}
 
-
 	IEnumerator WaitForAnyKeyDown()
 	{
 		do
