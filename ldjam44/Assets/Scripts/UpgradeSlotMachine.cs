@@ -138,7 +138,15 @@ public class UpgradeSlotMachine : MonoBehaviour
 		}
 	}
 
-	IEnumerator ShowReward()
+    IEnumerator WaitForAnyKeyDown()
+    {
+        do
+        {
+            yield return null; // Once per frame
+        } while (!Input.anyKeyDown);
+    }
+
+    IEnumerator ShowReward()
 	{
 		PowerUpDef pup = PowerUpManager.Instance.lootTable[rewardItemIndex];
 		coinText.transform.parent.gameObject.SetActive(false);
@@ -147,9 +155,10 @@ public class UpgradeSlotMachine : MonoBehaviour
 		winnerText.GetComponent<Text>().text = pup.name + " Upgrade Won!";
 		rewardImage.sprite = pup.icon;
 		animator.Play("SlotMachine_Winner");
-		yield return new WaitForSeconds(3f);
-		GameManager.Instance.SpawnPowerUpReward(pup.prefab);
-		GameManager.Instance.CloseUpgradeMachine();
+        yield return WaitForAnyKeyDown();
+        Input.ResetInputAxes();
+        GameManager.Instance.SpawnPowerUpReward(pup.prefab);
+        GameManager.Instance.CloseUpgradeMachine();
 	}
 
 	float EaseOutQuad(float time, float startValue, float change, float duration)
