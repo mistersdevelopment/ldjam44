@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 
 	public int numberOfRooms = 2;
 
-	public int currentHP;
 	public GameObject upgradeButton;
 	private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
@@ -158,11 +157,6 @@ public class GameManager : MonoBehaviour
 			Destroy(upgradeMachine.gameObject);
 			upgradeMachine = null;
 		}
-	}
-
-	public void spendCoin()
-	{
-		currentHP--;
 	}
 
 	public void SpawnPowerUpReward(PowerUp prefab)

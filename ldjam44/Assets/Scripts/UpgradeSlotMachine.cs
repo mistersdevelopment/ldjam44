@@ -15,6 +15,7 @@ public class UpgradeSlotMachine : MonoBehaviour
     int[] reelIndex = new int[3];
     float[] reelYChange = new float[3];
 
+    private Character playa;
     private bool spinning = false;
     private bool spinEnding = false;
     public int rewardItemIndex;
@@ -31,10 +32,11 @@ public class UpgradeSlotMachine : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        playa = GameObject.FindGameObjectWithTag("Player").GetComponent<Character>();
         kItemCount = PowerUpManager.Instance.lootTable.Length;
 
         animator = GetComponent<Animator>();
-        int coins = GameManager.Instance.currentHP;
+        int coins = (int)playa.currentHealth;
         if (this.coinText != null)
         {
             coinText.text = coins.ToString();
@@ -144,21 +146,21 @@ public class UpgradeSlotMachine : MonoBehaviour
     {
         if (spendButton == null) return;
 
-        int coins = GameManager.Instance.currentHP;
+        int coins = (int)playa.currentHealth;
         spendButton.interactable = (coins > 0);
     }
 
     public void PullLever()
     {
-        if (spinning || GameManager.Instance.currentHP <= 0)
+        if (spinning || (int)playa.currentHealth <= 1)
         {
             return;
         }
 
-        GameManager.Instance.spendCoin();
+        playa.GetComponent<Character>().ModifyHealth(-1);
         if (this.coinText != null)
         {
-            coinText.text = GameManager.Instance.currentHP.ToString();
+            coinText.text = ((int)playa.currentHealth).ToString();
         }
         UpdateLeverState();
         spinning = true;
