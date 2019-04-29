@@ -191,7 +191,8 @@ public class Player : MonoBehaviour
 
 	public void Die()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        GameManager.Instance.ShowDeathScreen();
+        Destroy(this);
     }
 
     public void AddPowerUp(PowerUpType pupType)
