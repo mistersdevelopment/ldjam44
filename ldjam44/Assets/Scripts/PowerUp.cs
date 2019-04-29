@@ -29,10 +29,11 @@ public class PowerUp : Pickup {
         StartCoroutine(BecomeActiveAfterDelay());
     }
 
-    public override void ApplyPowerup(Player player)
+    public override bool ApplyPowerup(Player player)
     {
         player.AddPowerUp(type);
         player.GetComponent<Character>().PowerUp(powerup);
+        return true;
     }
 
     IEnumerator BecomeActiveAfterDelay()
