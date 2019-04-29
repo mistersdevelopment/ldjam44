@@ -29,8 +29,9 @@ public class UpgradeSlotMachine : MonoBehaviour
 	private float kSpinSecsDuration = 5f;
 	private int kItemCount;
 
-	private AudioSource spinningSource;
-    private AudioSource reelHitSource;
+    public AudioSource leverPull;
+    private AudioSource spinningSource;
+    public AudioSource[] reelHitSources = new AudioSource[3];
     private AudioSource winSource;
     private AudioSource loseSource;
 
@@ -51,7 +52,6 @@ public class UpgradeSlotMachine : MonoBehaviour
 		UpdateLeverState();
 
 		spinningSource = GetComponent<AudioSource>();
-        reelHitSource = transform.Find("Reel_Hit").GetComponent<AudioSource>();
         winSource = transform.Find("Win").GetComponent<AudioSource>();
         loseSource = transform.Find("Lose").GetComponent<AudioSource>();
 	}
@@ -77,12 +77,10 @@ public class UpgradeSlotMachine : MonoBehaviour
 						StartCoroutine(ShowReward());
 					}
 					else
-					{
-						spinning = false;
-						spinEnding = false;
-						spendButton.gameObject.SetActive(true);
-						proxyButton.gameObject.SetActive(false);
-						loseSource.Play();
+                    {
+                        spinEnding = true;
+                        loseSource.Play();
+                        StartCoroutine(ShowNoReward());
 					}
 				}
 				return;
@@ -103,7 +101,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 				RawImage reel = reels[i];
 				if (reel)
 				{
-					float perReelDuration = Mathf.Max(kSpinSecsDuration - 1f * (reels.Length - i), 0f);
+					float perReelDuration = Mathf.Max(kSpinSecsDuration - 1f * (reels.Length - i - 1), 0f);
 					float time = Mathf.Min(curSpinTime / perReelDuration, 1f);
 					Rect uvs = reel.uvRect;
 					uvs.y = EaseOutQuad(time, 0f, reelYChange[i], 1f) / (kPixelHeightPerItem * (float)kItemCount);
@@ -111,12 +109,11 @@ public class UpgradeSlotMachine : MonoBehaviour
 
 					if (prevSpinTime < perReelDuration && curSpinTime >= perReelDuration && !skip)
 					{
-                        reelHitSource.pitch += 0.4f;
 						if (i == reels.Length - 1)
 						{
 							spinningSource.Stop();
 						}
-						reelHitSource.Play();
+                        reelHitSources[i].Play();
 					}
 				}
 			}
@@ -155,13 +152,25 @@ public class UpgradeSlotMachine : MonoBehaviour
 		winnerText.GetComponent<Text>().text = pup.name + " Upgrade Won!";
 		rewardImage.sprite = pup.icon;
 		animator.Play("SlotMachine_Winner");
+        yield return new WaitForSeconds(.75f);
         yield return WaitForAnyKeyDown();
         Input.ResetInputAxes();
         GameManager.Instance.SpawnPowerUpReward(pup.prefab);
         GameManager.Instance.CloseUpgradeMachine();
 	}
 
-	float EaseOutQuad(float time, float startValue, float change, float duration)
+
+    IEnumerator ShowNoReward()
+    {
+        yield return new WaitForSeconds(.75f);
+        spendButton.gameObject.SetActive(true);
+        proxyButton.gameObject.SetActive(false);
+        spinning = false;
+        spinEnding = false;
+    }
+
+
+    float EaseOutQuad(float time, float startValue, float change, float duration)
 	{
 		return -change * (time /= duration) * (time - 2) + startValue;
 	}
@@ -198,8 +207,8 @@ public class UpgradeSlotMachine : MonoBehaviour
 			coinText.text = ((int)playa.currentHealth).ToString();
 		}
 		UpdateLeverState();
-		spinningSource.Play();
-        reelHitSource.pitch = 1.25f;
+        leverPull.Play();
+        spinningSource.Play();
 		spinning = true;
 		spinEnding = false;
 		spendButton.gameObject.SetActive(false);

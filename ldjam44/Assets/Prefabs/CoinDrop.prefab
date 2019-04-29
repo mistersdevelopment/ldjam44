@@ -89,7 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bbd669d67702432495fde70b6b408a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSfx: {fileID: 8300000, guid: b77843dff580b4358aa12f6fca5e2851, type: 3}
+  pickupSfxs:
+  - {fileID: 8300000, guid: 65fcecd01aa868b48b0ad21ade21b648, type: 3}
+  - {fileID: 8300000, guid: 124f9aa4d10d92f4e8674f051aa84566, type: 3}
+  - {fileID: 8300000, guid: 79bfccd5fdd7a5d4bb579e06e99246a2, type: 3}
 --- !u!212 &212834336717292994
 SpriteRenderer:
   m_ObjectHideFlags: 1

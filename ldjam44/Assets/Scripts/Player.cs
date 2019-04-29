@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
 	private GameObject side;
 	private GameObject[] eyesClosed;
     private Animator animator;
-    private AudioSource audio;
 	public GameObject[] healthUI;
     public Text[] powerupCountUI;
 
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
 	{
 		body = GetComponent<Rigidbody2D>();
 		character = GetComponent<Character>();
-        audio = GetComponent<AudioSource>();
         stats = GetComponent<Stats>();
 
 		var playa = transform.Find("Sprites");
@@ -199,7 +197,6 @@ public class Player : MonoBehaviour
 
     public void AddPowerUp(PowerUpType pupType)
     {
-        audio.Play();
         switch (pupType)
         {
             case PowerUpType.Speed: powerupsCount[0]++; break;

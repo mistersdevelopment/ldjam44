@@ -1316,10 +1316,10 @@ MonoBehaviour:
   deathText: {fileID: 1059808911}
   floorText: {fileID: 704251763}
   cheatMode: 0
-  roomCompletedClip: {fileID: 8300000, guid: b77843dff580b4358aa12f6fca5e2851, type: 3}
+  roomCompletedClip: {fileID: 8300000, guid: 815a39595aa75c04cacc9331df32e160, type: 3}
   musicClips:
-  - {fileID: 8300000, guid: 50df200893ec7446cb6b9adbd8d669a5, type: 3}
-  - {fileID: 8300000, guid: abb4f55039a92491a830a1e4973cef87, type: 3}
+  - {fileID: 8300000, guid: 1b86d0f14da4c5445b86857766b30903, type: 3}
+  - {fileID: 8300000, guid: f3389ef56f3b90f4695c6aef303a20d7, type: 3}
 --- !u!4 &947321017
 Transform:
   m_ObjectHideFlags: 0

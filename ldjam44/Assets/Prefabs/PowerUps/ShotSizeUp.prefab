@@ -91,6 +91,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54ce57b209bed924eaa6af01778caafe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSfxs:
+  - {fileID: 8300000, guid: 010a27f81fc4e1e42b46d3d32b8c0c8e, type: 3}
   powerup: {fileID: 114114895609389516}
   type: 3
 --- !u!114 &114114895609389516

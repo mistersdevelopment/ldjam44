@@ -5,8 +5,9 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
 	protected bool allowPickup = true;
+    public AudioClip[] pickupSfxs = new AudioClip[0];
 
-	void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (allowPickup)
 		{
@@ -15,8 +16,9 @@ public class Pickup : MonoBehaviour
 			if (playerScript)
 			{
 				if (ApplyPowerup(playerScript))
-				{
-					Destroy(this.gameObject);
+                {
+                    PlayRandomSound(playerScript.GetComponent<AudioSource>(), pickupSfxs);
+                    Destroy(this.gameObject);
 				}
 			}
 		}
@@ -26,4 +28,15 @@ public class Pickup : MonoBehaviour
 	{
         return true;
 	}
+
+    private AudioClip PlayRandomSound(AudioSource source, AudioClip[] clips)
+    {
+        if (clips.Length > 0)
+        {
+            source.clip = clips[Random.Range(0, clips.Length)];
+            source.Play();
+            return source.clip;
+        }
+        return null;
+    }
 }
