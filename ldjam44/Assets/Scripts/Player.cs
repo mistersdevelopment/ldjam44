@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System;
 
@@ -135,7 +136,7 @@ public class Player : MonoBehaviour
 	bool ShouldFire()
 	{
 		return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.DownArrow) ||
-			Input.GetKey(KeyCode.LeftArrow) || Input.GetMouseButton(0);
+			Input.GetKey(KeyCode.LeftArrow) || (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject());
 	}
 
 	void UpdateSprites(CardinalDirection dir)
