@@ -20,11 +20,13 @@ public class Player : MonoBehaviour
 	private GameObject side;
 	private GameObject[] eyesClosed;
     private Animator animator;
-	public GameObject[] healthUI;
+	public Image[] healthUI;
     public Text[] powerupCountUI;
+    public Sprite coinEnabledSprite;
+    public Sprite coinDisabledSprite;
 
 
-	void Start()
+    void Start()
 	{
 		body = GetComponent<Rigidbody2D>();
 		character = GetComponent<Character>();
@@ -181,11 +183,13 @@ public class Player : MonoBehaviour
 	{
 		for (int i = 0; i < health; ++i)
 		{
-			healthUI[i].SetActive(true);
-		}
+            healthUI[i].sprite = coinEnabledSprite;
+            healthUI[i].transform.localScale = new Vector3(1f, 1f, 1f);
+        }
 		for (int i = (int)health; i < 5; ++i)
-		{
-			healthUI[i].SetActive(false);
+        {
+            healthUI[i].sprite = coinDisabledSprite;
+            healthUI[i].transform.localScale = new Vector3(.75f, .75f, 1f);
 		}
 	}
 

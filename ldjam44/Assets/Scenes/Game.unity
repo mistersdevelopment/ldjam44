@@ -2225,27 +2225,27 @@ Prefab:
         type: 2}
       propertyPath: healthUI.Array.data[0]
       value: 
-      objectReference: {fileID: 1429194710}
+      objectReference: {fileID: 1429194712}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
       propertyPath: healthUI.Array.data[1]
       value: 
-      objectReference: {fileID: 1598200074}
+      objectReference: {fileID: 1598200076}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
       propertyPath: healthUI.Array.data[2]
       value: 
-      objectReference: {fileID: 1763690321}
+      objectReference: {fileID: 1763690323}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
       propertyPath: healthUI.Array.data[3]
       value: 
-      objectReference: {fileID: 313631205}
+      objectReference: {fileID: 313631207}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
       propertyPath: healthUI.Array.data[4]
       value: 
-      objectReference: {fileID: 922194454}
+      objectReference: {fileID: 922194455}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
       propertyPath: powerupCountUI.Array.data[0]
@@ -2270,6 +2270,23 @@ Prefab:
         type: 2}
       propertyPath: invincibilityTime
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: coinEnabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b63c3fa493990104c92eb1ff616838b3,
+        type: 3}
+    - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: coinDisabledSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cd1e9df7ea29dee4e8b8c6fcad88306d,
+        type: 3}
+    - target: {fileID: 114357729018445970, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: currentHealth
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}

@@ -25,7 +25,16 @@ public class Character : MonoBehaviour
 	void Start()
 	{
 		stats = GetComponent<Stats>();
-		currentHealth = maxHealth;
+        Player playerComponent = GetComponent<Player>();
+        if (playerComponent)
+        {
+            // let the current health stay with what is set in the editor
+            playerComponent.SetHealth(currentHealth);
+        }
+        else
+        {
+            currentHealth = maxHealth; // legacy logic and I don't want to break anything
+        }
 		sounds = GetComponent<CharacterSounds>();
 		canTakeDamage = true;
 		if (!sounds)
