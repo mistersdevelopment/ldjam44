@@ -168,12 +168,30 @@ public class UpgradeSlotMachine : MonoBehaviour
         spendButton.gameObject.SetActive(false);
         proxyButton.gameObject.SetActive(true);
 
+        int pityReward = -1;
+        if (PowerUpManager.Instance.spinsSinceUpgrade >= PowerUpManager.Instance.pityTimer-1)
+        {
+            pityReward = Random.Range(0, kItemCount - 1);
+            PowerUpManager.Instance.spinsSinceUpgrade = 0;
+        }
+        else
+        {
+            PowerUpManager.Instance.spinsSinceUpgrade++;
+        }
+
         for (int i = 0; i < reels.Length; i++)
         {
             RawImage reel = reels[i];
             if (reel)
             {
-                reelIndex[i] = Random.Range(0, kItemCount - 1);
+                if (pityReward != -1)
+                {
+                    reelIndex[i] = pityReward;
+                }
+                else
+                {
+                    reelIndex[i] = Random.Range(0, kItemCount - 1);
+                }
                 reelYChange[i] = YCoordForSelection(reelIndex[i], kExtraRotations + i*2);
             }
         }

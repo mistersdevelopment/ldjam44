@@ -14,6 +14,9 @@ public class PowerUpManager : MonoBehaviour
 {
     public PowerUpDef[] lootTable;
 
+    public int pityTimer = 4; // Every pityTimer'th is guaranteed
+    public int spinsSinceUpgrade = 0;
+
     private static PowerUpManager _instance;
     public static PowerUpManager Instance
     {
