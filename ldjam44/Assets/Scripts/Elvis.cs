@@ -28,7 +28,7 @@ public class Elvis : MonoBehaviour
         character = GetComponent<Character>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         var player = GameObject.Find("Player");
         moved = false;
@@ -94,10 +94,7 @@ public class Elvis : MonoBehaviour
         {
             spritesAnimator.SetBool("IsWalking", false);
         }
-    }
 
-    void FixedUpdate()
-    {
         if (moved)
         {
             body.MovePosition(movement);

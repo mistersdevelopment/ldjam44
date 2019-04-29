@@ -26,8 +26,8 @@ public class Granny : MonoBehaviour
         weakness = Random.Range(0, 2);
 	}
 
-    void Update()
-    {
+	void FixedUpdate()
+	{
         var player = GameObject.Find("Player");
         if (player && !tired && active)
         {
@@ -69,11 +69,8 @@ public class Granny : MonoBehaviour
             movement = transform.position;
             spritesAnimator.SetBool("IsWalking", false);
         }
-    }
 
-	void FixedUpdate()
-	{
-		if (moved)
+        if (moved)
 		{
 			body.MovePosition(movement);
 		}

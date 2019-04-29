@@ -39,7 +39,7 @@ public class Pitboss : MonoBehaviour
         chargeupAudioSource.volume = 1.0f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         var player = GameObject.Find("Player");
         movement = transform.position;
@@ -101,10 +101,7 @@ public class Pitboss : MonoBehaviour
             spritesAnimator.SetBool("IsCharging", false);
             spritesAnimator.SetBool("IsChargingUp", false);
         }
-    }
 
-    void FixedUpdate()
-    {
         if (moved)
         {
             body.MovePosition(movement);
