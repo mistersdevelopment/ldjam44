@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
 	private AudioSource[] sources;
 	private List<float> startingVolumes;
 
+	public AudioClip[] musicClips;
+
 	private static GameManager _instance;
 	public static GameManager Instance
 	{
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
 	public void BeginGameplay()
 	{
 		LoadRoom(0, Vector3.zero);
+		StartCoroutine(playAudioSequentially(sources[1]));
 	}
 
 	void LoadRoom(int roomNum, Vector3 position)
@@ -248,5 +251,23 @@ public class GameManager : MonoBehaviour
 		{
 			yield return null; // Once per frame
 		} while (!Input.anyKeyDown);
+	}
+
+	IEnumerator playAudioSequentially(AudioSource source)
+	{
+		yield return null;
+		for (int i = 0; i < musicClips.Length; i++)
+		{
+			source.clip = musicClips[i];
+			source.Play();
+			while (source.isPlaying)
+			{
+				yield return null;
+			}
+			Debug.Log("Next clip" + i);
+		}
+
+		// Loop forever.
+		StartCoroutine(playAudioSequentially(source));
 	}
 }

@@ -1317,6 +1317,9 @@ MonoBehaviour:
   floorText: {fileID: 704251763}
   cheatMode: 0
   roomCompletedClip: {fileID: 8300000, guid: b77843dff580b4358aa12f6fca5e2851, type: 3}
+  musicClips:
+  - {fileID: 8300000, guid: 50df200893ec7446cb6b9adbd8d669a5, type: 3}
+  - {fileID: 8300000, guid: abb4f55039a92491a830a1e4973cef87, type: 3}
 --- !u!4 &947321017
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,11 +1342,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: abb4f55039a92491a830a1e4973cef87, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.3
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
