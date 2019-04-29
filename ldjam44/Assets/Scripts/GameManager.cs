@@ -105,11 +105,8 @@ public class GameManager : MonoBehaviour
 		// Load a new room if the active one is complete.
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
-			int roomNum = -1;
-			do
-			{
-				roomNum = Random.Range(1, numberOfRooms);
-			} while (roomNum == activeRoomNumber);
+            int roomNum = activeRoomNumber + 1;
+            if (roomNum == 1) roomNum = 7;
 			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
 		}
 
