@@ -247,7 +247,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 		proxyButton.gameObject.SetActive(true);
 
 		int forcedValue = -1;
-        if (GameManager.Instance.GetActiveRoomNumber() == 20 && !PowerUpManager.Instance.jackpotGiven)
+        if (GameManager.Instance.GetActiveRoomNumber() >= 20 && !PowerUpManager.Instance.jackpotGiven)
         {
             forcedValue = kItemCount - 1; // jackpot
             PowerUpManager.Instance.spinsSinceUpgrade = 0;
