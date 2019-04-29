@@ -4,86 +4,125 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public GameObject projectile;
-    public GameObject drop;
-    public float dropChance; // 0 to 1
-    public Stats stats;
+	public GameObject projectile;
+	public GameObject drop;
+	public float dropChance; // 0 to 1
+	public Stats stats;
 
 	public float maxHealth;
 	public float currentHealth;
-    public float invincibilityTime;
-    private bool canTakeDamage;
+	public float invincibilityTime;
+	private bool canTakeDamage;
 	private float nextFire = float.MinValue;
-    public List<Effect> currentStatusEffects;
+	public List<Effect> currentStatusEffects;
 
-    public Vector3 fireOffset;
+	public Vector3 fireOffset;
 
-    private CharacterSounds sounds;
+	private CharacterSounds sounds;
+
+	private SpriteRenderer[] renderers;
 
 	void Start()
 	{
 		stats = GetComponent<Stats>();
 		currentHealth = maxHealth;
-        sounds = GetComponent<CharacterSounds>();
-        canTakeDamage = true;
-        if (!sounds)
-        {
-            sounds = gameObject.AddComponent<CharacterSounds>();
-        }
-    }
+		sounds = GetComponent<CharacterSounds>();
+		canTakeDamage = true;
+		if (!sounds)
+		{
+			sounds = gameObject.AddComponent<CharacterSounds>();
+		}
+		renderers = transform.Find("Sprites").gameObject.GetComponentsInChildren<SpriteRenderer>();
+	}
 
-    void Update()
-    {
-        for (int i = 0; i < currentStatusEffects.Count; ++i)
-        {
-            currentStatusEffects[i].ProcessEffect(this);
-        }
-    }
+	void Update()
+	{
+		for (int i = 0; i < currentStatusEffects.Count; ++i)
+		{
+			currentStatusEffects[i].ProcessEffect(this);
+		}
+	}
 
-    public void ModifyHealth(float modification)
-    {
-        if (canTakeDamage)
-        {
-            canTakeDamage = false;
-            StartCoroutine("InvincibilityPeriod");
-            currentHealth += modification;
-            if (currentHealth <= 0)
-            {
-                Die();
-            }
-            else if (currentHealth > maxHealth)
-            {
-                currentHealth = maxHealth;
-            }
-            else if (modification < 0)
-            {
-                sounds.Damage();
-            } 
-            Player playerComponent = GetComponent<Player>();
-            if (playerComponent)
-            {
-                playerComponent.SetHealth( currentHealth );
-            }
-        }
-    }
+	public void ModifyHealth(float modification)
+	{
+		if (canTakeDamage)
+		{
+			canTakeDamage = false;
+			currentHealth += modification;
+			if (currentHealth <= 0)
+			{
+				Die();
+			}
+			else if (currentHealth > maxHealth)
+			{
+				currentHealth = maxHealth;
+			}
+			else if (modification < 0)
+			{
+				StartInvincibility();
+				sounds.Damage();
+			}
+			Player playerComponent = GetComponent<Player>();
+			if (playerComponent)
+			{
+				playerComponent.SetHealth(currentHealth);
+			}
+		}
+	}
 
-    private IEnumerator InvincibilityPeriod()
-    {
-        yield return new WaitForSeconds(invincibilityTime);
-        canTakeDamage = true;
-    }
+	void StartInvincibility()
+	{
+		StartCoroutine(DoBlinks(5));
+		StartCoroutine(DoInvincibility());
+	}
 
-    public void Fire(CardinalDirection dir)
+	IEnumerator DoBlinks(int numBlinks)
+	{
+		bool isPlayer = gameObject.GetComponent<Player>();
+		Color blinkColor = Color.red;
+		float blinkTime = isPlayer ? invincibilityTime : 0.5f;
+		for (int i = 0; i < numBlinks * 2; i++)
+		{
+			for (int j = 0; j < renderers.Length; j++)
+			{
+				if (renderers[j].color != blinkColor)
+				{
+					renderers[j].color = blinkColor;
+				}
+				else
+				{
+					renderers[j].color = Color.white;
+				}
+			}
+			// Wait for a bit
+			yield return new WaitForSeconds(blinkTime / (numBlinks * 2));
+		}
+
+		// Make sure we end on white.
+		for (int j = 0; j < renderers.Length; j++)
+		{
+			renderers[j].color = Color.white;
+		}
+	}
+
+
+	private IEnumerator DoInvincibility()
+	{
+		yield return new WaitForSeconds(invincibilityTime);
+		canTakeDamage = true;
+	}
+
+	public void Fire(CardinalDirection dir)
 	{
 		if (projectile && Time.time > nextFire)
 		{
-            sounds.Shoot();
+			sounds.Shoot();
 			nextFire = Time.time + stats.rateOfFire;
 			FireOne(dir);
 		}
 	}
 
-    void FireOne(CardinalDirection dir)
+	void FireOne(CardinalDirection dir)
 	{
 		if (projectile)
 		{
@@ -99,12 +138,12 @@ public class Character : MonoBehaviour
 			CollisionEffector collision = proj.GetComponent<CollisionEffector>();
 			stats.baseEffect.damage = stats.damage;
 			collision.SetBaseEffect(stats.baseEffect);
-            collision.SetEffects(stats.additionalEffects);
+			collision.SetEffects(stats.additionalEffects);
 		}
 	}
 
 
-    public void PowerUp(Stats modifyPlayerstats)
+	public void PowerUp(Stats modifyPlayerstats)
 	{
 		stats.movementSpeed += modifyPlayerstats.movementSpeed;
 		stats.shotSpeed += modifyPlayerstats.shotSpeed;
@@ -113,44 +152,44 @@ public class Character : MonoBehaviour
 		stats.shotSize += modifyPlayerstats.shotSize;
 		for (int i = 0; i < modifyPlayerstats.additionalEffects.Count; ++i)
 		{
-            Debug.Log("Adding Burn Effect to playershot");
+			Debug.Log("Adding Burn Effect to playershot");
 			stats.additionalEffects.Add(modifyPlayerstats.additionalEffects[i]);
 		}
 	}
 
-    class EffectTime
-    {
-        public Effect effect;
-        public float time;
-    }
+	class EffectTime
+	{
+		public Effect effect;
+		public float time;
+	}
 
-    public void RemoveEffectAfterTime(Effect effectToRemove, float time)
-    {
-        EffectTime newEffectTime = new EffectTime();
-        newEffectTime.effect = effectToRemove;
-        newEffectTime.time = time;
-        StartCoroutine("RemoveEffect", newEffectTime);
-    }
+	public void RemoveEffectAfterTime(Effect effectToRemove, float time)
+	{
+		EffectTime newEffectTime = new EffectTime();
+		newEffectTime.effect = effectToRemove;
+		newEffectTime.time = time;
+		StartCoroutine("RemoveEffect", newEffectTime);
+	}
 
-    private IEnumerator RemoveEffect(EffectTime effectTime)
-    {
-        yield return new WaitForSeconds(effectTime.time);
-        currentStatusEffects.Remove(effectTime.effect);
-    }
+	private IEnumerator RemoveEffect(EffectTime effectTime)
+	{
+		yield return new WaitForSeconds(effectTime.time);
+		currentStatusEffects.Remove(effectTime.effect);
+	}
 
-    public void Die()
-    {
-        if (drop && Random.Range(0.0f, 1.0f) < dropChance)
-        {
-            var room = GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<GameManager>().GetActiveRoom();
-            var go = Instantiate(drop, transform.position, transform.rotation);
-            go.transform.parent = room.transform;
-        }
-        Player playerComponent = GetComponent<Player>();
-        if (playerComponent)
-        {
-            playerComponent.Die();
-        }
-        Destroy(this.gameObject);
-    }
+	public void Die()
+	{
+		if (drop && Random.Range(0.0f, 1.0f) < dropChance)
+		{
+			var room = GameObject.FindGameObjectsWithTag("GameManager")[0].GetComponent<GameManager>().GetActiveRoom();
+			var go = Instantiate(drop, transform.position, transform.rotation);
+			go.transform.parent = room.transform;
+		}
+		Player playerComponent = GetComponent<Player>();
+		if (playerComponent)
+		{
+			playerComponent.Die();
+		}
+		Destroy(this.gameObject);
+	}
 }

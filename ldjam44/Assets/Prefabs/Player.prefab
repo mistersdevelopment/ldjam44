@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 114318341543337124}
   - component: {fileID: 114678808152656586}
   m_Layer: 9
-  m_Name: Player
+  m_Name: Sprites
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -390,7 +390,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1563193456967790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.021065354, y: -0.1993705, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 3.8653684, z: 1}
   m_Children:
   - {fileID: 4712482926360564}
@@ -628,6 +628,7 @@ MonoBehaviour:
   currentHealth: 3
   invincibilityTime: 0.5
   currentStatusEffects: []
+  fireOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &114504156879108070
 MonoBehaviour:
   m_ObjectHideFlags: 1

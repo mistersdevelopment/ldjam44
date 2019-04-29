@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
 		character = GetComponent<Character>();
 		stats = GetComponent<Stats>();
 
-		var playa = transform.Find("Player");
+		var playa = transform.Find("Sprites");
 		animator = playa.GetComponent<Animator>();
 		back = playa.transform.Find("Player_Back").gameObject;
 		front = playa.transform.Find("Player_Front").gameObject;
