@@ -134,8 +134,9 @@ public class GameManager : MonoBehaviour
 				oneShot.Play(roomCompletedClip);
 			}
 			int roomNum = activeRoomNumber + 1;
-			//if (roomNum == 1) roomNum = 7;
-			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
+            //if (roomNum == 1) roomNum = 40;
+            if (roomNum == 41) roomNum = 1;
+            LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
 		}
 
 		// Show and hide upgrade button

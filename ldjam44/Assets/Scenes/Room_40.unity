@@ -1421,7 +1421,7 @@ Prefab:
     - target: {fileID: 114213820255411284, guid: 9087d336929932c4b8e0c48bfbcf6506,
         type: 2}
       propertyPath: maxHealth
-      value: 1000000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 114126165662205732, guid: 9087d336929932c4b8e0c48bfbcf6506,
         type: 2}
@@ -2078,7 +2078,7 @@ Prefab:
     - target: {fileID: 114213820255411284, guid: 9087d336929932c4b8e0c48bfbcf6506,
         type: 2}
       propertyPath: maxHealth
-      value: 1000000
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 114126165662205732, guid: 9087d336929932c4b8e0c48bfbcf6506,
         type: 2}
