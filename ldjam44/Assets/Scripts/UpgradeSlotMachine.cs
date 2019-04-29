@@ -88,7 +88,14 @@ public class UpgradeSlotMachine : MonoBehaviour
 				return;
 			}
 
-			var prevSpinTime = curSpinTime;
+            bool skip = false;
+            if (Input.anyKeyDown)
+            {
+                skip = true;
+                curSpinTime = kSpinSecsDuration;
+            }
+
+            var prevSpinTime = curSpinTime;
 			curSpinTime = Mathf.Clamp(curSpinTime + Time.deltaTime, 0f, kSpinSecsDuration);
 
 			for (int i = 0; i < reels.Length; i++)
@@ -102,7 +109,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 					uvs.y = EaseOutQuad(time, 0f, reelYChange[i], 1f) / (kPixelHeightPerItem * (float)kItemCount);
 					reel.uvRect = uvs;
 
-					if (prevSpinTime < perReelDuration && curSpinTime >= perReelDuration)
+					if (prevSpinTime < perReelDuration && curSpinTime >= perReelDuration && !skip)
 					{
                         reelHitSource.pitch += 0.4f;
 						if (i == reels.Length - 1)
