@@ -147,7 +147,7 @@ public class UpgradeSlotMachine : MonoBehaviour
         if (spendButton == null) return;
 
         int coins = (int)playa.currentHealth;
-        spendButton.interactable = (coins > 0);
+        spendButton.interactable = (coins > 1);
     }
 
     public void PullLever()
