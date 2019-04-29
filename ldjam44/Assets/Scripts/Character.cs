@@ -45,7 +45,7 @@ public class Character : MonoBehaviour
 
 	public void ModifyHealth(float modification)
 	{
-		if (canTakeDamage)
+		if (canTakeDamage || modification > 0)
 		{
 			canTakeDamage = false;
 			currentHealth += modification;
