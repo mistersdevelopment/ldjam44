@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class Player : MonoBehaviour
@@ -10,14 +11,17 @@ public class Player : MonoBehaviour
 	private Stats stats;
 	private float horizontalMovement = 0;
 	private float verticalMovement = 0;
-	private CardinalDirection facing = CardinalDirection.SOUTH;
+    private int[] powerupsCount = new int[4];
+    private CardinalDirection facing = CardinalDirection.SOUTH;
 
 	private GameObject back;
 	private GameObject front;
 	private GameObject side;
 	private GameObject[] eyesClosed;
-	private Animator animator;
+    private Animator animator;
 	public GameObject[] healthUI;
+    public Text[] powerupCountUI;
+
 
 	void Start()
 	{
@@ -182,5 +186,22 @@ public class Player : MonoBehaviour
 	public void Die()
 	{
 		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+
+    public void AddPowerUp(PowerUpType pupType)
+    {
+        switch (pupType)
+        {
+            case PowerUpType.Speed: powerupsCount[0]++; break;
+            case PowerUpType.RateOfFire: powerupsCount[1]++; break;
+            case PowerUpType.ShotSize: powerupsCount[2]++; break;
+            case PowerUpType.Damage: powerupsCount[3]++; break;
+        }
+
+        for (int i = 0; i < powerupCountUI.Length; i++)
+        {
+            Text countUI = powerupCountUI[i];
+            countUI.text = powerupsCount[i].ToString();
+        }
 	}
 }

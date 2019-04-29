@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerup: {fileID: 114407855951563588}
+  type: 1
 --- !u!212 &212883101903389974
 SpriteRenderer:
   m_ObjectHideFlags: 1

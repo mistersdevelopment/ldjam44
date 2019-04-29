@@ -18,8 +18,8 @@ public class CoinDrop : Pickup
     void Update () {
 	}
 
-    public override void ApplyPowerup(Character player)
+    public override void ApplyPowerup(Player player)
     {
-        player.ModifyHealth(1);
+        player.GetComponent<Character>().ModifyHealth(1);
     }
 }

@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerup: {fileID: 114705726368514760}
+  type: 2
 --- !u!114 &114705726368514760
 MonoBehaviour:
   m_ObjectHideFlags: 1

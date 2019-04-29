@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PowerUpType
+{
+    Speed,
+    RateOfFire,
+    Damage,
+    ShotSize
+}
+
 public class PowerUp : Pickup {
 
     private Rigidbody2D rb;
 
     public Stats powerup;
+    public PowerUpType type;
 
     // Use this for initialization
     void Start()
@@ -20,9 +29,10 @@ public class PowerUp : Pickup {
         StartCoroutine(BecomeActiveAfterDelay());
     }
 
-    public override void ApplyPowerup(Character player)
+    public override void ApplyPowerup(Player player)
     {
-        player.PowerUp(powerup);
+        player.AddPowerUp(type);
+        player.GetComponent<Character>().PowerUp(powerup);
     }
 
     IEnumerator BecomeActiveAfterDelay()

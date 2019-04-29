@@ -11,7 +11,7 @@ public class Pickup : MonoBehaviour
         if (allowPickup)
         {
             GameObject other = collision.gameObject;
-            Character playerScript = other.GetComponent<Character>();
+            Player playerScript = other.GetComponent<Player>();
             if (playerScript)
             {
                 ApplyPowerup(playerScript);
@@ -20,7 +20,7 @@ public class Pickup : MonoBehaviour
         }
 	}
 
-	public virtual void ApplyPowerup(Character player)
+	public virtual void ApplyPowerup(Player player)
 	{
 	}
 }
