@@ -1316,7 +1316,7 @@ MonoBehaviour:
   deathText: {fileID: 1059808911}
   floorText: {fileID: 704251763}
   cheatMode: 0
-  roomCompletedClip: {fileID: 0}
+  roomCompletedClip: {fileID: 8300000, guid: b77843dff580b4358aa12f6fca5e2851, type: 3}
 --- !u!4 &947321017
 Transform:
   m_ObjectHideFlags: 0
