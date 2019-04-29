@@ -578,6 +578,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  powerupCountUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114223941154659522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -624,8 +629,8 @@ MonoBehaviour:
   drop: {fileID: 0}
   dropChance: 0
   stats: {fileID: 0}
-  maxHealth: 3
-  currentHealth: 3
+  maxHealth: 5
+  currentHealth: 5
   invincibilityTime: 0.5
   currentStatusEffects: []
   fireOffset: {x: 0, y: 0, z: 0}

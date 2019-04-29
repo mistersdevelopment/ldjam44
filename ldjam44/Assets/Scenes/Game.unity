@@ -465,7 +465,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &313631206
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1138,7 +1138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &922194455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1985,11 +1985,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
-        type: 2}
-      propertyPath: powerupCountUI.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 4659251394018668, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2059,14 +2054,14 @@ Prefab:
       objectReference: {fileID: 1270226253}
     - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
         type: 2}
-      propertyPath: powerupCountUI.Array.data[3]
-      value: 
-      objectReference: {fileID: 1523326799}
-    - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
-        type: 2}
       propertyPath: powerupCountUI.Array.data[2]
       value: 
       objectReference: {fileID: 439894793}
+    - target: {fileID: 114179478201690806, guid: fe104e06368304f22b2ecf7a554ed179,
+        type: 2}
+      propertyPath: powerupCountUI.Array.data[3]
+      value: 
+      objectReference: {fileID: 1523326799}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe104e06368304f22b2ecf7a554ed179, type: 2}
   m_IsPrefabAsset: 0
