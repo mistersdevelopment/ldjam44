@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-	public GameObject[] enemies;
+	private GameObject[] enemies;
 	public Transform startPos;
 
 	bool complete = false;
@@ -22,7 +22,15 @@ public class Room : MonoBehaviour
 		topDoorClosed = transform.Find("Doors/Door_Top/Door_Closed").gameObject;
 		bottomDoorOpen = transform.Find("Doors/Door_Bottom/Door_Open").gameObject;
 		bottomDoorClosed = transform.Find("Doors/Door_Bottom/Door_Closed").gameObject;
-	}
+
+        var characters = GetComponentsInChildren<Character>();
+        enemies = new GameObject[characters.Length];
+        for (int i = 0; i < characters.Length; ++i)
+        {
+            var character = characters[i];
+           enemies[i] = character.gameObject;
+        }
+    }
 
 	public bool isActive()
 	{
