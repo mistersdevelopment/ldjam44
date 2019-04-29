@@ -51,15 +51,16 @@ public class Character : MonoBehaviour
 			if (currentHealth <= 0)
 			{
 				Die();
+				sounds.Die();
 			}
 			else if (currentHealth > maxHealth)
 			{
 				currentHealth = maxHealth;
 			}
 			else if (modification < 0)
-            {
-                canTakeDamage = false;
-                StartInvincibility();
+			{
+				canTakeDamage = false;
+				StartInvincibility();
 				sounds.Damage();
 			}
 			Player playerComponent = GetComponent<Player>();

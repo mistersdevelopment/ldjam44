@@ -457,6 +457,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 90af6f38b44b34aae8213c05e1c13623, type: 3}
   - {fileID: 8300000, guid: e59d5084ca66549e4bd38b1cf404d8e2, type: 3}
   tauntVolume: 1
+  death:
+  - {fileID: 8300000, guid: 33f713bce80ec48408bcbcdaa7b1b9f8, type: 3}
+  deathVolume: 1
 --- !u!114 &114157023856118630
 MonoBehaviour:
   m_ObjectHideFlags: 1

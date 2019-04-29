@@ -685,6 +685,9 @@ MonoBehaviour:
   damageVolume: 1
   taunt: []
   tauntVolume: 1
+  death:
+  - {fileID: 8300000, guid: 7bd5e615896794bd0a8cca7918764a9d, type: 3}
+  deathVolume: 1
 --- !u!114 &114678808152656586
 MonoBehaviour:
   m_ObjectHideFlags: 1
