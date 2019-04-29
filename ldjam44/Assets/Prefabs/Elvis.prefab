@@ -530,7 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 1963628016143002, guid: 61f0bdf1f828d4544a0a4a605efa39db, type: 2}
   drop: {fileID: 1936833819473028, guid: 508c221ecd361463e832ea68832131f7, type: 2}
-  dropChance: 0.7
+  dropChance: 0.5
   stats: {fileID: 0}
   maxHealth: 3
   currentHealth: 0
