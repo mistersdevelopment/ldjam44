@@ -15,7 +15,7 @@ public class OrderByY : MonoBehaviour
     void LateUpdate()
     {
         Vector3 pos = gameObject.transform.position;
-        pos.z = -5 + (pos.y + offset) / 100.0f;
+        pos.z = -7 + (pos.y + offset) / 100.0f;
         gameObject.transform.position = pos;
     }
 }

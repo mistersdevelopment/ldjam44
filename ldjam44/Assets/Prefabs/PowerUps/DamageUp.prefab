@@ -107,7 +107,7 @@ MonoBehaviour:
   movementSpeed: 0
   shotSpeed: 0
   rateOfFire: 0
-  damage: 0.4
+  damage: 0.5
   shotSize: 0
   shotLifetime: 0
   baseEffect: {fileID: 0}
