@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 	private UpgradeSlotMachine upgradeMachine;
 	public GameObject upgradeMachinePrefab;
 	public Canvas canvas;
+    public Text floorText;
 	public bool cheatMode = false;
 
 	private static GameManager _instance;
@@ -34,6 +35,11 @@ public class GameManager : MonoBehaviour
 			return _instance;
 		}
 	}
+
+    public int GetNextRoomNumber()
+    {
+        return nextRoomNumber;
+    }
 
 	private void Awake()
 	{

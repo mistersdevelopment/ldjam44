@@ -82,6 +82,11 @@ public class Room : MonoBehaviour
 		SetBottomDoor(false);
 		// Move the camera to the center of the room.
 		Camera.main.GetComponent<TargetCamera>().target = transform;
+        if (GameManager.Instance.GetNextRoomNumber() > 0)
+        {
+            GameManager.Instance.floorText.gameObject.SetActive(true);
+            GameManager.Instance.floorText.text = "Room " + GameManager.Instance.GetNextRoomNumber().ToString();
+        }
 	}
 
 	public void PlayerEnteredTrigger(string name)
