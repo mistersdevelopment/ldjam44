@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     public Text floorText;
 	public bool cheatMode = false;
 
+	private AudioSource[] sources;
+	private List<float> startingVolumes;
+
 	private static GameManager _instance;
 	public static GameManager Instance
 	{
@@ -49,6 +52,12 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		sources = GetComponents<AudioSource>();
+		startingVolumes = new List<float>();
+		for (int i = 0; i < sources.Length; i++)
+		{
+			startingVolumes.Add(sources[i].volume);
+		}
 		BeginGameplay();
 	}
 
@@ -111,8 +120,8 @@ public class GameManager : MonoBehaviour
 		// Load a new room if the active one is complete.
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
-            int roomNum = activeRoomNumber + 1;
-            //if (roomNum == 1) roomNum = 7;
+			int roomNum = activeRoomNumber + 1;
+			//if (roomNum == 1) roomNum = 7;
 			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
 		}
 
@@ -149,6 +158,11 @@ public class GameManager : MonoBehaviour
 	{
 		if (upgradeMachine == null)
 		{
+			for (int i = 0; i < sources.Length; i++)
+			{
+				;
+				StartCoroutine(FadeOut(sources[i], 0.5f, startingVolumes[i] * 0.25f));
+			}
 			upgradeMachine = Instantiate(upgradeMachinePrefab, canvas.transform).GetComponent<UpgradeSlotMachine>();
 		}
 	}
@@ -157,6 +171,10 @@ public class GameManager : MonoBehaviour
 	{
 		if (upgradeMachine != null)
 		{
+			for (int i = 0; i < sources.Length; i++)
+			{
+				StartCoroutine(FadeIn(sources[i], 0.5f, startingVolumes[i]));
+			}
 			Destroy(upgradeMachine.gameObject);
 			upgradeMachine = null;
 		}
@@ -173,5 +191,29 @@ public class GameManager : MonoBehaviour
 	public Room GetActiveRoom()
 	{
 		return activeRoom;
+	}
+
+	static IEnumerator FadeOut(AudioSource audioSource, float fadeTime, float fadeTo)
+	{
+		float startVolume = audioSource.volume;
+
+		while (audioSource.volume > fadeTo)
+		{
+			audioSource.volume -= startVolume * Time.deltaTime / fadeTime;
+
+			yield return null;
+		}
+	}
+
+	static IEnumerator FadeIn(AudioSource audioSource, float fadeTime, float fadeTo)
+	{
+		float startVolume = audioSource.volume;
+
+		while (audioSource.volume < fadeTo)
+		{
+			audioSource.volume += startVolume * Time.deltaTime / fadeTime;
+
+			yield return null;
+		}
 	}
 }
