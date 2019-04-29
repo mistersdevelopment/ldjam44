@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class UpgradeSlotMachine : MonoBehaviour
 {
 	Animator animator;
-	public Text coinText;
-	public Image proxyButton;
+    public Image[] coinsUI = new Image[5];
+    public Image proxyButton;
 	public Button spendButton;
-	public RawImage[] reels = new RawImage[3];
+    public Sprite coinEnabledSprite;
+    public Sprite coinDisabledSprite;
+    public RawImage[] reels = new RawImage[3];
 
 	float curSpinTime = 0f;
 	int[] reelIndex = new int[3];
@@ -42,12 +44,8 @@ public class UpgradeSlotMachine : MonoBehaviour
 		kItemCount = PowerUpManager.Instance.lootTable.Length;
 
 		animator = GetComponent<Animator>();
-		int coins = (int)playa.currentHealth;
-		if (this.coinText != null)
-		{
-			coinText.text = coins.ToString();
-		}
-		animator.Play("SlotMachine_In");
+        UpdateCoinsUI();
+        animator.Play("SlotMachine_In");
 		RandomizeSlotStart();
 		UpdateLeverState();
 
@@ -146,7 +144,7 @@ public class UpgradeSlotMachine : MonoBehaviour
     IEnumerator ShowReward()
 	{
 		PowerUpDef pup = PowerUpManager.Instance.lootTable[rewardItemIndex];
-		coinText.transform.parent.gameObject.SetActive(false);
+        coinsUI[0].transform.parent.gameObject.SetActive(false);
 		infoText.SetActive(false);
 		winnerText.SetActive(true);
 		winnerText.GetComponent<Text>().text = pup.name + " Upgrade Won!";
@@ -193,6 +191,21 @@ public class UpgradeSlotMachine : MonoBehaviour
 		spendButton.interactable = (coins > 1);
 	}
 
+    void UpdateCoinsUI()
+    {
+        for (int i = 0; i < coinsUI.Length; i++)
+        {
+            if (playa.currentHealth >= (i+1))
+            {
+                coinsUI[i].sprite = coinEnabledSprite;
+            }
+            else
+            {
+                coinsUI[i].sprite = coinDisabledSprite;
+            }
+        }
+    }
+
 	public void PullLever()
 	{
 		if (spinning || (int)playa.currentHealth <= 1)
@@ -202,10 +215,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 
 
 		playa.GetComponent<Character>().ModifyHealth(-1);
-		if (this.coinText != null)
-		{
-			coinText.text = ((int)playa.currentHealth).ToString();
-		}
+        UpdateCoinsUI();
 		UpdateLeverState();
         leverPull.Play();
         spinningSource.Play();
