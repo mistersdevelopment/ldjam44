@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
 		if (activeRoom && activeRoom.isComplete() && nextRoomState == LoadState.NONE)
 		{
             int roomNum = activeRoomNumber + 1;
-            if (roomNum == 1) roomNum = 7;
+            //if (roomNum == 1) roomNum = 7;
 			LoadRoom(roomNum, activeRoom.transform.position + new Vector3(0, 10.5f, 0));
 		}
 
