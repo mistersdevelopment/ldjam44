@@ -123,7 +123,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 			RawImage reel = reels[i];
 			if (reel)
 			{
-				reelIndex[i] = Random.Range(0, kItemCount - 1);
+				reelIndex[i] = Random.Range(0, kItemCount);
 				Rect uvs = reel.uvRect;
 				uvs.y = YCoordForSelection(reelIndex[i], 0) / (kPixelHeightPerItem * (float)kItemCount);
 				reel.uvRect = uvs;
@@ -192,7 +192,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 		int pityReward = -1;
 		if (PowerUpManager.Instance.spinsSinceUpgrade >= PowerUpManager.Instance.pityTimer - 1)
 		{
-			pityReward = Random.Range(0, kItemCount - 1);
+			pityReward = Random.Range(0, kItemCount);
 			PowerUpManager.Instance.spinsSinceUpgrade = 0;
 		}
 		else
@@ -211,7 +211,7 @@ public class UpgradeSlotMachine : MonoBehaviour
 				}
 				else
 				{
-					reelIndex[i] = Random.Range(0, kItemCount - 1);
+					reelIndex[i] = Random.Range(0, kItemCount);
 				}
 				reelYChange[i] = YCoordForSelection(reelIndex[i], kExtraRotations + i * 2);
 			}
