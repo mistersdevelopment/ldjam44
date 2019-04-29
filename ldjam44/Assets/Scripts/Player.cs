@@ -55,6 +55,11 @@ public class Player : MonoBehaviour
 			ProcessMovement();
 			ProcessAttacks();
 		}
+        else
+        {
+            horizontalMovement = 0f;
+            verticalMovement = 0f;
+        }
 	}
 
 	void ProcessMovement()
