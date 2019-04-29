@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
 		StartCoroutine(LoadRoomAsync(roomNum, position));
 	}
 
+	public bool IsUpgradeMachineOpen()
+	{
+		return upgradeMachine;
+	}
+
 	IEnumerator LoadRoomAsync(int roomNum, Vector3 position)
 	{
 		string roomName = "Room_" + roomNum;

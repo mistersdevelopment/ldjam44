@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 	private GameObject side;
 	private GameObject[] eyesClosed;
 	private Animator animator;
-    public GameObject[] healthUI;
+	public GameObject[] healthUI;
 
 	void Start()
 	{
@@ -44,9 +44,12 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		// Always call before attacks. Attacks takes precedent on the direction we are facing.
-		ProcessMovement();
-		ProcessAttacks();
+		if (!GameManager.Instance.IsUpgradeMachineOpen())
+		{
+			// Always call before attacks. Attacks takes precedent on the direction we are facing.
+			ProcessMovement();
+			ProcessAttacks();
+		}
 	}
 
 	void ProcessMovement()
@@ -164,20 +167,20 @@ public class Player : MonoBehaviour
 		}
 	}
 
-    public void SetHealth( float health )
-    {
-        for (int i = 0; i < health; ++i)
-        {
-            healthUI[i].SetActive(true);
-        }
-        for (int i = (int)health; i < 5; ++i)
-        {
-            healthUI[i].SetActive(false);
-        }
-    }
+	public void SetHealth(float health)
+	{
+		for (int i = 0; i < health; ++i)
+		{
+			healthUI[i].SetActive(true);
+		}
+		for (int i = (int)health; i < 5; ++i)
+		{
+			healthUI[i].SetActive(false);
+		}
+	}
 
-    public void Die()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-    }
+	public void Die()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+	}
 }
